@@ -41,7 +41,7 @@ those options.
 ## Running a Specific Version of Grafana
 
 ```bash
-# specify right tag, e.g. 4.5.2 - see Docker Hub for available tags
+# specify right tag, e.g. 5.0.3 - see Docker Hub for available tags
 $ docker run \
   -d \
   -p 3000:3000 \
