@@ -51,7 +51,7 @@ $ docker run \
 
 ## Installing Plugins for Grafana
 
-Pass the plugins you want installed to docker with the `GF_INSTALL_PLUGINS` environment variable as a comma separated list. This will pass each plugin name to `grafana-cli plugins install ${plugin}`.
+Pass the plugins you want installed to docker with the `GF_INSTALL_PLUGINS` environment variable as a comma separated list. This will pass each plugin name to `grafana-cli plugins install ${plugin}` and install them when Grafana starts.
 
 ```bash
 docker run \
@@ -64,24 +64,20 @@ docker run \
 
 ## Building a custom Grafana image with pre-installed plugins
 
-#### Dockerfile
-```Dockerfile
-FROM grafana/grafana:5.0.0
-ENV GF_PATHS_PLUGINS=/opt/grafana-plugins
-RUN mkdir -p $GF_PATHS_PLUGINS
-RUN grafana-cli --pluginsDir $GF_PATHS_PLUGINS plugins install grafana-clock-panel
-```
-
-Add lines with `RUN grafana-cli ...` for each plugin you wish to install in your custom image. Don't forget to specify what version of Grafana you wish to build from (replace 5.0.0 in the example).
+In the [grafana-docker](https://github.com/grafana/grafana-docker/)  there is a folder called `custom/` which includes a `Dockerfile` that can be used to build a custom Grafana image.  It accepts `GRAFANA_VERSION` and `GF_INSTALL_PLUGINS` as build arguments.
 
 Example of how to build and run:
 ```bash
-docker build -t grafana:5.0.0-custom . 
+cd custom
+docker build -t grafana:latest-with-plugins \
+  --build-arg "GRAFANA_VERSION=latest" \
+  --build-arg "GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-simple-json-datasource" .
+
 docker run \
   -d \
   -p 3000:3000 \
   --name=grafana \
-  grafana:5.0.0-custom
+  grafana:latest-with-plugins
 ```
 
 ## Configuring AWS Credentials for CloudWatch Support
@@ -122,10 +118,6 @@ docker run \
   grafana/grafana
 ```
 
-Note: An unnamed volume will be created for you when you boot Grafana,
-using `docker volume create grafana-storage` just makes it easier to find
-by giving it a name.
-
 ## Grafana container using bind mounts
 
 You may want to run Grafana in Docker but use folders on your host for the database or configuration. When doing so it becomes important to start the container with a user that is also able to access and write to the folder you map into the container.
@@ -140,14 +132,14 @@ docker run -d --user $ID --volume "$PWD/data:/var/lib/grafana" -p 3000:3000 graf
 
 ## Migration from a previous version of the docker container to 5.1 or later
 
-In 5.1 we switched from running as the `grafana` user to the `nobody` user. Unfortunately this means that files created prior to 5.1 won't have the correct permissions for later versions. We made this change so that it would be easier for you to control what user Grafana is executed as (see examples below).
+In 5.1 we switched the id of the grafana user. Unfortunately this means that files created prior to 5.1 won't have the correct permissions for later versions. We made this change so that it would be easier for you to control what user Grafana is executed as (see examples below).
 
 Version | User    | User ID
 --------|---------|---------
 < 5.1   | grafana | 104
->= 5.1  | nobody  | 65534
+>= 5.1  | grafana | 472
 
-There are two possible solutions to this problem. Either you start the new container as the root user and changes ownership from `104` to `65534` or you start the upgraded container as user `104`.
+There are two possible solutions to this problem. Either you start the new container as the root user and changes ownership from `104` to `472` or you start the upgraded container as user `104`.
 
 ### Running docker as a different user
 
@@ -177,6 +169,6 @@ $ docker run -ti --user root --volume "<your volume mapping here>" --entrypoint 
 # in the container you just started:
 chown -R root:root /etc/grafana && \
   chmod -R a+r /etc/grafana && \
-  chown -R nobody:nogroup /var/lib/grafana && \
-  chown -R nobody:nogroup /usr/share/grafana
+  chown -R grafana:grafana /var/lib/grafana && \
+  chown -R grafana:grafana /usr/share/grafana
 ```
