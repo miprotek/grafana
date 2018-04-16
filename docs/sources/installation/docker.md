@@ -41,12 +41,12 @@ those options.
 ## Running a Specific Version of Grafana
 
 ```bash
-# specify right tag, e.g. 5.0.3 - see Docker Hub for available tags
+# specify right tag, e.g. 5.1.0 - see Docker Hub for available tags
 $ docker run \
   -d \
   -p 3000:3000 \
   --name grafana \
-  grafana/grafana:5.0.3
+  grafana/grafana:5.1.0
 ```
 
 ## Installing Plugins for Grafana
@@ -105,7 +105,7 @@ Supported variables:
 
 ## Grafana container with persistent storage (recommended)
 
-```
+```bash
 # create a persistent volume for your data in /var/lib/grafana (database and plugins)
 docker volume create grafana-storage
 
@@ -120,14 +120,14 @@ docker run \
 
 ## Grafana container using bind mounts
 
-You may want to run Grafana in Docker but use folders on your host for the database or configuration. When doing so it becomes important to start the container with a user that is also able to access and write to the folder you map into the container.
+You may want to run Grafana in Docker but use folders on your host for the database or configuration. When doing so it becomes important to start the container with a user that is able to access and write to the folder you map into the container.
 
 ```bash
 mkdir data # creates a folder for your data
 ID=$(id -u) # saves your user id in the ID variable
 
 # starts grafana with your user id and using the data folder
-docker run -d --user $ID --volume "$PWD/data:/var/lib/grafana" -p 3000:3000 grafana/grafana:5.1
+docker run -d --user $ID --volume "$PWD/data:/var/lib/grafana" -p 3000:3000 grafana/grafana:5.1.0
 ```
 
 ## Migration from a previous version of the docker container to 5.1 or later
@@ -139,12 +139,12 @@ Version | User    | User ID
 < 5.1   | grafana | 104
 >= 5.1  | grafana | 472
 
-There are two possible solutions to this problem. Either you start the new container as the root user and changes ownership from `104` to `472` or you start the upgraded container as user `104`.
+There are two possible solutions to this problem. Either you start the new container as the root user and change ownership from `104` to `472` or you start the upgraded container as user `104`.
 
 ### Running docker as a different user
 
 ```bash
-docker run --user 104 --volume "<your volume mapping here>" grafana/grafana:5.1
+docker run --user 104 --volume "<your volume mapping here>" grafana/grafana:5.1.0
 ```
 
 #### docker-compose.yml with custom user
@@ -153,7 +153,7 @@ version: "2"
 
 services:
   grafana:
-    image: grafana/grafana:5.1
+    image: grafana/grafana:5.1.0
     ports:
       - 3000:3000
     user: "104"
@@ -161,10 +161,10 @@ services:
 
 ### Modifying permissions
 
-Always be careful when modifying permissions.
+The commands below will run bash inside the Grafana container with your volume mapped in. This makes it possible to modify the file ownership to match the new container. Always be careful when modifying permissions. 
 
 ```bash
-$ docker run -ti --user root --volume "<your volume mapping here>" --entrypoint bash grafana/grafana:5.1
+$ docker run -ti --user root --volume "<your volume mapping here>" --entrypoint bash grafana/grafana:5.1.0
 
 # in the container you just started:
 chown -R root:root /etc/grafana && \
