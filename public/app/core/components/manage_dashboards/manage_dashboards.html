@@ -1,7 +1,7 @@
 <div class="dashboard-list">
   <div class="page-action-bar page-action-bar--narrow" ng-hide="ctrl.folderId && !ctrl.hasFilters && ctrl.sections.length === 0">
     <label class="gf-form gf-form--grow gf-form--has-input-icon">
-      <input type="text" class="gf-form-input max-width-30" placeholder="Find Dashboard by name" tabindex="1" give-focus="true" ng-model="ctrl.query.query" ng-model-options="{ debounce: 500 }" spellcheck='false' ng-change="ctrl.onQueryChange()" />
+      <input type="text" class="gf-form-input max-width-30" placeholder="Dashboard über Namen finden" tabindex="1" give-focus="true" ng-model="ctrl.query.query" ng-model-options="{ debounce: 500 }" spellcheck='false' ng-change="ctrl.onQueryChange()" />
       <i class="gf-form-input-icon fa fa-search"></i>
     </label>
     <div class="page-action-bar__spacer"></div>
@@ -11,7 +11,7 @@
     </a>
     <a class="btn btn-success" href="dashboards/folder/new" ng-if="!ctrl.folderId && ctrl.isEditor">
       <i class="fa fa-plus"></i>
-      Folder
+      Ordner
     </a>
   </div>
 
@@ -32,14 +32,14 @@
       <div class="gf-form" ng-show="ctrl.query.starred">
         <label class="gf-form-label">
           <a class="pointer" ng-click="ctrl.removeStarred()">
-            <i class="fa fa-fw fa-check"></i> Starred
+            <i class="fa fa-fw fa-check"></i> Markiert
           </a>
         </label>
       </div>
       <div class="gf-form">
         <label class="gf-form-label">
-          <a class="pointer" ng-click="ctrl.clearFilters()" bs-tooltip="'Clear current search query and filters'">
-            <i class="fa fa-remove"></i>&nbsp;Clear
+          <a class="pointer" ng-click="ctrl.clearFilters()" bs-tooltip="'Lösche aktuelle Suchabfrage und Filter'">
+            <i class="fa fa-remove"></i>&nbsp;Löschen
           </a>
         </label>
       </div>
@@ -48,13 +48,13 @@
 
   <div class="search-results" ng-show="ctrl.hasFilters && ctrl.sections.length === 0">
     <em class="muted">
-      No dashboards matching your query were found.
+      Keine Dashboards passend zur Suchanfrage gefunden.
     </em>
   </div>
 
 	<div class="search-results" ng-show="!ctrl.folderId && !ctrl.hasFilters && ctrl.sections.length === 0">
     <em class="muted">
-        No dashboards found.
+        Keine Dashboards gefunden.
     </em>
   </div>
 
@@ -87,15 +87,15 @@
             class="btn gf-form-button btn-inverse"
             ng-disabled="!ctrl.canMove"
             ng-click="ctrl.moveTo()"
-            bs-tooltip="ctrl.canMove ? '' : 'Select a dashboard to move (cannot move folders)'"
+            bs-tooltip="ctrl.canMove ? '' : 'Dashboard zum verschieben auswählen (Kann keine Ordner verschieben)'"
             data-placement="bottom">
-          <i class="fa fa-exchange"></i>&nbsp;&nbsp;Move
+          <i class="fa fa-exchange"></i>&nbsp;&nbsp;Verschieben
           </button>
           <button type="button"
             class="btn gf-form-button btn-danger"
             ng-click="ctrl.delete()"
             ng-disabled="!ctrl.canDelete">
-            <i class="fa fa-trash"></i>&nbsp;&nbsp;Delete
+            <i class="fa fa-trash"></i>&nbsp;&nbsp;Löschen
           </button>
         </div>
       </div>
@@ -114,13 +114,13 @@
 
 <div ng-if="ctrl.canSave && ctrl.folderId && !ctrl.hasFilters && ctrl.sections.length === 0">
   <empty-list-cta model="{
-    title: 'This folder doesn\'t have any dashboards yet',
+    title: 'Dieser Ordner hat noch keine Dashboards',
     buttonIcon: 'gicon gicon-dashboard-new',
     buttonLink: 'dashboard/new?folderId={{ctrl.folderId}}',
-    buttonTitle: 'Create Dashboard',
-    proTip: 'Add/move dashboards to your folder at ->',
+    buttonTitle: 'Dashboard erstellen',
+    proTip: 'Hinzufügen/Bewegen der Dashboards in Ihren Ordner ->',
     proTipLink: 'dashboards',
-    proTipLinkTitle: 'Manage dashboards',
+    proTipLinkTitle: 'Dashboards Verwalten',
     proTipTarget: ''
   }" />
 </div>

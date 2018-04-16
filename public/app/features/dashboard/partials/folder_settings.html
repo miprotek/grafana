@@ -1,7 +1,7 @@
 <page-header model="ctrl.navModel"></page-header>
 
 <div class="page-container page-body">
-	<h2 class="page-sub-heading">Folder Settings</h2>
+	<h2 class="page-sub-heading">Ordner Einstellungen</h2>
 
 	<div class="section gf-form-group">
 		<form name="folderSettingsForm" ng-submit="ctrl.save()">
@@ -11,11 +11,12 @@
 			</div>
 			<div class="gf-form-button-row">
 				<button type="submit" class="btn btn-success" ng-disabled="!ctrl.canSave || !ctrl.hasChanged">
-					<i class="fa fa-save"></i>Save
+					<i class="fa fa-save"></i>
+					Speichern
 				</button>
 				<button class="btn btn-danger" ng-click="ctrl.delete($event)" ng-disabled="!ctrl.canSave">
 					<i class="fa fa-trash"></i>
-					Delete
+					Löschen
 				</button>
 			</div>
 		</form>

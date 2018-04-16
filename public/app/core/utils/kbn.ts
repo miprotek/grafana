@@ -128,7 +128,7 @@ kbn.secondsToHms = function(seconds) {
     return nummilliseconds + 'ms';
   }
 
-  return 'less than a millisecond'; //'just now' //or other string you like;
+  return 'Weniger als eine Millisekunde'; //'just now' //or other string you like;
 };
 
 kbn.secondsToHhmmss = function(seconds) {
@@ -350,7 +350,7 @@ kbn.formatBuilders.binarySIPrefix = function(unit, offset) {
 // Currency formatter for prefixing a symbol onto a number. Supports scaling
 // up to the trillions.
 kbn.formatBuilders.currency = function(symbol) {
-  var units = ['', 'K', 'M', 'B', 'T'];
+  var units = ['', 'K', 'M', 'Mrd', 'Bil'];
   var scaler = kbn.formatBuilders.scaledUnits(1000, units);
   return function(size, decimals, scaledDecimals) {
     if (size === null) {
@@ -362,7 +362,7 @@ kbn.formatBuilders.currency = function(symbol) {
 };
 
 kbn.formatBuilders.simpleCountUnit = function(symbol) {
-  var units = ['', 'K', 'M', 'B', 'T'];
+  var units = ['', 'K', 'M', 'Mrd', 'Bil'];
   var scaler = kbn.formatBuilders.scaledUnits(1000, units);
   return function(size, decimals, scaledDecimals) {
     if (size === null) {
@@ -381,8 +381,8 @@ kbn.valueFormats.short = kbn.formatBuilders.scaledUnits(1000, [
   '',
   ' K',
   ' Mil',
+  ' Mrd',
   ' Bil',
-  ' Tri',
   ' Quadr',
   ' Quint',
   ' Sext',
@@ -624,13 +624,13 @@ kbn.valueFormats.ms = function(size, decimals, scaledDecimals) {
     return kbn.toFixedScaled(size / 60000, decimals, scaledDecimals, 5, ' min');
   } else if (Math.abs(size) < 86400000) {
     // Less than one day, divide in hours
-    return kbn.toFixedScaled(size / 3600000, decimals, scaledDecimals, 7, ' hour');
+    return kbn.toFixedScaled(size / 3600000, decimals, scaledDecimals, 7, ' Stunde');
   } else if (Math.abs(size) < 31536000000) {
     // Less than one year, divide in days
-    return kbn.toFixedScaled(size / 86400000, decimals, scaledDecimals, 8, ' day');
+    return kbn.toFixedScaled(size / 86400000, decimals, scaledDecimals, 8, ' Tag');
   }
 
-  return kbn.toFixedScaled(size / 31536000000, decimals, scaledDecimals, 10, ' year');
+  return kbn.toFixedScaled(size / 31536000000, decimals, scaledDecimals, 10, ' Jahr');
 };
 
 kbn.valueFormats.s = function(size, decimals, scaledDecimals) {
@@ -652,22 +652,22 @@ kbn.valueFormats.s = function(size, decimals, scaledDecimals) {
   }
 
   if (Math.abs(size) < 60) {
-    return kbn.toFixed(size, decimals) + ' s';
+    return kbn.toFixed(size, decimals) + ' en';
   } else if (Math.abs(size) < 3600) {
     // Less than 1 hour, divide in minutes
-    return kbn.toFixedScaled(size / 60, decimals, scaledDecimals, 1, ' min');
+    return kbn.toFixedScaled(size / 60, decimals, scaledDecimals, 1, ' Min');
   } else if (Math.abs(size) < 86400) {
     // Less than one day, divide in hours
-    return kbn.toFixedScaled(size / 3600, decimals, scaledDecimals, 4, ' hour');
+    return kbn.toFixedScaled(size / 3600, decimals, scaledDecimals, 4, ' Stunde');
   } else if (Math.abs(size) < 604800) {
     // Less than one week, divide in days
-    return kbn.toFixedScaled(size / 86400, decimals, scaledDecimals, 5, ' day');
+    return kbn.toFixedScaled(size / 86400, decimals, scaledDecimals, 5, ' Tag');
   } else if (Math.abs(size) < 31536000) {
     // Less than one year, divide in week
-    return kbn.toFixedScaled(size / 604800, decimals, scaledDecimals, 6, ' week');
+    return kbn.toFixedScaled(size / 604800, decimals, scaledDecimals, 6, ' Woche');
   }
 
-  return kbn.toFixedScaled(size / 3.15569e7, decimals, scaledDecimals, 7, ' year');
+  return kbn.toFixedScaled(size / 3.15569e7, decimals, scaledDecimals, 7, ' Jahr');
 };
 
 kbn.valueFormats['µs'] = function(size, decimals, scaledDecimals) {
@@ -710,13 +710,13 @@ kbn.valueFormats.m = function(size, decimals, scaledDecimals) {
   if (Math.abs(size) < 60) {
     return kbn.toFixed(size, decimals) + ' min';
   } else if (Math.abs(size) < 1440) {
-    return kbn.toFixedScaled(size / 60, decimals, scaledDecimals, 2, ' hour');
+    return kbn.toFixedScaled(size / 60, decimals, scaledDecimals, 2, ' Stunde');
   } else if (Math.abs(size) < 10080) {
-    return kbn.toFixedScaled(size / 1440, decimals, scaledDecimals, 3, ' day');
+    return kbn.toFixedScaled(size / 1440, decimals, scaledDecimals, 3, ' Tag');
   } else if (Math.abs(size) < 604800) {
-    return kbn.toFixedScaled(size / 10080, decimals, scaledDecimals, 4, ' week');
+    return kbn.toFixedScaled(size / 10080, decimals, scaledDecimals, 4, ' Woche');
   } else {
-    return kbn.toFixedScaled(size / 5.25948e5, decimals, scaledDecimals, 5, ' year');
+    return kbn.toFixedScaled(size / 5.25948e5, decimals, scaledDecimals, 5, ' Jahr');
   }
 };
 
@@ -726,13 +726,13 @@ kbn.valueFormats.h = function(size, decimals, scaledDecimals) {
   }
 
   if (Math.abs(size) < 24) {
-    return kbn.toFixed(size, decimals) + ' hour';
+    return kbn.toFixed(size, decimals) + ' Stunde';
   } else if (Math.abs(size) < 168) {
-    return kbn.toFixedScaled(size / 24, decimals, scaledDecimals, 2, ' day');
+    return kbn.toFixedScaled(size / 24, decimals, scaledDecimals, 2, ' Tag');
   } else if (Math.abs(size) < 8760) {
-    return kbn.toFixedScaled(size / 168, decimals, scaledDecimals, 3, ' week');
+    return kbn.toFixedScaled(size / 168, decimals, scaledDecimals, 3, ' Woche');
   } else {
-    return kbn.toFixedScaled(size / 8760, decimals, scaledDecimals, 4, ' year');
+    return kbn.toFixedScaled(size / 8760, decimals, scaledDecimals, 4, ' Jahr');
   }
 };
 
@@ -742,11 +742,11 @@ kbn.valueFormats.d = function(size, decimals, scaledDecimals) {
   }
 
   if (Math.abs(size) < 7) {
-    return kbn.toFixed(size, decimals) + ' day';
+    return kbn.toFixed(size, decimals) + ' Tag';
   } else if (Math.abs(size) < 365) {
-    return kbn.toFixedScaled(size / 7, decimals, scaledDecimals, 2, ' week');
+    return kbn.toFixedScaled(size / 7, decimals, scaledDecimals, 2, ' Woche');
   } else {
-    return kbn.toFixedScaled(size / 365, decimals, scaledDecimals, 3, ' year');
+    return kbn.toFixedScaled(size / 365, decimals, scaledDecimals, 3, ' Jahr');
   }
 };
 
@@ -758,18 +758,18 @@ kbn.toDuration = function(size, decimals, timeScale) {
     return '0 ' + timeScale + 's';
   }
   if (size < 0) {
-    return kbn.toDuration(-size, decimals, timeScale) + ' ago';
+    return kbn.toDuration(-size, decimals, timeScale) + ' vor';
   }
 
   var units = [
-    { short: 'y', long: 'year' },
-    { short: 'M', long: 'month' },
-    { short: 'w', long: 'week' },
-    { short: 'd', long: 'day' },
-    { short: 'h', long: 'hour' },
-    { short: 'm', long: 'minute' },
-    { short: 's', long: 'second' },
-    { short: 'ms', long: 'millisecond' },
+    { short: 'y', long: 'Jahr' },
+    { short: 'M', long: 'Monat' },
+    { short: 'w', long: 'Woche' },
+    { short: 'd', long: 'Tag' },
+    { short: 'h', long: 'Stunde' },
+    { short: 'm', long: 'Minute' },
+    { short: 's', long: 'Sekunde' },
+    { short: 'ms', long: 'Millisekunde' },
   ];
   // convert $size to milliseconds
   // intervals_in_seconds uses seconds (duh), convert them to milliseconds here to minimize floating point errors
@@ -789,7 +789,7 @@ kbn.toDuration = function(size, decimals, timeScale) {
     if (value >= 1 || decrementDecimals) {
       decrementDecimals = true;
       var floor = Math.floor(value);
-      var unit = units[i].long + (floor !== 1 ? 's' : '');
+      var unit = units[i].long + (floor !== 1 ? 'en' : '');
       strings.push(floor + ' ' + unit);
       size = size % interval;
       decimals--;
@@ -830,7 +830,7 @@ kbn.valueFormats.dateTimeAsUS = function(epoch) {
   if (moment().isSame(epoch, 'day')) {
     return time.format('h:mm:ss a');
   }
-  return time.format('MM/DD/YYYY h:mm:ss a');
+  return time.format('DD.MM.YYYY h:mm:ss a');
 };
 
 kbn.valueFormats.dateTimeFromNow = function(epoch) {
@@ -845,192 +845,191 @@ kbn.getUnitFormats = function() {
       text: 'none',
       submenu: [
         { text: 'none', value: 'none' },
-        { text: 'short', value: 'short' },
-        { text: 'percent (0-100)', value: 'percent' },
-        { text: 'percent (0.0-1.0)', value: 'percentunit' },
-        { text: 'Humidity (%H)', value: 'humidity' },
-        { text: 'decibel', value: 'dB' },
-        { text: 'hexadecimal (0x)', value: 'hex0x' },
-        { text: 'hexadecimal', value: 'hex' },
-        { text: 'scientific notation', value: 'sci' },
-        { text: 'locale format', value: 'locale' },
+        { text: 'Kurz', value: 'short' },
+        { text: 'Prozent (0-100)', value: 'percent' },
+        { text: 'Prozent (0.0-1.0)', value: 'percentunit' },
+        { text: 'Feuchtigkeit (%H)', value: 'humidity' },
+        { text: 'Dezibel', value: 'dB' },
+        { text: 'Hexadezimal (0x)', value: 'hex0x' },
+        { text: 'Hexadezimal', value: 'hex' },
+        { text: 'Wissenschaftlicheschreibweise', value: 'sci' },
+        { text: 'Gebietsschemaformat', value: 'locale' },
       ],
     },
     {
-      text: 'currency',
+      text: 'Währung',
       submenu: [
-        { text: 'Dollars ($)', value: 'currencyUSD' },
-        { text: 'Pounds (£)', value: 'currencyGBP' },
+        { text: 'Dollar ($)', value: 'currencyUSD' },
+        { text: 'Pfund (£)', value: 'currencyGBP' },
         { text: 'Euro (€)', value: 'currencyEUR' },
         { text: 'Yen (¥)', value: 'currencyJPY' },
-        { text: 'Rubles (₽)', value: 'currencyRUB' },
+        { text: 'Rubel (₽)', value: 'currencyRUB' },
         { text: 'Hryvnias (₴)', value: 'currencyUAH' },
         { text: 'Real (R$)', value: 'currencyBRL' },
-        { text: 'Danish Krone (kr)', value: 'currencyDKK' },
-        { text: 'Icelandic Króna (kr)', value: 'currencyISK' },
-        { text: 'Norwegian Krone (kr)', value: 'currencyNOK' },
-        { text: 'Swedish Krona (kr)', value: 'currencySEK' },
-        { text: 'Czech koruna (czk)', value: 'currencyCZK' },
+        { text: 'Dänische Kronen (kr)', value: 'currencyDKK' },
+        { text: 'Isländische Kronen (kr)', value: 'currencyISK' },
+        { text: 'Norwegische Kronen (kr)', value: 'currencyNOK' },
+        { text: 'Schwedische Kronen (kr)', value: 'currencySEK' },
+        { text: 'Tschechische Kronen (czk)', value: 'currencyCZK' },
       ],
     },
     {
-      text: 'time',
+      text: 'Zeit',
       submenu: [
         { text: 'Hertz (1/s)', value: 'hertz' },
-        { text: 'nanoseconds (ns)', value: 'ns' },
-        { text: 'microseconds (µs)', value: 'µs' },
-        { text: 'milliseconds (ms)', value: 'ms' },
-        { text: 'seconds (s)', value: 's' },
-        { text: 'minutes (m)', value: 'm' },
-        { text: 'hours (h)', value: 'h' },
-        { text: 'days (d)', value: 'd' },
-        { text: 'duration (ms)', value: 'dtdurationms' },
-        { text: 'duration (s)', value: 'dtdurations' },
-        { text: 'duration (hh:mm:ss)', value: 'dthms' },
+        { text: 'Nanosekunden (ns)', value: 'ns' },
+        { text: 'Mikrosekunden (µs)', value: 'µs' },
+        { text: 'Millisekunden (ms)', value: 'ms' },
+        { text: 'Sekunden (s)', value: 's' },
+        { text: 'Minuten (m)', value: 'm' },
+        { text: 'Stunden (h)', value: 'h' },
+        { text: 'Tage (d)', value: 'd' },
+        { text: 'Dauer (ms)', value: 'dtdurationms' },
+        { text: 'Dauer (s)', value: 'dtdurations' },
+        { text: 'Dauer (hh:mm:ss)', value: 'dthms' },
         { text: 'Timeticks (s/100)', value: 'timeticks' },
       ],
     },
     {
-      text: 'date & time',
+      text: 'Datum & Uhrzeit',
       submenu: [
         { text: 'YYYY-MM-DD HH:mm:ss', value: 'dateTimeAsIso' },
-        { text: 'DD/MM/YYYY h:mm:ss a', value: 'dateTimeAsUS' },
-        { text: 'From Now', value: 'dateTimeFromNow' },
+        { text: 'DD.MM.YYYY h:mm:ss a', value: 'dateTimeAsUS' },
+        { text: 'Ab jetzt', value: 'dateTimeFromNow' },
       ],
     },
     {
-      text: 'data (IEC)',
+      text: 'Daten (IEC)',
       submenu: [
-        { text: 'bits', value: 'bits' },
-        { text: 'bytes', value: 'bytes' },
-        { text: 'kibibytes', value: 'kbytes' },
-        { text: 'mebibytes', value: 'mbytes' },
-        { text: 'gibibytes', value: 'gbytes' },
+        { text: 'Bits', value: 'bits' },
+        { text: 'Bytes', value: 'bytes' },
+        { text: 'Kibibytes', value: 'kbytes' },
+        { text: 'Mebibytes', value: 'mbytes' },
+        { text: 'Gibibytes', value: 'gbytes' },
       ],
     },
     {
-      text: 'data (Metric)',
+      text: 'Daten (Metrisch)',
       submenu: [
-        { text: 'bits', value: 'decbits' },
-        { text: 'bytes', value: 'decbytes' },
-        { text: 'kilobytes', value: 'deckbytes' },
-        { text: 'megabytes', value: 'decmbytes' },
-        { text: 'gigabytes', value: 'decgbytes' },
+        { text: 'Bits', value: 'decbits' },
+        { text: 'Bytes', value: 'decbytes' },
+        { text: 'Kilobytes', value: 'deckbytes' },
+        { text: 'Megabytes', value: 'decmbytes' },
+        { text: 'Gigabytes', value: 'decgbytes' },
       ],
     },
     {
-      text: 'data rate',
+      text: 'Daten Rate',
       submenu: [
-        { text: 'packets/sec', value: 'pps' },
-        { text: 'bits/sec', value: 'bps' },
-        { text: 'bytes/sec', value: 'Bps' },
-        { text: 'kilobits/sec', value: 'Kbits' },
-        { text: 'kilobytes/sec', value: 'KBs' },
-        { text: 'megabits/sec', value: 'Mbits' },
-        { text: 'megabytes/sec', value: 'MBs' },
-        { text: 'gigabytes/sec', value: 'GBs' },
-        { text: 'gigabits/sec', value: 'Gbits' },
+        { text: 'Pakete/sec', value: 'pps' },
+        { text: 'Bits/sec', value: 'bps' },
+        { text: 'Bytes/sec', value: 'Bps' },
+        { text: 'Kilobits/sec', value: 'Kbits' },
+        { text: 'Kilobytes/sec', value: 'KBs' },
+        { text: 'Megabits/sec', value: 'Mbits' },
+        { text: 'Megabytes/sec', value: 'MBs' },
+        { text: 'Gigabytes/sec', value: 'GBs' },
+        { text: 'Gigabits/sec', value: 'Gbits' },
       ],
     },
     {
-      text: 'hash rate',
+      text: 'Hash Rate',
       submenu: [
-        { text: 'hashes/sec', value: 'Hs' },
-        { text: 'kilohashes/sec', value: 'KHs' },
-        { text: 'megahashes/sec', value: 'MHs' },
-        { text: 'gigahashes/sec', value: 'GHs' },
-        { text: 'terahashes/sec', value: 'THs' },
-        { text: 'petahashes/sec', value: 'PHs' },
-        { text: 'exahashes/sec', value: 'EHs' },
+        {text: 'Hashes/sek', value: 'Hs'},
+        {text: 'Kilohashes/sek',    value: 'KHs'},
+        {text: 'Megahashes/sek',   value: 'MHs'},
+        {text: 'Gigahashes/sek', value: 'GHs'},
+        {text: 'Terahashes/sek',    value: 'THs'},
+        {text: 'Petahashes/sek', value: 'PHs'},
+        {text: 'Exahashes/sek',    value: 'EHs'},
       ],
     },
     {
-      text: 'throughput',
+      text: 'Durchsatz',
       submenu: [
-        { text: 'ops/sec (ops)', value: 'ops' },
-        { text: 'reads/sec (rps)', value: 'rps' },
-        { text: 'writes/sec (wps)', value: 'wps' },
-        { text: 'I/O ops/sec (iops)', value: 'iops' },
-        { text: 'ops/min (opm)', value: 'opm' },
-        { text: 'reads/min (rpm)', value: 'rpm' },
-        { text: 'writes/min (wpm)', value: 'wpm' },
+        { text: 'Punkte/sek (ops)', value: 'ops' },
+        { text: 'Lesevorgänge/sek (rps)', value: 'rps' },
+        { text: 'Schreibvorgänge/sek (wps)', value: 'wps' },
+        { text: 'I/O Punkte/sek (iops)', value: 'iops' },
+        { text: 'Punkte/min (opm)', value: 'opm' },
+        { text: 'Lesevorgänge/min (rpm)', value: 'rpm' },
+        { text: 'Schreibvorgänge/min (wpm)', value: 'wpm' },
       ],
     },
     {
-      text: 'length',
+      text: 'Länge',
       submenu: [
-        { text: 'millimetre (mm)', value: 'lengthmm' },
-        { text: 'meter (m)', value: 'lengthm' },
-        { text: 'feet (ft)', value: 'lengthft' },
-        { text: 'kilometer (km)', value: 'lengthkm' },
-        { text: 'mile (mi)', value: 'lengthmi' },
+        { text: 'Millimeter (mm)', value: 'lengthmm' },
+        { text: 'Meter (m)', value: 'lengthm' },
+        { text: 'Fuß (ft)', value: 'lengthft' },
+        { text: 'Kilometer (km)', value: 'lengthkm' },
+        { text: 'Meile (mi)', value: 'lengthmi' },
       ],
     },
     {
-      text: 'area',
+      text: 'Areal',
       submenu: [
-        { text: 'Square Meters (m²)', value: 'areaM2' },
-        { text: 'Square Feet (ft²)', value: 'areaF2' },
-        { text: 'Square Miles (mi²)', value: 'areaMI2' },
+        { text: 'Quadrat Meter (m²)', value: 'areaM2' },
+        { text: 'Quadrat Fuß (ft²)', value: 'areaF2' },
+        { text: 'Quadrat Meilen (mi²)', value: 'areaMI2' },
       ],
     },
     {
-      text: 'mass',
+      text: 'Masse',
       submenu: [
-        { text: 'milligram (mg)', value: 'massmg' },
-        { text: 'gram (g)', value: 'massg' },
-        { text: 'kilogram (kg)', value: 'masskg' },
-        { text: 'metric ton (t)', value: 'masst' },
+        { text: 'Milligramm (mg)', value: 'massmg' },
+        { text: 'Gramm (g)', value: 'massg' },
+        { text: 'Kilogram (kg)', value: 'masskg' },
+        { text: 'Metrische Tonne (t)', value: 'masst' },
       ],
     },
     {
-      text: 'velocity',
+      text: 'Geschwindigkeit',
       submenu: [
         { text: 'm/s', value: 'velocityms' },
         { text: 'km/h', value: 'velocitykmh' },
         { text: 'mph', value: 'velocitymph' },
-        { text: 'knot (kn)', value: 'velocityknot' },
+        { text: 'Knoten (kn)', value: 'velocityknot' },
       ],
     },
     {
-      text: 'volume',
+      text: 'Volumen',
       submenu: [
-        { text: 'millilitre', value: 'mlitre' },
-        { text: 'litre', value: 'litre' },
-        { text: 'cubic metre', value: 'm3' },
-        { text: 'Normal cubic metre', value: 'Nm3' },
-        { text: 'cubic decimetre', value: 'dm3' },
-        { text: 'gallons', value: 'gallons' },
+        { text: 'Milliliter', value: 'mlitre' },
+        { text: 'Liter', value: 'litre' },
+        { text: 'Kubik Meter', value: 'm3' },
+        { text: 'Kubik Dezimeter', value: 'dm3' },
+        { text: 'Gallonen', value: 'gallons' },
       ],
     },
     {
-      text: 'energy',
+      text: 'Energie',
       submenu: [
         { text: 'Watt (W)', value: 'watt' },
         { text: 'Kilowatt (kW)', value: 'kwatt' },
         { text: 'Milliwatt (mW)', value: 'mwatt' },
-        { text: 'Volt-ampere (VA)', value: 'voltamp' },
-        { text: 'Kilovolt-ampere (kVA)', value: 'kvoltamp' },
-        { text: 'Volt-ampere reactive (var)', value: 'voltampreact' },
-        { text: 'Kilovolt-ampere reactive (kvar)', value: 'kvoltampreact' },
-        { text: 'Watt-hour (Wh)', value: 'watth' },
-        { text: 'Kilowatt-hour (kWh)', value: 'kwatth' },
-        { text: 'Kilowatt-min (kWm)', value: 'kwattm' },
+        { text: 'Volt-Ampere (VA)', value: 'voltamp' },
+        { text: 'Kilovolt-Ampere (kVA)', value: 'kvoltamp' },
+        { text: 'Volt-Ampere Reaktiv (var)', value: 'voltampreact' },
+        { text: 'Kilovolt-Ampere Reaktiv (kvar)', value: 'kvoltampreact' },
+        { text: 'Watt-Stunde (Wh)', value: 'watth' },
+        { text: 'Kilowatt-Stunde (kWh)', value: 'kwatth' },
+        { text: 'Kilowatt-Minute (kWm)', value: 'kwattm' },
         { text: 'Joule (J)', value: 'joule' },
-        { text: 'Electron volt (eV)', value: 'ev' },
+        { text: 'EleKtro volt (eV)', value: 'ev' },
         { text: 'Ampere (A)', value: 'amp' },
         { text: 'Kiloampere (kA)', value: 'kamp' },
         { text: 'Milliampere (mA)', value: 'mamp' },
         { text: 'Volt (V)', value: 'volt' },
         { text: 'Kilovolt (kV)', value: 'kvolt' },
         { text: 'Millivolt (mV)', value: 'mvolt' },
-        { text: 'Decibel-milliwatt (dBm)', value: 'dBm' },
+        { text: 'Dezibel-Milliwatt (dBm)', value: 'dBm' },
         { text: 'Ohm (Ω)', value: 'ohm' },
-        { text: 'Lumens (Lm)', value: 'lumens' },
+        { text: 'Lumen (Lm)', value: 'lumens' },
       ],
     },
     {
-      text: 'temperature',
+      text: 'Temperatur',
       submenu: [
         { text: 'Celsius (°C)', value: 'celsius' },
         { text: 'Farenheit (°F)', value: 'farenheit' },
@@ -1038,52 +1037,52 @@ kbn.getUnitFormats = function() {
       ],
     },
     {
-      text: 'pressure',
+      text: 'Druck',
       submenu: [
-        { text: 'Millibars', value: 'pressurembar' },
-        { text: 'Bars', value: 'pressurebar' },
-        { text: 'Kilobars', value: 'pressurekbar' },
-        { text: 'Hectopascals', value: 'pressurehpa' },
+        { text: 'Millibar', value: 'pressurembar' },
+        { text: 'Bar', value: 'pressurebar' },
+        { text: 'Kilobar', value: 'pressurekbar' },
+        { text: 'Hektopascal', value: 'pressurehpa' },
         { text: 'Inches of mercury', value: 'pressurehg' },
         { text: 'PSI', value: 'pressurepsi' },
       ],
     },
     {
-      text: 'force',
+      text: 'Kraft',
       submenu: [
-        { text: 'Newton-meters (Nm)', value: 'forceNm' },
-        { text: 'Kilonewton-meters (kNm)', value: 'forcekNm' },
-        { text: 'Newtons (N)', value: 'forceN' },
-        { text: 'Kilonewtons (kN)', value: 'forcekN' },
+        { text: 'Newton-Meter (Nm)', value: 'forceNm' },
+        { text: 'Kilonewton-Meter (kNm)', value: 'forcekNm' },
+        { text: 'Newton (N)', value: 'forceN' },
+        { text: 'Kilonewton (kN)', value: 'forcekN' },
       ],
     },
     {
-      text: 'flow',
+      text: 'fluss',
       submenu: [
-        { text: 'Gallons/min (gpm)', value: 'flowgpm' },
-        { text: 'Cubic meters/sec (cms)', value: 'flowcms' },
-        { text: 'Cubic feet/sec (cfs)', value: 'flowcfs' },
-        { text: 'Cubic feet/min (cfm)', value: 'flowcfm' },
+        { text: 'Gallone/min (gpm)', value: 'flowgpm' },
+        { text: 'Kubik meter/sec (cms)', value: 'flowcms' },
+        { text: 'Kubik Fuß/sec (cfs)', value: 'flowcfs' },
+        { text: 'Kubik Fuß/min (cfm)', value: 'flowcfm' },
       ],
     },
     {
-      text: 'angle',
+      text: 'Winkel',
       submenu: [
-        { text: 'Degrees (°)', value: 'degree' },
+        { text: 'Grad (°)', value: 'degree' },
         { text: 'Radians', value: 'radian' },
         { text: 'Gradian', value: 'grad' },
       ],
     },
     {
-      text: 'acceleration',
+      text: 'Beschleunigung',
       submenu: [
-        { text: 'Meters/sec²', value: 'accMS2' },
-        { text: 'Feet/sec²', value: 'accFS2' },
-        { text: 'G unit', value: 'accG' },
+        { text: 'Meter/sec²', value: 'accMS2' },
+        { text: 'Fuß/sec²', value: 'accFS2' },
+        { text: 'G Einheit', value: 'accG' },
       ],
     },
     {
-      text: 'radiation',
+      text: 'Strahlung',
       submenu: [
         { text: 'Becquerel (Bq)', value: 'radbq' },
         { text: 'curie (Ci)', value: 'radci' },
@@ -1091,24 +1090,24 @@ kbn.getUnitFormats = function() {
         { text: 'rad', value: 'radrad' },
         { text: 'Sievert (Sv)', value: 'radsv' },
         { text: 'rem', value: 'radrem' },
-        { text: 'Exposure (C/kg)', value: 'radexpckg' },
-        { text: 'roentgen (R)', value: 'radr' },
-        { text: 'Sievert/hour (Sv/h)', value: 'radsvh' },
+        { text: 'Aussetzung (C/kg)', value: 'radexpckg' },
+        { text: 'Röntgen (R)', value: 'radr' },
+        { text: 'Sievert/Stunde (Sv/h)', value: 'radsvh' },
       ],
     },
     {
-      text: 'concentration',
+      text: 'Konzentration',
       submenu: [
-        { text: 'parts-per-million (ppm)', value: 'conppm' },
-        { text: 'parts-per-billion (ppb)', value: 'conppb' },
-        { text: 'nanogram per cubic metre (ng/m3)', value: 'conngm3' },
-        { text: 'nanogram per normal cubic metre (ng/Nm3)', value: 'conngNm3' },
-        { text: 'microgram per cubic metre (μg/m3)', value: 'conμgm3' },
-        { text: 'microgram per normal cubic metre (μg/Nm3)', value: 'conμgNm3' },
-        { text: 'milligram per cubic metre (mg/m3)', value: 'conmgm3' },
-        { text: 'milligram per normal cubic metre (mg/Nm3)', value: 'conmgNm3' },
-        { text: 'gram per cubic metre (g/m3)', value: 'congm3' },
-        { text: 'gram per normal cubic metre (g/Nm3)', value: 'congNm3' },
+        { text: 'Teile pro Million (ppm)', value: 'conppm' },
+        { text: 'Teile pro Milliarde (ppb)', value: 'conppb' },
+        { text: 'Nanogramm pro Kubikmeter (ng/m3)', value: 'conngm3' },
+        { text: 'Nanogramm pro Normale Kubikmeter (ng/Nm3)', value: 'conngNm3' },
+        { text: 'Mikrogramm pro Kubik Meter (μg/m3)', value: 'conμgm3' },
+        { text: 'Mikrogramm pro Normale Kubik Meter (μg/Nm3)', value: 'conμgNm3' },
+        { text: 'Milligramm pro Kubik Meter (mg/m3)', value: 'conmgm3' },
+        { text: 'Milligramm pro Normale Kubik Meter (mg/Nm3)', value: 'conmgNm3' },
+        { text: 'Gramm pro Kubik Meter (g/m3)', value: 'congm3' },
+        { text: 'Gramm pro Normale Kubik Meter (g/Nm3)', value: 'congNm3' },
       ],
     },
   ];

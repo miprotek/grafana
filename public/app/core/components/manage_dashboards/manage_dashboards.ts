@@ -29,7 +29,7 @@ export class ManageDashboardsCtrl {
   hasFilters = false;
   tagFilterOptions: any[];
   selectedTagFilter: any;
-  starredFilterOptions = [{ text: 'Filter by Starred', disabled: true }, { text: 'Yes' }, { text: 'No' }];
+  starredFilterOptions = [{ text: 'Filter nach Favorisierten', disabled: true }, { text: 'Ja' }, { text: 'Nein' }];
   selectedStarredFilter: any;
 
   // used when managing dashboards for a specific folder
@@ -154,24 +154,24 @@ export class ManageDashboardsCtrl {
     const data = this.getFoldersAndDashboardsToDelete();
     const folderCount = data.folders.length;
     const dashCount = data.dashboards.length;
-    let text = 'Do you want to delete the ';
+    let text = 'Möchten Sie das Dashboard wirklich löschen: ';
     let text2;
 
     if (folderCount > 0 && dashCount > 0) {
-      text += `selected folder${folderCount === 1 ? '' : 's'} and dashboard${dashCount === 1 ? '' : 's'}?`;
-      text2 = `All dashboards of the selected folder${folderCount === 1 ? '' : 's'} will also be deleted`;
+      text += `Ausgewählte${folderCount === 1 ? 'n' : ''} Ordner und Dashboard${dashCount === 1 ? '' : 's'}?`;
+      text2 = `Alle Dashboards von den gewählten Ordnern${folderCount === 1 ? '' : 'n'} werden auch gelöscht`;
     } else if (folderCount > 0) {
-      text += `selected folder${folderCount === 1 ? '' : 's'} and all its dashboards?`;
+      text += `Ausgewählte${folderCount === 1 ? 'n' : ''} Ordner und alle Dashboards?`;
     } else {
-      text += `selected dashboard${dashCount === 1 ? '' : 's'}?`;
+      text += `ausgewählte Dashboard${dashCount === 1 ? '' : 's'}?`;
     }
 
     appEvents.emit('confirm-modal', {
-      title: 'Delete',
+      title: 'Löschen',
       text: text,
       text2: text2,
       icon: 'fa-trash',
-      yesText: 'Delete',
+      yesText: 'Löschen',
       onConfirm: () => {
         this.deleteFoldersAndDashboards(data.folders, data.dashboards);
       },
@@ -214,7 +214,7 @@ export class ManageDashboardsCtrl {
 
   initTagFilter() {
     return this.searchSrv.getDashboardTags().then(results => {
-      this.tagFilterOptions = [{ term: 'Filter By Tag', disabled: true }].concat(results);
+      this.tagFilterOptions = [{ term: 'Nach Schlagwort filtern', disabled: true }].concat(results);
       this.selectedTagFilter = this.tagFilterOptions[0];
     });
   }
@@ -252,7 +252,7 @@ export class ManageDashboardsCtrl {
   }
 
   onStarredFilterChange() {
-    this.query.starred = this.selectedStarredFilter.text === 'Yes';
+    this.query.starred = this.selectedStarredFilter.text === 'Ja';
     this.selectedStarredFilter = this.starredFilterOptions[0];
     return this.refreshList();
   }
