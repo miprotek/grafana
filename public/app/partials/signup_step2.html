@@ -2,25 +2,25 @@
 
 <div class="page-container page-body">
   <div class="signup">
-    <h3 class="p-b-1">You're almost there.</h3>
+    <h3 class="p-b-1">Sie sind fast fertig.</h3>
     <div class="p-b-1">
-      We just need a couple of more bits of<br> information to finish creating your account.
+      Wir brauchen nurnoch ein paar mehr<br> Informationen um Ihren Benutzeraccount zu erstellen.
     </div>
     <form name="signUpForm" class="login-form gf-form-group">
       <div class="gf-form" ng-if="verifyEmailEnabled">
         <span class="gf-form-label width-9">
-          Email code<tip>Email verification code (sent to your email)</tip>
+          Email code<tip>Email Bestätigungs code (Wurde an Ihre Email versendet)</tip>
         </span>
         <input type="text" class="gf-form-input max-width-14" ng-model="formModel.code" required></input>
       </div>
 
       <div class="gf-form" ng-if="!autoAssignOrg">
-        <span class="gf-form-label width-9">Org. name</span>
-        <input type="text" name="orgName" class="gf-form-input max-width-14" ng-model="formModel.orgName" placeholder="Name your organization">
+        <span class="gf-form-label width-9">Org. Name</span>
+        <input type="text" name="orgName" class="gf-form-input max-width-14" ng-model="formModel.orgName" placeholder="Organisations Name angeben">
       </div>
 
       <div class="gf-form">
-        <span class="gf-form-label width-9">Your name</span>
+        <span class="gf-form-label width-9">Ihr Name</span>
         <input type="text" name="name" class="gf-form-input max-width-14" ng-model="formModel.name" placeholder="(optional)">
       </div>
       <div class="gf-form">
@@ -28,8 +28,8 @@
         <input type="text" class="gf-form-input max-width-14" required ng-model="formModel.username" placeholder="Email" autocomplete="off">
       </div>
       <div class="gf-form">
-        <span class="gf-form-label width-9">Password</span>
-        <input type="password" class="gf-form-input max-width-14" required ng-model="formModel.password" id="inputPassword" placeholder="password" autocomplete="off">
+        <span class="gf-form-label width-9">Passwort</span>
+        <input type="password" class="gf-form-input max-width-14" required ng-model="formModel.password" id="inputPassword" placeholder="Passwort" autocomplete="off">
       </div>
 
       <div class="signup__password-strength">
@@ -38,10 +38,10 @@
 
       <div class="gf-form-button-row p-t-3">
         <button type="submit" class="btn btn-success" ng-click="ctrl.submit();" ng-disabled="!signUpForm.$valid">
-          Sign Up
+          Registrieren
         </button>
         <a href="login" class="btn btn-inverse">
-            Back
+            Zurück
         </a>
       </div>
     </form>

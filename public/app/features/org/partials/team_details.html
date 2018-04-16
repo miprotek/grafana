@@ -12,23 +12,23 @@
 			<span class="gf-form-label width-10">
 				Email
 				<info-popover mode="right-normal">
-						This is optional and is primarily used for allowing custom team avatars.
+						Dies ist optional und wird hauptsächlich verwendet, um benutzerdefinierte Teamavatare zu unterstützen.
 				</info-popover>
 			</span>
 			<input class="gf-form-input max-width-22" type="email" ng-model="ctrl.team.email" placeholder="email@test.com">
 		</div>
 
     <div class="gf-form-button-row">
-      <button type="submit" class="btn btn-success" ng-click="ctrl.update()">Update</button>
+      <button type="submit" class="btn btn-success" ng-click="ctrl.update()">Aktualisieren</button>
     </div>
   </form>
 
   <div class="gf-form-group">
 
-    <h3 class="page-heading">Team Members</h3>
+    <h3 class="page-heading">Teammitglieder</h3>
 		<form name="ctrl.addMemberForm" class="gf-form-group">
       <div class="gf-form">
-        <span class="gf-form-label width-10">Add member</span>
+        <span class="gf-form-label width-10">Mitglied hinzufügen</span>
 				<!--
 				Old picker
 				<user-picker user-picked="ctrl.userPicked($user)"></user-picker>
@@ -41,7 +41,7 @@
 			<thead>
 				<tr>
 					<th></th>
-					<th>Username</th>
+					<th>Benutzername</th>
 					<th>Email</th>
 					<th></th>
 				</tr>
@@ -61,7 +61,7 @@
 		</table>
 		<div>
 			<em class="muted" ng-hide="ctrl.teamMembers.length > 0">
-				This team has no members yet.
+				Dieses Team hat noch keine Mitglieder.
 			</em>
 		</div>
 

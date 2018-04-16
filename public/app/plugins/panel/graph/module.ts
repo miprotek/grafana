@@ -145,8 +145,8 @@ class GraphCtrl extends MetricsPanelCtrl {
   }
 
   onInitPanelActions(actions) {
-    actions.push({ text: 'Export CSV', click: 'ctrl.exportCsv()' });
-    actions.push({ text: 'Toggle legend', click: 'ctrl.toggleLegend()' });
+    actions.push({ text: 'Exportieren zu CSV', click: 'ctrl.exportCsv()' });
+    actions.push({ text: 'Legende anzeigen', click: 'ctrl.toggleLegend()' });
   }
 
   issueQueries(datasource) {
@@ -191,15 +191,15 @@ class GraphCtrl extends MetricsPanelCtrl {
 
     if (datapointsCount === 0) {
       this.dataWarning = {
-        title: 'No data points',
-        tip: 'No datapoints returned from data query',
+        title: 'Keine Datenpunkte',
+        tip: 'Keine Datenpunkte von der Datenabfrage zurückgegeben',
       };
     } else {
       for (let series of this.seriesList) {
         if (series.isOutsideRange) {
           this.dataWarning = {
-            title: 'Data points outside time range',
-            tip: 'Can be caused by timezone mismatch or missing time filter in query',
+            title: 'Datenpunkte ausserhalb des Zeitbereichs',
+            tip: 'Kann durch Zeitzonen unterschied oder den fehlenden Zeitfilter in der Abfrage verursacht werden',
           };
           break;
         }

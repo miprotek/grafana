@@ -138,7 +138,7 @@ export class PanelCtrl {
   getMenu() {
     let menu = [];
     menu.push({
-      text: 'View',
+      text: 'Anzeigen',
       click: 'ctrl.viewPanel();',
       icon: 'fa fa-fw fa-eye',
       shortcut: 'v',
@@ -146,7 +146,7 @@ export class PanelCtrl {
 
     if (this.dashboard.meta.canEdit) {
       menu.push({
-        text: 'Edit',
+        text: 'Bearbeiten',
         click: 'ctrl.editPanel();',
         role: 'Editor',
         icon: 'fa fa-fw fa-edit',
@@ -155,7 +155,7 @@ export class PanelCtrl {
     }
 
     menu.push({
-      text: 'Share',
+      text: 'Teilen',
       click: 'ctrl.sharePanel();',
       icon: 'fa fa-fw fa-share',
       shortcut: 'p s',
@@ -163,7 +163,7 @@ export class PanelCtrl {
 
     let extendedMenu = this.getExtendedMenu();
     menu.push({
-      text: 'More ...',
+      text: 'Mehr ...',
       click: '',
       icon: 'fa fa-fw fa-cube',
       submenu: extendedMenu,
@@ -172,7 +172,7 @@ export class PanelCtrl {
     if (this.dashboard.meta.canEdit) {
       menu.push({ divider: true, role: 'Editor' });
       menu.push({
-        text: 'Remove',
+        text: 'Entfernen',
         click: 'ctrl.removePanel();',
         role: 'Editor',
         icon: 'fa fa-fw fa-trash',
@@ -187,14 +187,14 @@ export class PanelCtrl {
     let menu = [];
     if (!this.fullscreen && this.dashboard.meta.canEdit) {
       menu.push({
-        text: 'Duplicate',
+        text: 'Duplizieren',
         click: 'ctrl.duplicate()',
         role: 'Editor',
         shortcut: 'p d',
       });
 
       menu.push({
-        text: 'Add to Panel List',
+        text: 'Zur Panelliste hinzufügen',
         click: 'ctrl.addToPanelList()',
         role: 'Editor',
       });

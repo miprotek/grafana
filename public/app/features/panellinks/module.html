@@ -1,12 +1,12 @@
 <div class="editor-row">
 	<h5 class="section-heading">
-		Drilldown / detail link<tip>These links appear in the dropdown menu in the panel menu. </tip></h5>
+		Aufriss / Detaillink<tip>Diese Links erscheinen als dropdown Menü im Panelmenü. </tip></h5>
 	</h5>
 
 	<div class="gf-form-group" ng-repeat="link in panel.links">
 		<div class="section">
 			<div class="gf-form max-width-25">
-				<span class="gf-form-label width-7">Type</span>
+				<span class="gf-form-label width-7">Typ</span>
 				<div class="gf-form-select-wrapper gf-form--grow">
 					<select class="gf-form-input" ng-model="link.type" ng-options="f for f in ['dashboard','absolute']"></select>
 				</div>
@@ -21,7 +21,7 @@
 			</div>
 
 			<div class="gf-form max-width-25">
-				<div class="gf-form-label width-7">Title</div>
+				<div class="gf-form-label width-7">Titel</div>
 				<input type="text" ng-model="link.title" class="gf-form-input">
 			</div>
 
@@ -29,7 +29,7 @@
 
 		<div class="section">
 			<div class="gf-form">
-				<span class="gf-form-label width-10">Url params</span>
+				<span class="gf-form-label width-10">Url Parameter</span>
 				<input type="text" ng-model="link.params" class="gf-form-input width-10">
 			</div>
 
@@ -40,12 +40,12 @@
 
 		<div class="section">
 			<div class="gf-form">
-				<button class="btn btn-inverse gf-form-btn" ng-click="deleteLink(link)"><i class="fa fa-trash"></i> Remove Link</button>
+				<button class="btn btn-inverse gf-form-btn" ng-click="deleteLink(link)"><i class="fa fa-trash"></i> Link entfernen</button>
 			</div>
 		</div>
 	</div>
 </div>
 
 <div class="editor-row">
-	<button class="btn btn-inverse" ng-click="addLink()"><i class="fa fa-plus"></i> Add link</button>
+	<button class="btn btn-inverse" ng-click="addLink()"><i class="fa fa-plus"></i> Link hinzufügen</button>
 </div>

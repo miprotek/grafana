@@ -67,8 +67,8 @@ class TeamPicker extends Component<IProps, any> {
           cache={false}
           isLoading={isLoading}
           loadOptions={this.debouncedSearch}
-          loadingPlaceholder="Loading..."
-          noResultsText="No teams found"
+          loadingPlaceholder="Lade..."
+          noResultsText="Keine Teams gefunden"
           onChange={handlePicked}
           className={`gf-form-input gf-form-input--form-dropdown ${className || ''}`}
           optionComponent={PickerOption}

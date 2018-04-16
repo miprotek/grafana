@@ -80,10 +80,10 @@ export class FolderSettingsCtrl {
       err.isHandled = true;
 
       appEvents.emit('confirm-modal', {
-        title: 'Conflict',
-        text: 'Someone else has updated this folder.',
-        text2: 'Would you still like to save this folder?',
-        yesText: 'Save & Overwrite',
+        title: 'Konflikt',
+        text: 'Jemand anderes hat diesen Ordner geupdatet.',
+        text2: 'Wollen Sie weiterhin diesen Ordner speichern?',
+        yesText: 'Speichern und überschreiben',
         icon: 'fa-warning',
         onConfirm: () => {
           this.backendSrv.updateFolder(this.folder, { overwrite: true });

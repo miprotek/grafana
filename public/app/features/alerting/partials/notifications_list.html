@@ -9,7 +9,7 @@
 
       <a href="alerting/notification/new" class="btn btn-success">
         <i class="fa fa-plus"></i>
-        New Channel
+        Neuer Kanal
       </a>
     </div>
 
@@ -18,7 +18,7 @@
         <th style="min-width: 200px">
           <strong>Name</strong>
         </th>
-        <th style="min-width: 100px">Type</th>
+        <th style="min-width: 100px">Typ</th>
         <th style="width: 1%"></th>
       </thead>
       <tbody>
@@ -47,13 +47,13 @@
   </div>
   <div ng-if="ctrl.notifications.length === 0">
     <empty-list-cta model="{
-      title: 'There are no notification channels defined yet',
+      title: 'Es sind noch keine Benachrichtigungskanäle definiert',
       buttonIcon: 'gicon gicon-add-alert-notification-channel',
       buttonLink: 'alerting/notification/new',
-      buttonTitle: 'Add channel',
-      proTip: 'You can include images in your alert notifications.',
+      buttonTitle: 'Kanal hinzufuegen',
+      proTip: 'Sie können Bilder in Ihre Benachrichtigungen aufnehmen.',
       proTipLink: 'http://docs.grafana.org/alerting/notifications/',
-      proTipLinkTitle: 'Learn more',
+      proTipLinkTitle: 'Mehr erfahren',
       proTipTarget: '_blank'
     }" />
   </div>

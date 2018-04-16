@@ -16,13 +16,13 @@ var template = `
       <li class="dropdown-submenu">
         <a ng-click="ctrl.addDataQuery(datasource);"><i class="fa fa-cube"></i> Actions</a>
         <ul class="dropdown-menu panel-menu">
-          <li><a ng-click="ctrl.addDataQuery(datasource);"><i class="fa fa-flash"></i> Add Annotation</a></li>
-          <li><a ng-click="ctrl.addDataQuery(datasource);"><i class="fa fa-bullseye"></i> Toggle Legend</a></li>
-          <li><a ng-click="ctrl.addDataQuery(datasource);"><i class="fa fa-download"></i> Export to CSV</a></li>
-          <li><a ng-click="ctrl.addDataQuery(datasource);"><i class="fa fa-eye"></i> View JSON</a></li>
+          <li><a ng-click="ctrl.addDataQuery(datasource);"><i class="fa fa-flash"></i> Anmerkung hinzufügen</a></li>
+          <li><a ng-click="ctrl.addDataQuery(datasource);"><i class="fa fa-bullseye"></i> Legend anzeigen</a></li>
+          <li><a ng-click="ctrl.addDataQuery(datasource);"><i class="fa fa-download"></i> Exportieren zu CSV</a></li>
+          <li><a ng-click="ctrl.addDataQuery(datasource);"><i class="fa fa-eye"></i> JSON anzeigen</a></li>
         </ul>
       </li>
-      <li><a ng-click="ctrl.addDataQuery(datasource);"><i class="fa fa-trash"></i> Remove</a></li>
+      <li><a ng-click="ctrl.addDataQuery(datasource);"><i class="fa fa-trash"></i> Entfernen</a></li>
     </ul>
   </span>
   <span class="panel-time-info" ng-show="ctrl.timeInfo"><i class="fa fa-clock-o"></i> {{ctrl.timeInfo}}</span>

@@ -3,7 +3,7 @@
 <div class="page-container page-body">
   <div class="page-action-bar">
     <label class="gf-form gf-form--grow gf-form--has-input-icon">
-      <input type="text" class="gf-form-input width-20" ng-model="ctrl.searchQuery" ng-change="ctrl.onQueryUpdated()" placeholder="Filter by username or email" />
+      <input type="text" class="gf-form-input width-20" ng-model="ctrl.searchQuery" ng-change="ctrl.onQueryUpdated()" placeholder="Nach Benutzername oder Email filtern" />
       <i class="gf-form-input-icon fa fa-search"></i>
     </label>
 
@@ -15,7 +15,7 @@
 
     <a class="btn btn-success" href="org/users/invite" ng-show="ctrl.canInvite">
       <i class="fa fa-plus"></i>
-      <span>Invite</span>
+      <span>Einladen</span>
     </a>
 
     <a class="btn btn-success" ng-href="{{ctrl.externalUserMngLinkUrl}}" target="_blank" ng-if="ctrl.externalUserMngLinkUrl">
@@ -36,10 +36,10 @@
           <th>Login</th>
           <th>Email</th>
           <th>
-            Seen
-            <tip>Time since user was seen using Grafana</tip>
+            Gesehen
+            <tip>Die Zeit seit dem der Benutzer bei Grafana gesehen wurde</tip>
           </th>
-          <th>Role</th>
+          <th>Rolle</th>
           <th style="width: 34px;"></th>
         </tr>
       </thead>
@@ -80,7 +80,7 @@
         <td>{{invite.name}}</td>
         <td class="text-right">
           <button class="btn btn-inverse btn-mini" clipboard-button="ctrl.getInviteUrl(invite)" ng-click="ctrl.copyInviteToClipboard($event)">
-            <i class="fa fa-clipboard"></i> Copy Invite
+            <i class="fa fa-clipboard"></i> Einladung kopieren
           </button>
           &nbsp;
         </td>

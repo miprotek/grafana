@@ -1,7 +1,7 @@
 <aside class="dashboard-settings__aside">
 	<h2 class="dashboard-settings__aside-header">
 		<i class="fa fa-cog"></i>
-		Settings
+		Einstellungen
 	</h2>
 
 	<a href="{{::section.url}}" class="dashboard-settings__nav-item" ng-class="{active: ctrl.viewId === section.id}" ng-repeat="section in ctrl.sections">
@@ -11,22 +11,22 @@
 
 	<div class="dashboard-settings__aside-actions">
     <button class="btn btn-success" ng-click="ctrl.saveDashboard()" ng-show="ctrl.canSave">
-			<i class="fa fa-save"></i> Save
+			<i class="fa fa-save"></i> Speichern
 		</button>
 		<button class="btn btn-inverse" ng-click="ctrl.openSaveAsModal()" ng-show="ctrl.canSaveAs">
 			<i class="fa fa-copy"></i>
-			Save As...
+			Speichern als...
 		</button>
 		<button class="btn btn-danger" ng-click="ctrl.deleteDashboard()" ng-show="ctrl.canDelete">
 			<i class="fa fa-trash"></i>
-			Delete
+			Löschen
 		</button>
 	</div>
 </aside>
 
 <div class="dashboard-settings__content" ng-if="ctrl.viewId === 'settings'">
 	<h3 class="dashboard-settings__header">
-		General
+		Allgemeines
 	</h3>
 
 	<div class="gf-form-group">
@@ -35,13 +35,13 @@
 			<input type="text" class="gf-form-input width-30" ng-model='ctrl.dashboard.title'></input>
 		</div>
 		<div class="gf-form">
-			<label class="gf-form-label width-7">Description</label>
+			<label class="gf-form-label width-7">Beschreibung</label>
 			<input type="text" class="gf-form-input width-30" ng-model='ctrl.dashboard.description'></input>
 		</div>
 		<div class="gf-form">
 			<label class="gf-form-label width-7">
 				Tags
-				<info-popover mode="right-normal">Press enter to add a tag</info-popover>
+				<info-popover mode="right-normal">Drücke Enter um einen Tag hinzuzufügen</info-popover>
 			</label>
 			<bootstrap-tagsinput ng-model="ctrl.dashboard.tags" tagclass="label label-tag" placeholder="add tags">
 			</bootstrap-tagsinput>
@@ -53,18 +53,18 @@
 									 is-valid-selection="true"
 									 label-class="width-7">
 		</folder-picker>
-		<gf-form-switch class="gf-form" label="Editable" tooltip="Uncheck, then save and reload to disable all dashboard editing" checked="ctrl.dashboard.editable" label-class="width-7">
+		<gf-form-switch class="gf-form" label="Editable" tooltip="Entfernne Sie das Häkchen, speichern Sie die Datei und laden Sie sie erneut, damit das Dashboard nicht mehr bearbeitet werden kann" checked="ctrl.dashboard.editable" label-class="width-7">
 		</gf-form-switch>
 	</div>
 
 	<gf-time-picker-settings dashboard="ctrl.dashboard"></gf-time-picker-settings>
 
-	<h5 class="section-heading">Panel Options</h5>
+	<h5 class="section-heading">Bedienfeldoptionen</h5>
 	<div class="gf-form">
 		<label class="gf-form-label width-11">
 			Graph Tooltip
 			<info-popover mode="right-normal">
-				Cycle between options using Shortcut: CTRL+O or CMD+O
+				Wechseln Sie zwischen den Optionen mithilfe der Tastenkombination: CTRL+O or CMD+O
 			</info-popover>
 		</label>
 		<div class="gf-form-select-wrapper">
@@ -88,7 +88,7 @@
 </div>
 
 <div class="dashboard-settings__content" ng-if="ctrl.viewId === 'view_json'" >
-	<h3 class="dashboard-settings__header">View JSON</h3>
+	<h3 class="dashboard-settings__header">JSON Anzeigen</h3>
 
 	<div class="gf-form">
 		<code-editor content="ctrl.json" data-mode="json" data-max-lines=30 ></code-editor>
@@ -102,23 +102,23 @@
     folder="ctrl.getFolder()"
   />
   <div ng-if="ctrl.hasUnsavedFolderChange">
-    <h5>You have changed folder, please save to view permissions.</h5>
+    <h5>Sie haben den Ordner gewechselt, bitte speichern Sie die Anzeigerechte.</h5>
   </div>
 </div>
 
 <div class="dashboard-settings__content" ng-if="ctrl.viewId === '404'">
-  <h3 class="dashboard-settings__header">Settings view not found</h3>
+  <h3 class="dashboard-settings__header">Einstellungsansicht nicht gefunden</h3>
 
   <div>
-    <h5>The settings page could not be found or you do not have permission to access it</h5>
+    <h5>Die Einstellungsseite konnte nicht gefunden werden oder Sie sind nicht berechtigt, darauf zuzugreifen</h5>
   </div>
 </div>
 
 <div class="dashboard-settings__content" ng-if="ctrl.viewId === 'make_editable'">
-  <h3 class="dashboard-settings__header">Make Editable</h3>
+  <h3 class="dashboard-settings__header">Bearbeitbar machen</h3>
 
   <button class="btn btn-success" ng-click="ctrl.makeEditable()">
-    Make Editable
+    Bearbeitbar machen
   </button>
 </div>
 

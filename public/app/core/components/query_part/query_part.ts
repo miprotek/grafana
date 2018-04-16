@@ -28,7 +28,7 @@ export class QueryPart {
     this.part = part;
     this.def = def;
     if (!this.def) {
-      throw { message: 'Could not find query part ' + part.type };
+      throw { message: 'Konnte den Abfrageteil nicht finden: ' + part.type };
     }
 
     part.params = part.params || _.clone(this.def.defaultParams);

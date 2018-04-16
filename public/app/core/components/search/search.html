@@ -6,7 +6,7 @@
 	<div class="search-field-wrapper">
 		<div class="search-field-icon pointer" ng-click="ctrl.closeSearch()"><i class="fa fa-search"></i></div>
 
-		<input type="text" placeholder="Find dashboards by name" give-focus="ctrl.giveSearchFocus" tabindex="1"
+		<input type="text" placeholder="Dashboards über Namen finden" give-focus="ctrl.giveSearchFocus" tabindex="1"
 						ng-keydown="ctrl.keyDown($event)"
 						ng-model="ctrl.query.query"
 						ng-model-options="{ debounce: 500 }"
@@ -19,25 +19,23 @@
 
 	<div class="search-dropdown">
     <div class="search-dropdown__col_1">
-      <div class="search-results-scroller">
         <div class="search-results-container" grafana-scrollbar>
-          <h6 ng-show="!ctrl.isLoading && ctrl.results.length === 0">No dashboards matching your query were found.</h6>
+          <h6 ng-show="!ctrl.isLoading && ctrl.results.length === 0">Keine Dashboards passend zur Suche gefunden.</h6>
           <dashboard-search-results
             results="ctrl.results"
             on-tag-selected="ctrl.filterByTag($tag)"
             on-folder-expanding="ctrl.folderExpanding()"
             on-folder-expanded="ctrl.folderExpanded($folder)" />
         </div>
-      </div>
     </div>
 
     <div class="search-dropdown__col_2">
       <div class="search-filter-box" ng-click="ctrl.onFilterboxClick()">
         <div class="search-filter-box__header">
           <i class="fa fa-filter"></i>
-          Filter by:
+          Filtern auf:
           <a class="pointer pull-right small" ng-click="ctrl.clearSearchFilter()">
-            <i class="fa fa-remove"></i> Clear
+            <i class="fa fa-remove"></i> Leeren
           </a>
         </div>
 
@@ -47,16 +45,16 @@
 
       <div class="search-filter-box" ng-if="ctrl.isEditor">
         <a href="dashboard/new" class="search-filter-box-link">
-          <i class="gicon gicon-dashboard-new"></i> New dashboard
+          <i class="gicon gicon-dashboard-new"></i> Neues Dashboard
         </a>
         <a href="dashboards/folder/new" class="search-filter-box-link">
-          <i class="gicon gicon-folder-new"></i> New folder
+          <i class="gicon gicon-folder-new"></i> Neuer Ordner
         </a>
         <a href="dashboard/import" class="search-filter-box-link">
-          <i class="gicon gicon-dashboard-import"></i> Import dashboard
+          <i class="gicon gicon-dashboard-import"></i> Dashboard importieren
         </a>
         <a class="search-filter-box-link" target="_blank" href="https://grafana.com/dashboards?utm_source=grafana_search">
-          <img src="public/img/icn-dashboard-tiny.svg" width="20" /> Find  dashboards on Grafana.com
+          <img src="public/img/icn-dashboard-tiny.svg" width="20" /> Dashboards auf Grafana.com finden
         </a>
       </div>
     </div>

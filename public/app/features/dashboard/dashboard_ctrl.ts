@@ -147,17 +147,17 @@ export class DashboardCtrl implements PanelContainer {
       var text2, confirmText;
 
       if (panel.alert) {
-        text2 = 'Panel includes an alert rule, removing panel will also remove alert rule';
-        confirmText = 'YES';
+        text2 = 'Das Feld enthält eine Warnungsregel. Wenn Sie das Feld entfernen, wird auch die Warnungsregel entfernt';
+        confirmText = 'JA';
       }
 
       this.$scope.appEvent('confirm-modal', {
-        title: 'Remove Panel',
-        text: 'Are you sure you want to remove this panel?',
+        title: 'Panel entfernen',
+        text: 'Sind Sie sich sicher, dass Sie dieses Panel entfernen möchten?',
         text2: text2,
         icon: 'fa-trash',
         confirmText: confirmText,
-        yesText: 'Remove',
+        yesText: 'Entfernen',
         onConfirm: () => {
           this.removePanel(panel, false);
         },
