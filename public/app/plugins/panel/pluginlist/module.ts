@@ -20,9 +20,9 @@ class PluginListCtrl extends PanelCtrl {
     this.events.on('init-edit-mode', this.onInitEditMode.bind(this));
     this.pluginList = [];
     this.viewModel = [
-      { header: 'Installed Apps', list: [], type: 'app' },
-      { header: 'Installed Panels', list: [], type: 'panel' },
-      { header: 'Installed Datasources', list: [], type: 'datasource' },
+      { header: 'Installierte Apps', list: [], type: 'app' },
+      { header: 'Installierte Panels', list: [], type: 'panel' },
+      { header: 'Installierte Datenquellen', list: [], type: 'datasource' },
     ];
 
     this.update();
