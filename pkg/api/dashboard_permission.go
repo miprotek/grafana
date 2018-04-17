@@ -25,7 +25,7 @@ func GetDashboardPermissionList(c *m.ReqContext) Response {
 
 	acl, err := g.GetAcl()
 	if err != nil {
-		return Error(500, "Failed to get dashboard permissions", err)
+		return Error(500, "Fehler beim abrufen der Dashboard-Berechtigungen", err)
 	}
 
 	for _, perm := range acl {
@@ -73,18 +73,18 @@ func UpdateDashboardPermissions(c *m.ReqContext, apiCmd dtos.UpdateDashboardAclC
 				return Error(400, err.Error(), err)
 			}
 
-			return Error(500, "Error while checking dashboard permissions", err)
+			return Error(500, "Fehler beim überprüfen der Dashboard-Berechtigungen", err)
 		}
 
-		return Error(403, "Cannot remove own admin permission for a folder", nil)
+		return Error(403, "Die eigene Administratorberechtigung für einen Ordner kann nicht entfernt werden", nil)
 	}
 
 	if err := bus.Dispatch(&cmd); err != nil {
 		if err == m.ErrDashboardAclInfoMissing || err == m.ErrDashboardPermissionDashboardEmpty {
 			return Error(409, err.Error(), err)
 		}
-		return Error(500, "Failed to create permission", err)
+		return Error(500, "Fehler beim erstellen der Berechtigung", err)
 	}
 
-	return Success("Dashboard permissions updated")
+	return Success("Dashboard-Berechtigungen aktualisiert")
 }

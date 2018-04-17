@@ -28,18 +28,18 @@ func GetPendingOrgInvites(c *m.ReqContext) Response {
 
 func AddOrgInvite(c *m.ReqContext, inviteDto dtos.AddInviteForm) Response {
 	if !inviteDto.Role.IsValid() {
-		return Error(400, "Invalid role specified", nil)
+		return Error(400, "Ungültige Rolle angegeben", nil)
 	}
 
 	// first try get existing user
 	userQuery := m.GetUserByLoginQuery{LoginOrEmail: inviteDto.LoginOrEmail}
 	if err := bus.Dispatch(&userQuery); err != nil {
 		if err != m.ErrUserNotFound {
-			return Error(500, "Failed to query db for existing user check", err)
+			return Error(500, "Datenbankabfrage für vorhandene Benutzerprüfung fehlgeschlagen", err)
 		}
 
 		if setting.DisableLoginForm {
-			return Error(401, "User could not be found", nil)
+			return Error(401, "Benutzer konnte nicht gefunden werden", nil)
 		}
 	} else {
 		return inviteExistingUserToOrg(c, userQuery.Result, &inviteDto)
@@ -56,7 +56,7 @@ func AddOrgInvite(c *m.ReqContext, inviteDto dtos.AddInviteForm) Response {
 	cmd.RemoteAddr = c.Req.RemoteAddr
 
 	if err := bus.Dispatch(&cmd); err != nil {
-		return Error(500, "Failed to save invite to database", err)
+		return Error(500, "Fehler beim speichern der Einladung in die Datenbank", err)
 	}
 
 	// send invite email
@@ -74,18 +74,18 @@ func AddOrgInvite(c *m.ReqContext, inviteDto dtos.AddInviteForm) Response {
 		}
 
 		if err := bus.Dispatch(&emailCmd); err != nil {
-			return Error(500, "Failed to send email invite", err)
+			return Error(500, "Fehler beim senden der E-Mail Einladung", err)
 		}
 
 		emailSentCmd := m.UpdateTempUserWithEmailSentCommand{Code: cmd.Result.Code}
 		if err := bus.Dispatch(&emailSentCmd); err != nil {
-			return Error(500, "Failed to update invite with email sent info", err)
+			return Error(500, "Fehler beim aktualisieren der Einladung mit den gesendeten E-Mail Informationen", err)
 		}
 
-		return Success(fmt.Sprintf("Sent invite to %s", inviteDto.LoginOrEmail))
+		return Success(fmt.Sprintf("Einladen gesendet an %s", inviteDto.LoginOrEmail))
 	}
 
-	return Success(fmt.Sprintf("Created invite for %s", inviteDto.LoginOrEmail))
+	return Success(fmt.Sprintf("Einladung erstellt für %s", inviteDto.LoginOrEmail))
 }
 
 func inviteExistingUserToOrg(c *m.ReqContext, user *m.User, inviteDto *dtos.AddInviteForm) Response {
@@ -93,9 +93,9 @@ func inviteExistingUserToOrg(c *m.ReqContext, user *m.User, inviteDto *dtos.AddI
 	createOrgUserCmd := m.AddOrgUserCommand{OrgId: c.OrgId, UserId: user.Id, Role: inviteDto.Role}
 	if err := bus.Dispatch(&createOrgUserCmd); err != nil {
 		if err == m.ErrOrgUserAlreadyAdded {
-			return Error(412, fmt.Sprintf("User %s is already added to organization", inviteDto.LoginOrEmail), err)
+			return Error(412, fmt.Sprintf("Benutzer %s ist bereits zur Organisation hinzugefügt", inviteDto.LoginOrEmail), err)
 		}
-		return Error(500, "Error while trying to create org user", err)
+		return Error(500, "Fehler beim Versuch, einen Organisationsbenutzer zu erstellen", err)
 	}
 
 	if inviteDto.SendEmail && util.IsEmail(user.Email) {
@@ -110,11 +110,11 @@ func inviteExistingUserToOrg(c *m.ReqContext, user *m.User, inviteDto *dtos.AddI
 		}
 
 		if err := bus.Dispatch(&emailCmd); err != nil {
-			return Error(500, "Failed to send email invited_to_org", err)
+			return Error(500, "E-Mail invited_to_org konnte nicht gesendet werden", err)
 		}
 	}
 
-	return Success(fmt.Sprintf("Existing Grafana user %s added to org %s", user.NameOrFallback(), c.OrgName))
+	return Success(fmt.Sprintf("Existierender Grafana Benutzer %s hinzugefügt zu Organisation %s", user.NameOrFallback(), c.OrgName))
 }
 
 func RevokeInvite(c *m.ReqContext) Response {
@@ -122,7 +122,7 @@ func RevokeInvite(c *m.ReqContext) Response {
 		return rsp
 	}
 
-	return Success("Invite revoked")
+	return Success("Einladung widerrufen")
 }
 
 func GetInviteInfoByCode(c *m.ReqContext) Response {
@@ -130,9 +130,9 @@ func GetInviteInfoByCode(c *m.ReqContext) Response {
 
 	if err := bus.Dispatch(&query); err != nil {
 		if err == m.ErrTempUserNotFound {
-			return Error(404, "Invite not found", nil)
+			return Error(404, "Einladung nicht gefunden", nil)
 		}
-		return Error(500, "Failed to get invite", err)
+		return Error(500, "Einladung konnte nicht abgerufen werden", err)
 	}
 
 	invite := query.Result
@@ -150,14 +150,14 @@ func CompleteInvite(c *m.ReqContext, completeInvite dtos.CompleteInviteForm) Res
 
 	if err := bus.Dispatch(&query); err != nil {
 		if err == m.ErrTempUserNotFound {
-			return Error(404, "Invite not found", nil)
+			return Error(404, "Einladung nicht gefunden", nil)
 		}
-		return Error(500, "Failed to get invite", err)
+		return Error(500, "Einladung konnte nicht abgerufen werden", err)
 	}
 
 	invite := query.Result
 	if invite.Status != m.TmpUserInvitePending {
-		return Error(412, fmt.Sprintf("Invite cannot be used in status %s", invite.Status), nil)
+		return Error(412, fmt.Sprintf("Einladung kann nicht im Status %s verwendet werden", invite.Status), nil)
 	}
 
 	cmd := m.CreateUserCommand{
@@ -169,7 +169,7 @@ func CompleteInvite(c *m.ReqContext, completeInvite dtos.CompleteInviteForm) Res
 	}
 
 	if err := bus.Dispatch(&cmd); err != nil {
-		return Error(500, "failed to create user", err)
+		return Error(500, "Benutzererstellung fehlgeschlagen", err)
 	}
 
 	user := &cmd.Result
@@ -195,7 +195,7 @@ func updateTempUserStatus(code string, status m.TempUserStatus) (bool, Response)
 	// update temp user status
 	updateTmpUserCmd := m.UpdateTempUserStatusCommand{Code: code, Status: status}
 	if err := bus.Dispatch(&updateTmpUserCmd); err != nil {
-		return false, Error(500, "Failed to update invite status", err)
+		return false, Error(500, "Fehler beim aktualisieren des Einladungsstatus", err)
 	}
 
 	return true, nil
@@ -206,7 +206,7 @@ func applyUserInvite(user *m.User, invite *m.TempUserDTO, setActive bool) (bool,
 	addOrgUserCmd := m.AddOrgUserCommand{OrgId: invite.OrgId, UserId: user.Id, Role: invite.Role}
 	if err := bus.Dispatch(&addOrgUserCmd); err != nil {
 		if err != m.ErrOrgUserAlreadyAdded {
-			return false, Error(500, "Error while trying to create org user", err)
+			return false, Error(500, "Fehler beim Versuch, einen Organisationsbenutzer zu erstellen", err)
 		}
 	}
 
@@ -218,7 +218,7 @@ func applyUserInvite(user *m.User, invite *m.TempUserDTO, setActive bool) (bool,
 	if setActive {
 		// set org to active
 		if err := bus.Dispatch(&m.SetUsingOrgCommand{OrgId: invite.OrgId, UserId: user.Id}); err != nil {
-			return false, Error(500, "Failed to set org as active", err)
+			return false, Error(500, "Organisation als aktiv festzulegen ist fehlgeschlagen", err)
 		}
 	}
 

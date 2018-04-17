@@ -44,7 +44,7 @@ func CreateDashboardSnapshot(c *m.ReqContext, cmd m.CreateDashboardSnapshotComma
 	}
 
 	if err := bus.Dispatch(&cmd); err != nil {
-		c.JsonApiErr(500, "Failed to create snaphost", err)
+		c.JsonApiErr(500, "Snapshot Erstellung fehlgeschlagen", err)
 		return
 	}
 
@@ -63,7 +63,7 @@ func GetDashboardSnapshot(c *m.ReqContext) {
 
 	err := bus.Dispatch(query)
 	if err != nil {
-		c.JsonApiErr(500, "Failed to get dashboard snapshot", err)
+		c.JsonApiErr(500, "Fehler beim abrufen des Dashboardsnapshots", err)
 		return
 	}
 
@@ -71,7 +71,7 @@ func GetDashboardSnapshot(c *m.ReqContext) {
 
 	// expired snapshots should also be removed from db
 	if snapshot.Expires.Before(time.Now()) {
-		c.JsonApiErr(404, "Dashboard snapshot not found", err)
+		c.JsonApiErr(404, "Dashboardsnapshot nicht gefunden", err)
 		return
 	}
 
@@ -99,11 +99,11 @@ func DeleteDashboardSnapshot(c *m.ReqContext) Response {
 
 	err := bus.Dispatch(query)
 	if err != nil {
-		return Error(500, "Failed to get dashboard snapshot", err)
+		return Error(500, "Fehler beim abrufen des Dashboardsnapshots", err)
 	}
 
 	if query.Result == nil {
-		return Error(404, "Failed to get dashboard snapshot", nil)
+		return Error(404, "Fehler beim abrufen des Dashboardsnapshots", nil)
 	}
 	dashboard := query.Result.Dashboard
 	dashboardID := dashboard.Get("id").MustInt64()
@@ -111,7 +111,7 @@ func DeleteDashboardSnapshot(c *m.ReqContext) Response {
 	guardian := guardian.New(dashboardID, c.OrgId, c.SignedInUser)
 	canEdit, err := guardian.CanEdit()
 	if err != nil {
-		return Error(500, "Error while checking permissions for snapshot", err)
+		return Error(500, "Fehler beim überprüfen der Berechtigungen für snapshot", err)
 	}
 
 	if !canEdit && query.Result.UserId != c.SignedInUser.UserId {
@@ -121,10 +121,10 @@ func DeleteDashboardSnapshot(c *m.ReqContext) Response {
 	cmd := &m.DeleteDashboardSnapshotCommand{DeleteKey: key}
 
 	if err := bus.Dispatch(cmd); err != nil {
-		return Error(500, "Failed to delete dashboard snapshot", err)
+		return Error(500, "Löschen des Dashboardsnapshot fehlgeschlagen", err)
 	}
 
-	return JSON(200, util.DynMap{"message": "Snapshot deleted. It might take an hour before it's cleared from a CDN cache."})
+	return JSON(200, util.DynMap{"message": "Snapshot gelöscht. Es könnte eine Stunde dauern bevor dieser aus einem CDN-Cache entfernt ist."})
 }
 
 // GET /api/dashboard/snapshots
@@ -145,7 +145,7 @@ func SearchDashboardSnapshots(c *m.ReqContext) Response {
 
 	err := bus.Dispatch(&searchQuery)
 	if err != nil {
-		return Error(500, "Search failed", err)
+		return Error(500, "Suche fehlgeschlagen", err)
 	}
 
 	dtos := make([]*m.DashboardSnapshotDTO, len(searchQuery.Result))

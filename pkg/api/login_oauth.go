@@ -41,14 +41,14 @@ func GenStateString() string {
 
 func OAuthLogin(ctx *m.ReqContext) {
 	if setting.OAuthService == nil {
-		ctx.Handle(404, "OAuth not enabled", nil)
+		ctx.Handle(404, "OAuth ist nicht aktiviert", nil)
 		return
 	}
 
 	name := ctx.Params(":name")
 	connect, ok := social.SocialMap[name]
 	if !ok {
-		ctx.Handle(404, fmt.Sprintf("No OAuth with name %s configured", name), nil)
+		ctx.Handle(404, fmt.Sprintf("Kein OAuth mit Name %s konfiguriert", name), nil)
 		return
 	}
 
@@ -170,7 +170,7 @@ func OAuthLogin(ctx *m.ReqContext) {
 		}
 		limitReached, err := quota.QuotaReached(ctx, "user")
 		if err != nil {
-			ctx.Handle(500, "Failed to get user quota", err)
+			ctx.Handle(500, "Benutzerkontingent konnte nicht abgerufen werden", err)
 			return
 		}
 		if limitReached {
@@ -186,13 +186,13 @@ func OAuthLogin(ctx *m.ReqContext) {
 		}
 
 		if err = bus.Dispatch(&cmd); err != nil {
-			ctx.Handle(500, "Failed to create account", err)
+			ctx.Handle(500, "Benutzererstellung fehlgeschlagen", err)
 			return
 		}
 
 		userQuery.Result = &cmd.Result
 	} else if err != nil {
-		ctx.Handle(500, "Unexpected error", err)
+		ctx.Handle(500, "Unerwarteter Fehler", err)
 	}
 
 	// login

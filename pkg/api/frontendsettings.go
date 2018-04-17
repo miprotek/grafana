@@ -182,7 +182,7 @@ func getPanelSort(id string) int {
 func GetFrontendSettings(c *m.ReqContext) {
 	settings, err := getFrontendSettingsMap(c)
 	if err != nil {
-		c.JsonApiErr(400, "Failed to get frontend settings", err)
+		c.JsonApiErr(400, "Die Frontend-Einstellungen konnten nicht abgerufen werden", err)
 		return
 	}
 

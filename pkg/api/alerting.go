@@ -15,12 +15,12 @@ func ValidateOrgAlert(c *m.ReqContext) {
 	query := m.GetAlertByIdQuery{Id: id}
 
 	if err := bus.Dispatch(&query); err != nil {
-		c.JsonApiErr(404, "Alert not found", nil)
+		c.JsonApiErr(404, "Warnung nicht gefunden", nil)
 		return
 	}
 
 	if c.OrgId != query.Result.OrgId {
-		c.JsonApiErr(403, "You are not allowed to edit/view alert", nil)
+		c.JsonApiErr(403, "Sie dürfen keine Warnung bearbeiten/anzeigen", nil)
 		return
 	}
 }
@@ -29,7 +29,7 @@ func GetAlertStatesForDashboard(c *m.ReqContext) Response {
 	dashboardID := c.QueryInt64("dashboardId")
 
 	if dashboardID == 0 {
-		return Error(400, "Missing query parameter dashboardId", nil)
+		return Error(400, "Fehlender Abfrageparameter dashboardId", nil)
 	}
 
 	query := m.GetAlertStatesForDashboardQuery{
@@ -38,7 +38,7 @@ func GetAlertStatesForDashboard(c *m.ReqContext) Response {
 	}
 
 	if err := bus.Dispatch(&query); err != nil {
-		return Error(500, "Failed to fetch alert states", err)
+		return Error(500, "Fehler beim Abrufen von Warnungszuständen", err)
 	}
 
 	return JSON(200, query.Result)
@@ -73,7 +73,7 @@ func GetAlerts(c *m.ReqContext) Response {
 // POST /api/alerts/test
 func AlertTest(c *m.ReqContext, dto dtos.AlertTestCommand) Response {
 	if _, idErr := dto.Dashboard.Get("id").Int64(); idErr != nil {
-		return Error(400, "The dashboard needs to be saved at least once before you can test an alert rule", nil)
+		return Error(400, "Das Dashboard muss mindestens einmal gespeichert werden, bevor Sie eine Warnungsregel testen können", nil)
 	}
 
 	backendCmd := alerting.AlertTestCommand{
@@ -86,7 +86,7 @@ func AlertTest(c *m.ReqContext, dto dtos.AlertTestCommand) Response {
 		if validationErr, ok := err.(alerting.ValidationError); ok {
 			return Error(422, validationErr.Error(), nil)
 		}
-		return Error(500, "Failed to test rule", err)
+		return Error(500, "Testen der Regel ist fehlgeschlagen", err)
 	}
 
 	res := backendCmd.Result
@@ -118,7 +118,7 @@ func GetAlert(c *m.ReqContext) Response {
 	query := m.GetAlertByIdQuery{Id: id}
 
 	if err := bus.Dispatch(&query); err != nil {
-		return Error(500, "List alerts failed", err)
+		return Error(500, "Listenalarme fehlgeschlagen", err)
 	}
 
 	return JSON(200, &query.Result)
@@ -132,7 +132,7 @@ func GetAlertNotifications(c *m.ReqContext) Response {
 	query := &m.GetAllAlertNotificationsQuery{OrgId: c.OrgId}
 
 	if err := bus.Dispatch(query); err != nil {
-		return Error(500, "Failed to get alert notifications", err)
+		return Error(500, "Fehler beim Abrufen von Warnmeldungen", err)
 	}
 
 	result := make([]*dtos.AlertNotification, 0)
@@ -158,7 +158,7 @@ func GetAlertNotificationByID(c *m.ReqContext) Response {
 	}
 
 	if err := bus.Dispatch(query); err != nil {
-		return Error(500, "Failed to get alert notifications", err)
+		return Error(500, "Fehler beim Abrufen von Warnmeldung", err)
 	}
 
 	return JSON(200, query.Result)
@@ -168,7 +168,7 @@ func CreateAlertNotification(c *m.ReqContext, cmd m.CreateAlertNotificationComma
 	cmd.OrgId = c.OrgId
 
 	if err := bus.Dispatch(&cmd); err != nil {
-		return Error(500, "Failed to create alert notification", err)
+		return Error(500, "Erstellen von Warnmeldung fehlgeschlagen", err)
 	}
 
 	return JSON(200, cmd.Result)
@@ -178,7 +178,7 @@ func UpdateAlertNotification(c *m.ReqContext, cmd m.UpdateAlertNotificationComma
 	cmd.OrgId = c.OrgId
 
 	if err := bus.Dispatch(&cmd); err != nil {
-		return Error(500, "Failed to update alert notification", err)
+		return Error(500, "Aktualisierung von Warnmeldung Fehlgeschlagen", err)
 	}
 
 	return JSON(200, cmd.Result)
@@ -191,10 +191,10 @@ func DeleteAlertNotification(c *m.ReqContext) Response {
 	}
 
 	if err := bus.Dispatch(&cmd); err != nil {
-		return Error(500, "Failed to delete alert notification", err)
+		return Error(500, "Löschen von Warnmeldung fehlgeschlagen", err)
 	}
 
-	return Success("Notification deleted")
+	return Success("Benachrichtigung gelöscht")
 }
 
 //POST /api/alert-notifications/test
@@ -209,10 +209,10 @@ func NotificationTest(c *m.ReqContext, dto dtos.NotificationTestCommand) Respons
 		if err == m.ErrSmtpNotEnabled {
 			return Error(412, err.Error(), err)
 		}
-		return Error(500, "Failed to send alert notifications", err)
+		return Error(500, "Fehler beim Senden von Warnmeldungen", err)
 	}
 
-	return Success("Test notification sent")
+	return Success("Testbenachrichtigung gesendet")
 }
 
 //POST /api/alerts/:alertId/pause
@@ -228,10 +228,10 @@ func PauseAlert(c *m.ReqContext, dto dtos.PauseAlertCommand) Response {
 	guardian := guardian.New(query.Result.DashboardId, c.OrgId, c.SignedInUser)
 	if canEdit, err := guardian.CanEdit(); err != nil || !canEdit {
 		if err != nil {
-			return Error(500, "Error while checking permissions for Alert", err)
+			return Error(500, "Fehler beim überprüfen der Berechtigungen für die Warnung", err)
 		}
 
-		return Error(403, "Access denied to this dashboard and alert", nil)
+		return Error(403, "Zugriff auf dieses Dashboard und diese Warnung verweigert", nil)
 	}
 
 	cmd := m.PauseAlertCommand{
@@ -254,7 +254,7 @@ func PauseAlert(c *m.ReqContext, dto dtos.PauseAlertCommand) Response {
 	result := map[string]interface{}{
 		"alertId": alertID,
 		"state":   response,
-		"message": "Alert " + pausedState,
+		"message": "Meldung " + pausedState,
 	}
 
 	return JSON(200, result)
@@ -267,7 +267,7 @@ func PauseAllAlerts(c *m.ReqContext, dto dtos.PauseAllAlertsCommand) Response {
 	}
 
 	if err := bus.Dispatch(&updateCmd); err != nil {
-		return Error(500, "Failed to pause alerts", err)
+		return Error(500, "Warnungen konnten nicht angehalten werden", err)
 	}
 
 	var response m.AlertStateType = m.AlertStatePending
@@ -279,7 +279,7 @@ func PauseAllAlerts(c *m.ReqContext, dto dtos.PauseAllAlertsCommand) Response {
 
 	result := map[string]interface{}{
 		"state":          response,
-		"message":        "alerts " + pausedState,
+		"message":        "Meldungen " + pausedState,
 		"alertsAffected": updateCmd.ResultCount,
 	}
 

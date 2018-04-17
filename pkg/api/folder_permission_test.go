@@ -52,7 +52,7 @@ func TestFolderPermissionApiEndpoint(t *testing.T) {
 				GetFolderByUIDResult: &m.Folder{
 					Id:    1,
 					Uid:   "uid",
-					Title: "Folder",
+					Title: "Ordner",
 				},
 			}
 
@@ -99,7 +99,7 @@ func TestFolderPermissionApiEndpoint(t *testing.T) {
 				GetFolderByUIDResult: &m.Folder{
 					Id:    1,
 					Uid:   "uid",
-					Title: "Folder",
+					Title: "Ordner",
 				},
 			}
 
@@ -145,7 +145,7 @@ func TestFolderPermissionApiEndpoint(t *testing.T) {
 				GetFolderByUIDResult: &m.Folder{
 					Id:    1,
 					Uid:   "uid",
-					Title: "Folder",
+					Title: "Ordner",
 				},
 			}
 
@@ -181,7 +181,7 @@ func TestFolderPermissionApiEndpoint(t *testing.T) {
 				GetFolderByUIDResult: &m.Folder{
 					Id:    1,
 					Uid:   "uid",
-					Title: "Folder",
+					Title: "Ordner",
 				},
 			}
 

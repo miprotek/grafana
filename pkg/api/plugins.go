@@ -19,7 +19,7 @@ func GetPluginList(c *m.ReqContext) Response {
 	pluginSettingsMap, err := plugins.GetPluginSettings(c.OrgId)
 
 	if err != nil {
-		return Error(500, "Failed to get list of plugins", err)
+		return Error(500, "Fehler beim abrufen der Plugin-Liste", err)
 	}
 
 	result := make(dtos.PluginList, 0)
@@ -83,7 +83,7 @@ func GetPluginSettingByID(c *m.ReqContext) Response {
 
 	def, exists := plugins.Plugins[pluginID]
 	if !exists {
-		return Error(404, "Plugin not found, no installed plugin with that id", nil)
+		return Error(404, "Plugin nicht gefunden. Kein Plugin mit dieser id installiert", nil)
 	}
 
 	dto := &dtos.PluginSetting{
@@ -104,7 +104,7 @@ func GetPluginSettingByID(c *m.ReqContext) Response {
 	query := m.GetPluginSettingByIdQuery{PluginId: pluginID, OrgId: c.OrgId}
 	if err := bus.Dispatch(&query); err != nil {
 		if err != m.ErrPluginSettingNotFound {
-			return Error(500, "Failed to get login settings", nil)
+			return Error(500, "Fehler beim abrufen der Anmeldeeinstellungen", nil)
 		}
 	} else {
 		dto.Enabled = query.Result.Enabled
@@ -122,14 +122,14 @@ func UpdatePluginSetting(c *m.ReqContext, cmd m.UpdatePluginSettingCmd) Response
 	cmd.PluginId = pluginID
 
 	if _, ok := plugins.Apps[cmd.PluginId]; !ok {
-		return Error(404, "Plugin not installed.", nil)
+		return Error(404, "Plugin nicht installiert.", nil)
 	}
 
 	if err := bus.Dispatch(&cmd); err != nil {
-		return Error(500, "Failed to update plugin setting", err)
+		return Error(500, "Fehler beim aktualisieren der Plugin-Einstellungen", err)
 	}
 
-	return Success("Plugin settings updated")
+	return Success("Plugin-Einstellungen aktualisert")
 }
 
 func GetPluginDashboards(c *m.ReqContext) Response {
@@ -141,7 +141,7 @@ func GetPluginDashboards(c *m.ReqContext) Response {
 			return Error(404, notfound.Error(), nil)
 		}
 
-		return Error(500, "Failed to get plugin dashboards", err)
+		return Error(500, "Fehler beim abrufen von Plugin-Dashboards", err)
 	}
 
 	return JSON(200, list)
@@ -157,7 +157,7 @@ func GetPluginMarkdown(c *m.ReqContext) Response {
 			return Error(404, notfound.Error(), nil)
 		}
 
-		return Error(500, "Could not get markdown file", err)
+		return Error(500, "Markdown-Datei konnte nicht abgerufen werden", err)
 	}
 
 	resp := Respond(200, content)
@@ -178,7 +178,7 @@ func ImportDashboard(c *m.ReqContext, apiCmd dtos.ImportDashboardCommand) Respon
 	}
 
 	if err := bus.Dispatch(&cmd); err != nil {
-		return Error(500, "Failed to import dashboard", err)
+		return Error(500, "Importieren des Dashboards ist fehlgeschlagen", err)
 	}
 
 	return JSON(200, cmd.Result)

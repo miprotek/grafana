@@ -12,9 +12,9 @@ func CreateTeam(c *m.ReqContext, cmd m.CreateTeamCommand) Response {
 	cmd.OrgId = c.OrgId
 	if err := bus.Dispatch(&cmd); err != nil {
 		if err == m.ErrTeamNameTaken {
-			return Error(409, "Team name taken", err)
+			return Error(409, "Teamname bereits in benutzung", err)
 		}
-		return Error(500, "Failed to create Team", err)
+		return Error(500, "Erstellen des Teams ist fehlgeschlagen", err)
 	}
 
 	return JSON(200, &util.DynMap{
@@ -29,9 +29,9 @@ func UpdateTeam(c *m.ReqContext, cmd m.UpdateTeamCommand) Response {
 	cmd.Id = c.ParamsInt64(":teamId")
 	if err := bus.Dispatch(&cmd); err != nil {
 		if err == m.ErrTeamNameTaken {
-			return Error(400, "Team name taken", err)
+			return Error(400, "Teamname bereits in benutzung", err)
 		}
-		return Error(500, "Failed to update Team", err)
+		return Error(500, "Aktualisieren des Teams ist fehlgeschlagen", err)
 	}
 
 	return Success("Team updated")
@@ -41,11 +41,11 @@ func UpdateTeam(c *m.ReqContext, cmd m.UpdateTeamCommand) Response {
 func DeleteTeamByID(c *m.ReqContext) Response {
 	if err := bus.Dispatch(&m.DeleteTeamCommand{OrgId: c.OrgId, Id: c.ParamsInt64(":teamId")}); err != nil {
 		if err == m.ErrTeamNotFound {
-			return Error(404, "Failed to delete Team. ID not found", nil)
+			return Error(404, "Löschen des Teams fehlgeschlagen. ID nicht gefunden", nil)
 		}
-		return Error(500, "Failed to update Team", err)
+		return Error(500, "Aktualisieren des Teams fehlgeschlagen", err)
 	}
-	return Success("Team deleted")
+	return Success("Team gelöscht")
 }
 
 // GET /api/teams/search
@@ -68,7 +68,7 @@ func SearchTeams(c *m.ReqContext) Response {
 	}
 
 	if err := bus.Dispatch(&query); err != nil {
-		return Error(500, "Failed to search Teams", err)
+		return Error(500, "Fehler bei der Suche des Teams", err)
 	}
 
 	for _, team := range query.Result.Teams {
@@ -87,10 +87,10 @@ func GetTeamByID(c *m.ReqContext) Response {
 
 	if err := bus.Dispatch(&query); err != nil {
 		if err == m.ErrTeamNotFound {
-			return Error(404, "Team not found", err)
+			return Error(404, "Team nicht gefunden", err)
 		}
 
-		return Error(500, "Failed to get Team", err)
+		return Error(500, "Fehler bei der Abfrage des Teams", err)
 	}
 
 	return JSON(200, &query.Result)

@@ -389,7 +389,7 @@ func GetDashboardVersion(c *m.ReqContext) Response {
 	}
 
 	if err := bus.Dispatch(&query); err != nil {
-		return Error(500, fmt.Sprintf("Dashboard version %d not found for dashboardId %d", query.Version, dashID), err)
+		return Error(500, fmt.Sprintf("Dashboard Version %d nicht gefunden fürr dashboardId %d", query.Version, dashID), err)
 	}
 
 	creator := "Anonymous"
@@ -438,9 +438,9 @@ func CalculateDashboardDiff(c *m.ReqContext, apiOptions dtos.CalculateDiffOption
 	result, err := dashdiffs.CalculateDiff(&options)
 	if err != nil {
 		if err == m.ErrDashboardVersionNotFound {
-			return Error(404, "Dashboard version not found", err)
+			return Error(404, "Dashboardversion nicht gefunden", err)
 		}
-		return Error(500, "Unable to compute diff", err)
+		return Error(500, "Diff konnte nicht berechnet werden", err)
 	}
 
 	if options.DiffType == dashdiffs.DiffDelta {
@@ -464,7 +464,7 @@ func RestoreDashboardVersion(c *m.ReqContext, apiCmd dtos.RestoreDashboardVersio
 
 	versionQuery := m.GetDashboardVersionQuery{DashboardId: dash.Id, Version: apiCmd.Version, OrgId: c.OrgId}
 	if err := bus.Dispatch(&versionQuery); err != nil {
-		return Error(404, "Dashboard version not found", nil)
+		return Error(404, "Dashboardversion nicht gefunden", nil)
 	}
 
 	version := versionQuery.Result
@@ -476,7 +476,7 @@ func RestoreDashboardVersion(c *m.ReqContext, apiCmd dtos.RestoreDashboardVersio
 	saveCmd.Dashboard = version.Data
 	saveCmd.Dashboard.Set("version", dash.Version)
 	saveCmd.Dashboard.Set("uid", dash.Uid)
-	saveCmd.Message = fmt.Sprintf("Restored from version %d", version.Version)
+	saveCmd.Message = fmt.Sprintf("Wiederhergestellt von Version %d", version.Version)
 
 	return PostDashboard(c, saveCmd)
 }
@@ -485,7 +485,7 @@ func GetDashboardTags(c *m.ReqContext) {
 	query := m.GetDashboardTagsQuery{OrgId: c.OrgId}
 	err := bus.Dispatch(&query)
 	if err != nil {
-		c.JsonApiErr(500, "Failed to get tags from database", err)
+		c.JsonApiErr(500, "Fehler beim Abrufen von Tags aus der Datenbank", err)
 		return
 	}
 

@@ -12,29 +12,29 @@ func ValidateOrgPlaylist(c *m.ReqContext) {
 	err := bus.Dispatch(&query)
 
 	if err != nil {
-		c.JsonApiErr(404, "Playlist not found", err)
+		c.JsonApiErr(404, "Playlist nicht gefunden", err)
 		return
 	}
 
 	if query.Result.OrgId == 0 {
-		c.JsonApiErr(404, "Playlist not found", err)
+		c.JsonApiErr(404, "Playlist nicht gefunden", err)
 		return
 	}
 
 	if query.Result.OrgId != c.OrgId {
-		c.JsonApiErr(403, "You are not allowed to edit/view playlist", nil)
+		c.JsonApiErr(403, "Sie dürfen die Playlist nicht bearbeiten / anzeigen", nil)
 		return
 	}
 
 	items, itemsErr := LoadPlaylistItemDTOs(id)
 
 	if itemsErr != nil {
-		c.JsonApiErr(404, "Playlist items not found", err)
+		c.JsonApiErr(404, "Playlist-Elemente wurden nicht gefunden", err)
 		return
 	}
 
 	if len(items) == 0 {
-		c.JsonApiErr(404, "Playlist is empty", itemsErr)
+		c.JsonApiErr(404, "Playlist ist leer", itemsErr)
 		return
 	}
 }
@@ -55,7 +55,7 @@ func SearchPlaylists(c *m.ReqContext) Response {
 
 	err := bus.Dispatch(&searchQuery)
 	if err != nil {
-		return Error(500, "Search failed", err)
+		return Error(500, "Suche fehlgeschlagen", err)
 	}
 
 	return JSON(200, searchQuery.Result)
@@ -66,7 +66,7 @@ func GetPlaylist(c *m.ReqContext) Response {
 	cmd := m.GetPlaylistByIdQuery{Id: id}
 
 	if err := bus.Dispatch(&cmd); err != nil {
-		return Error(500, "Playlist not found", err)
+		return Error(500, "Playlist nicht gefunden", err)
 	}
 
 	playlistDTOs, _ := LoadPlaylistItemDTOs(id)
@@ -120,7 +120,7 @@ func GetPlaylistItems(c *m.ReqContext) Response {
 	playlistDTOs, err := LoadPlaylistItemDTOs(id)
 
 	if err != nil {
-		return Error(500, "Could not load playlist items", err)
+		return Error(500, "Playlist-Elemente konnten nicht geladen werden", err)
 	}
 
 	return JSON(200, playlistDTOs)
@@ -131,7 +131,7 @@ func GetPlaylistDashboards(c *m.ReqContext) Response {
 
 	playlists, err := LoadPlaylistDashboards(c.OrgId, c.SignedInUser, playlistID)
 	if err != nil {
-		return Error(500, "Could not load dashboards", err)
+		return Error(500, "Dashboards konnten nicht geladen werden", err)
 	}
 
 	return JSON(200, playlists)
@@ -142,7 +142,7 @@ func DeletePlaylist(c *m.ReqContext) Response {
 
 	cmd := m.DeletePlaylistCommand{Id: id, OrgId: c.OrgId}
 	if err := bus.Dispatch(&cmd); err != nil {
-		return Error(500, "Failed to delete playlist", err)
+		return Error(500, "Löschen der Playlist ist fehlgeschlagen", err)
 	}
 
 	return JSON(200, "")
@@ -152,7 +152,7 @@ func CreatePlaylist(c *m.ReqContext, cmd m.CreatePlaylistCommand) Response {
 	cmd.OrgId = c.OrgId
 
 	if err := bus.Dispatch(&cmd); err != nil {
-		return Error(500, "Failed to create playlist", err)
+		return Error(500, "Erstellen der Playlist ist fehlgeschlagen", err)
 	}
 
 	return JSON(200, cmd.Result)
@@ -162,12 +162,12 @@ func UpdatePlaylist(c *m.ReqContext, cmd m.UpdatePlaylistCommand) Response {
 	cmd.OrgId = c.OrgId
 
 	if err := bus.Dispatch(&cmd); err != nil {
-		return Error(500, "Failed to save playlist", err)
+		return Error(500, "Speichern der Playlist ist fehlgeschlagen", err)
 	}
 
 	playlistDTOs, err := LoadPlaylistItemDTOs(cmd.Id)
 	if err != nil {
-		return Error(500, "Failed to save playlist", err)
+		return Error(500, "Speichern der Playlist ist fehlgeschlagen", err)
 	}
 
 	cmd.Result.Items = playlistDTOs
