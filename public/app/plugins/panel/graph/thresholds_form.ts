@@ -62,9 +62,9 @@ var template = `
 <div class="gf-form-group">
   <h5>Thresholds</h5>
   <p class="muted" ng-show="ctrl.disabled">
-    Visual thresholds options <strong>disabled.</strong>
-    Visit the Alert tab update your thresholds. <br>
-    To re-enable thresholds, the alert rule must be deleted from this panel.
+    Visuelle Schwellenwerte Optionen <strong>deaktiviert.</strong>
+    Auf der Registerkarte "Meldungen" können Sie Ihre Schwellenwerte aktualisieren. <br>
+    Um Schwellenwerte erneut zu aktivieren, muss die Warnungsregel aus diesem Panel gelöscht werden.
   </p>
   <div ng-class="{'thresholds-form-disabled': ctrl.disabled}">
     <div class="gf-form-inline" ng-repeat="threshold in ctrl.panel.thresholds">

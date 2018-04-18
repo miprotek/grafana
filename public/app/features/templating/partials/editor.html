@@ -124,7 +124,7 @@
 
 				<div class="gf-form">
 					<span class="gf-form-label width-9" ng-show="current.auto">
-						Schrittzaehler <tip>Wie oft sollte der aktuelle Zeitbereich geteilt werden, um den Wert zu berechnen</tip>
+						Schrittzähler <tip>Wie oft sollte der aktuelle Zeitbereich geteilt werden, um den Wert zu berechnen</tip>
 					</span>
 					<div class="gf-form-select-wrapper max-width-10" ng-show="current.auto">
 						<select class="gf-form-input" ng-model="current.auto_count" ng-options="f for f in [1,2,3,4,5,10,20,30,40,50,100,200,300,400,500]" ng-change="runQuery()"></select>
@@ -151,7 +151,7 @@
 			<h5 class="section-heading">Konstante Optionen</h5>
 			<div class="gf-form">
 				<span class="gf-form-label">Wert</span>
-				<input type="text" class="gf-form-input" ng-model='current.query' ng-blur="runQuery()" placeholder="Ihr metrischer Praefix"></input>
+				<input type="text" class="gf-form-input" ng-model='current.query' ng-blur="runQuery()" placeholder="Ihr metrischer Präfix"></input>
 			</div>
 		</div>
 
@@ -181,13 +181,13 @@
 			</div>
 			<div class="gf-form">
 				<span class="gf-form-label width-7">Abfrage</span>
-				<input type="text" class="gf-form-input" ng-model='current.query' placeholder="metric name or tags query" ng-model-onblur ng-change="runQuery()" required></input>
+				<input type="text" class="gf-form-input" ng-model='current.query' placeholder="Metrischer Name oder Tag abfrage" ng-model-onblur ng-change="runQuery()" required></input>
 			</div>
 			<div class="gf-form">
 				<span class="gf-form-label width-7">
 					Regex
 					<info-popover mode="right-normal">
-						Optional, wenn Sie einen Teil eines Seriennamens oder eines metrischen Knotensegments extrahieren moechten.
+						Optional, wenn Sie einen Teil eines Seriennamens oder eines metrischen Knotensegments extrahieren möchten.
 					</info-popover>
 				</span>
 				<input type="text" class="gf-form-input" ng-model='current.regex' placeholder="/.*-(.*)-.*/" ng-model-onblur ng-change="runQuery()"></input>
@@ -219,8 +219,8 @@
 				<label class="gf-form-label width-12">
 					Instanznamen Filter
 					<info-popover mode="right-normal">
-						Regex-Filter, fuer den Datenquelleninstanzen in der Dropdown-Liste mit den
-						Variablenwerten ausgewaehlt werden koennen. Leer lassen fuer alles.
+						Regex-Filter, für den Datenquelleninstanzen in der Dropdown-Liste mit den
+						Variablenwerten ausgewählt werden können. Leer lassen für alles.
 						<br><br>
 						Beispiel: <code>/^prod/</code>
 
@@ -248,12 +248,12 @@
 				<gf-form-switch class="gf-form"
 										label="Multi-value"
 					label-class="width-10"
-		 tooltip="Ermoeglicht mehrere Werte zur gleichen Zeit auszuwaehlen"
+		 tooltip="Ermöglicht mehrere Werte zur gleichen Zeit auszuwählen"
 	 checked="current.multi"
 	on-change="runQuery()">
 				</gf-form-switch>
 				<gf-form-switch class="gf-form"
-										label="Include All option"
+										label="Alle Optionen einschließen"
 					label-class="width-10"
 		 checked="current.includeAll"
 	 on-change="runQuery()">
@@ -261,7 +261,7 @@
 			</div>
 			<div class="gf-form" ng-if="current.includeAll">
 				<span class="gf-form-label width-10">Benutzerdefinierte alle Werte</span>
-				<input type="text" class="gf-form-input max-width-15" ng-model='current.allValue' placeholder="blank = auto"></input>
+				<input type="text" class="gf-form-input max-width-15" ng-model='current.allValue' placeholder="Leer = auto"></input>
 			</div>
 		</div>
 

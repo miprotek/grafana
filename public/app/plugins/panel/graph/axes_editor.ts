@@ -33,12 +33,12 @@ export class AxesEditorCtrl {
     };
 
     this.xAxisStatOptions = [
-      { text: 'Avg', value: 'avg' },
+      { text: 'Durchschnitt', value: 'avg' },
       { text: 'Min', value: 'min' },
       { text: 'Max', value: 'max' },
-      { text: 'Total', value: 'total' },
-      { text: 'Count', value: 'count' },
-      { text: 'Current', value: 'current' },
+      { text: 'Gesamt', value: 'total' },
+      { text: 'Zählen', value: 'count' },
+      { text: 'Momentan', value: 'current' },
     ];
 
     if (this.panel.xaxis.mode === 'custom') {

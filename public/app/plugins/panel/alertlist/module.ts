@@ -9,7 +9,7 @@ class AlertListPanel extends PanelCtrl {
   static templateUrl = 'module.html';
   static scrollable = true;
 
-  showOptions = [{ text: 'Current state', value: 'current' }, { text: 'Recent state changes', value: 'changes' }];
+  showOptions = [{ text: 'Momentaner Status', value: 'current' }, { text: 'Kürzliche Statusänderungen', value: 'changes' }];
 
   sortOrderOptions = [
     { text: 'Alphabetical (asc)', value: 1 },
@@ -110,7 +110,7 @@ class AlertListPanel extends PanelCtrl {
         al.info = alertDef.getAlertAnnotationInfo(al);
         return al;
       });
-      this.noAlertsMessage = this.alertHistory.length === 0 ? 'No alerts in current time range' : '';
+      this.noAlertsMessage = this.alertHistory.length === 0 ? 'Keine Meldungen im aktuellen Zeitbereich' : '';
 
       return this.alertHistory;
     });
@@ -135,7 +135,7 @@ class AlertListPanel extends PanelCtrl {
           return al;
         })
       );
-      this.noAlertsMessage = this.currentAlerts.length === 0 ? 'No alerts' : '';
+      this.noAlertsMessage = this.currentAlerts.length === 0 ? 'Keine Meldungen' : '';
 
       return this.currentAlerts;
     });

@@ -32,7 +32,7 @@ export class LiveSrv {
 
       this.conn.onclose = evt => {
         console.log('Live: websocket onclose', evt);
-        reject({ message: 'Connection closed' });
+        reject({ message: 'Verbindung geschlossen' });
 
         this.initPromise = null;
         setTimeout(this.reconnect.bind(this), 2000);
@@ -44,7 +44,7 @@ export class LiveSrv {
 
       this.conn.onerror = evt => {
         this.initPromise = null;
-        reject({ message: 'Connection error' });
+        reject({ message: 'Verbindungsfehler' });
         console.log('Live: websocket error', evt);
       };
 

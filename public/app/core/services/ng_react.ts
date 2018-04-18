@@ -23,7 +23,7 @@ function getReactComponent(name, $injector) {
 
   // a React component name must be specified
   if (!name) {
-    throw new Error('ReactComponent name attribute must be specified');
+    throw new Error('React Komponentennamenattribut muss angegeben werden');
   }
 
   // ensure the specified React component is accessible, and fail fast if it's not
@@ -41,7 +41,7 @@ function getReactComponent(name, $injector) {
   }
 
   if (!reactComponent) {
-    throw Error('Cannot find react component ' + name);
+    throw Error('Kann folgende React komponente nicht finden: ' + name);
   }
 
   return reactComponent;

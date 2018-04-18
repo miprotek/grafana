@@ -130,7 +130,7 @@ export class DataProcessor {
     let nameField = this.panel.xaxis.name;
     if (!nameField) {
       throw {
-        message: 'No field name specified to use for x-axis, check your axes settings',
+        message: 'Es wurde kein Feldname für die X-Achse angegeben. Überprüfen Sie Ihre Achseneinstellungen',
       };
     }
     return [];
@@ -192,11 +192,11 @@ export class DataProcessor {
     switch (this.panel.xaxis.mode) {
       case 'series': {
         return [
-          { text: 'Avg', value: 'avg' },
+          { text: 'Durchschnitt', value: 'avg' },
           { text: 'Min', value: 'min' },
           { text: 'Max', value: 'max' },
-          { text: 'Total', value: 'total' },
-          { text: 'Count', value: 'count' },
+          { text: 'Gesamt', value: 'total' },
+          { text: 'Zählen', value: 'count' },
         ];
       }
     }

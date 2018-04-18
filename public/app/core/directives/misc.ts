@@ -34,7 +34,7 @@ function clipboardButton() {
       });
 
       scope.clipboard.on('success', () => {
-        appEvents.emit('alert-success', ['Content copied to clipboard']);
+        appEvents.emit('alert-success', ['Inhalt wurde in die Zwischenablage kopiert']);
       });
 
       scope.$on('$destroy', function() {
