@@ -107,8 +107,8 @@ export class AddPanelPanel extends React.Component<AddPanelPanelProps, AddPanelP
         <div className="add-panel">
           <div className="add-panel__header">
             <i className="gicon gicon-add-panel" />
-            <span className="add-panel__title">New Panel</span>
-            <span className="add-panel__sub-title">Select a visualization</span>
+            <span className="add-panel__title">Neues Panel</span>
+            <span className="add-panel__sub-title">Wählen Sie eine Visualisierung</span>
             <button className="add-panel__close" onClick={this.handleCloseAddPanel}>
               <i className="fa fa-close" />
             </button>

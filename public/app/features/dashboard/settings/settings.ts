@@ -47,17 +47,17 @@ export class SettingsCtrl {
 
     if (this.dashboard.meta.canEdit) {
       this.sections.push({
-        title: 'General',
+        title: 'Allgemeines',
         id: 'settings',
         icon: 'gicon gicon-preferences',
       });
       this.sections.push({
-        title: 'Annotations',
+        title: 'Anmerkungen',
         id: 'annotations',
         icon: 'gicon gicon-annotation',
       });
       this.sections.push({
-        title: 'Variables',
+        title: 'Variablen',
         id: 'templating',
         icon: 'gicon gicon-variable',
       });
@@ -70,7 +70,7 @@ export class SettingsCtrl {
 
     if (this.dashboard.id && this.dashboard.meta.canSave) {
       this.sections.push({
-        title: 'Versions',
+        title: 'Versionen',
         id: 'versions',
         icon: 'fa fa-fw fa-history',
       });
@@ -78,7 +78,7 @@ export class SettingsCtrl {
 
     if (this.dashboard.id && this.dashboard.meta.canAdmin) {
       this.sections.push({
-        title: 'Permissions',
+        title: 'Berechtigungen',
         id: 'permissions',
         icon: 'fa fa-fw fa-lock',
       });
@@ -86,14 +86,14 @@ export class SettingsCtrl {
 
     if (this.dashboard.meta.canMakeEditable) {
       this.sections.push({
-        title: 'General',
+        title: 'Allgemeines',
         icon: 'gicon gicon-preferences',
         id: 'make_editable',
       });
     }
 
     this.sections.push({
-      title: 'View JSON',
+      title: 'JSON anzeigen',
       id: 'view_json',
       icon: 'gicon gicon-json',
     });
@@ -121,7 +121,7 @@ export class SettingsCtrl {
     const currentSection = _.find(this.sections, { id: this.viewId });
     if (!currentSection) {
       this.sections.unshift({
-        title: 'Not found',
+        title: 'Nicht gefunden',
         id: '404',
         icon: 'fa fa-fw fa-warning',
       });
@@ -173,17 +173,17 @@ export class SettingsCtrl {
     });
 
     if (alerts > 0) {
-      confirmText = 'DELETE';
-      text2 = `This dashboard contains ${alerts} alerts. Deleting this dashboard will also delete those alerts`;
+      confirmText = 'LÖSCHEN';
+      text2 = `Dieses Dashboard enthält ${alerts} Warnungen. Das Löschen dieses Dashboard, wird auch diese Warnungen löschen`;
     }
 
     appEvents.emit('confirm-modal', {
-      title: 'Delete',
-      text: 'Do you want to delete this dashboard?',
+      title: 'Löschen',
+      text: 'Wollen sie dieses Dashboard löschen?',
       text2: text2,
       icon: 'fa-trash',
       confirmText: confirmText,
-      yesText: 'Delete',
+      yesText: 'Löschen',
       onConfirm: () => {
         this.dashboard.meta.canSave = false;
         this.deleteDashboardConfirmed();
@@ -193,7 +193,7 @@ export class SettingsCtrl {
 
   deleteDashboardConfirmed() {
     this.backendSrv.deleteDashboard(this.dashboard.uid).then(() => {
-      appEvents.emit('alert-success', ['Dashboard Deleted', this.dashboard.title + ' has been deleted']);
+      appEvents.emit('alert-success', ['Dashboard gelöscht', this.dashboard.title + ' wurde gelöscht']);
       this.$location.url('/');
     });
   }

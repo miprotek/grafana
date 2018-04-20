@@ -5,7 +5,7 @@ const template = `
   <div class="modal-header">
     <h2 class="modal-header-title">
       <i class="fa fa-save"></i>
-      <span class="p-l-1">Save changes</span>
+      <span class="p-l-1">Änderungen speichern</span>
     </h2>
 
     <a class="modal-header-close" ng-click="ctrl.dismiss();">
@@ -14,7 +14,7 @@ const template = `
   </div>
 
   <form name="ctrl.saveForm" ng-submit="ctrl.save()" class="modal-content" novalidate>
-    <h6 class="text-center">Add a note to describe your changes</h6>
+    <h6 class="text-center">Fügen Sie eine Notiz hinzu um Ihre Änderungen zu beschreiben</h6>
     <div class="p-t-2">
       <div class="gf-form">
         <label class="gf-form-hint">
@@ -22,7 +22,7 @@ const template = `
             type="text"
             name="message"
             class="gf-form-input"
-            placeholder="Updates to &hellip;"
+            placeholder="Aktualisierungen zu &hellip;"
             give-focus="true"
             ng-model="ctrl.message"
             ng-model-options="{allowInvalid: true}"
@@ -39,8 +39,8 @@ const template = `
     </div>
 
     <div class="gf-form-button-row text-center">
-      <button type="submit" class="btn btn-success" ng-disabled="ctrl.saveForm.$invalid">Save</button>
-      <button class="btn btn-inverse" ng-click="ctrl.dismiss();">Cancel</button>
+      <button type="submit" class="btn btn-success" ng-disabled="ctrl.saveForm.$invalid">Sichern</button>
+      <button class="btn btn-inverse" ng-click="ctrl.dismiss();">Abbrechen</button>
     </div>
   </form>
 </div>

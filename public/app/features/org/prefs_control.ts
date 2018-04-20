@@ -9,10 +9,10 @@ export class PrefsControlCtrl {
 
   timezones: any = [
     { value: '', text: 'Default' },
-    { value: 'browser', text: 'Local browser time' },
+    { value: 'browser', text: 'Lokale Browser Zeit' },
     { value: 'utc', text: 'UTC' },
   ];
-  themes: any = [{ value: '', text: 'Default' }, { value: 'dark', text: 'Dark' }, { value: 'light', text: 'Light' }];
+  themes: any = [{ value: '', text: 'Standard' }, { value: 'dark', text: 'Dunkel' }, { value: 'light', text: 'Hell' }];
 
   /** @ngInject **/
   constructor(private backendSrv, private $location) {}
@@ -43,7 +43,7 @@ export class PrefsControlCtrl {
 
 var template = `
 <form name="ctrl.prefsForm" class="section gf-form-group">
-  <h3 class="page-heading">Preferences</h3>
+  <h3 class="page-heading">Einstellungen</h3>
 
   <div class="gf-form">
     <span class="gf-form-label width-11">UI Theme</span>
@@ -56,7 +56,7 @@ var template = `
     <span class="gf-form-label width-11">
       Home Dashboard
       <info-popover mode="right-normal">
-        Not finding dashboard you want? Star it first, then it should appear in this select box.
+        Finden Sie nicht das gewünschte Dashboard? Markieren Sie es zuerst, dann sollte es in diesem Auswahlfeld erscheinen.
       </info-popover>
     </span>
     <dashboard-selector class="gf-form-select-wrapper max-width-20" model="ctrl.prefs.homeDashboardId">
@@ -64,14 +64,14 @@ var template = `
   </div>
 
   <div class="gf-form">
-    <label class="gf-form-label width-11">Timezone</label>
+    <label class="gf-form-label width-11">Zeitzone</label>
     <div class="gf-form-select-wrapper max-width-20">
       <select class="gf-form-input" ng-model="ctrl.prefs.timezone" ng-options="f.value as f.text for f in ctrl.timezones"></select>
     </div>
   </div>
 
   <div class="gf-form-button-row">
-    <button type="submit" class="btn btn-success" ng-click="ctrl.updatePrefs()">Save</button>
+    <button type="submit" class="btn btn-success" ng-click="ctrl.updatePrefs()">Sichern</button>
   </div>
 </form>
 `;

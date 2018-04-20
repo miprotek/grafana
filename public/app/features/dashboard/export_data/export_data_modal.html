@@ -14,7 +14,7 @@
       <div class="gf-form" ng-hide="ctrl.panel === 'table'">
         <label class="gf-form-label width-10">Modus</label>
         <div class="gf-form-select-wrapper">
-          <select class="gf-form-input" ng-model="ctrl.asRows" ng-options="f.value as f.text for f in [{text: 'Series as rows', value: true}, {text: 'Series as columns', value: false}]">
+          <select class="gf-form-input" ng-model="ctrl.asRows" ng-options="f.value as f.text for f in [{text: 'Serie als Reihen', value: true}, {text: 'Serie als Spalten', value: false}]">
           </select>
         </div>
       </div>
@@ -23,7 +23,7 @@
         <input type="text" class="gf-form-input" ng-model="ctrl.dateTimeFormat">
       </div>
       <gf-form-switch class="gf-form"
-        label="Excel CSV Dialect" label-class="width-10" switch-class="max-width-6"
+        label="Excel CSV Dialekt" label-class="width-10" switch-class="max-width-6"
         checked="ctrl.excel">
       </gf-form-switch>
     </div>

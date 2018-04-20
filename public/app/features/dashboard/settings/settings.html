@@ -43,7 +43,7 @@
 				Tags
 				<info-popover mode="right-normal">Drücke Enter um einen Tag hinzuzufügen</info-popover>
 			</label>
-			<bootstrap-tagsinput ng-model="ctrl.dashboard.tags" tagclass="label label-tag" placeholder="add tags">
+			<bootstrap-tagsinput ng-model="ctrl.dashboard.tags" tagclass="label label-tag" placeholder="Tags hinzufügen">
 			</bootstrap-tagsinput>
 		</div>
 		<folder-picker initial-title="ctrl.dashboard.meta.folderTitle"
@@ -53,7 +53,7 @@
 									 is-valid-selection="true"
 									 label-class="width-7">
 		</folder-picker>
-		<gf-form-switch class="gf-form" label="Editable" tooltip="Entfernne Sie das Häkchen, speichern Sie die Datei und laden Sie sie erneut, damit das Dashboard nicht mehr bearbeitet werden kann" checked="ctrl.dashboard.editable" label-class="width-7">
+		<gf-form-switch class="gf-form" label="Bearbeitbar" tooltip="Entfernen Sie das Häkchen, speichern Sie die Datei und laden Sie diese erneut, damit das Dashboard nicht mehr bearbeitet werden kann" checked="ctrl.dashboard.editable" label-class="width-7">
 		</gf-form-switch>
 	</div>
 
@@ -68,7 +68,7 @@
 			</info-popover>
 		</label>
 		<div class="gf-form-select-wrapper">
-			<select ng-model="ctrl.dashboard.graphTooltip" class='gf-form-input' ng-options="f.value as f.text for f in [{value: 0, text: 'Default'}, {value: 1, text: 'Shared crosshair'},{value: 2, text: 'Shared Tooltip'}]"></select>
+			<select ng-model="ctrl.dashboard.graphTooltip" class='gf-form-input' ng-options="f.value as f.text for f in [{value: 0, text: 'Default'}, {value: 1, text: 'Geteiltes Fadenkreuz'},{value: 2, text: 'Geteilter Tooltip'}]"></select>
 		</div>
 	</div>
 </div>

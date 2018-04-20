@@ -3,7 +3,7 @@ import kbn from 'app/core/utils/kbn';
 import { Variable, containsVariable, assignModelProperties, variableTypes } from './variable';
 
 function getNoneOption() {
-  return { text: 'None', value: '', isNone: true };
+  return { text: 'Keine', value: '', isNone: true };
 }
 
 export class QueryVariable implements Variable {
@@ -136,7 +136,7 @@ export class QueryVariable implements Variable {
   }
 
   addAllOption() {
-    this.options.unshift({ text: 'All', value: '$__all' });
+    this.options.unshift({ text: 'Alle', value: '$__all' });
   }
 
   metricNamesToVariableValues(metricNames) {
@@ -218,6 +218,6 @@ export class QueryVariable implements Variable {
 variableTypes['query'] = {
   name: 'Query',
   ctor: QueryVariable,
-  description: 'Variable values are fetched from a datasource query',
+  description: 'Variablenwerte werden aus einer Datenquellenabfrage abgerufen',
   supportsMulti: true,
 };

@@ -11,12 +11,12 @@ import Highlighter from 'react-highlight-words';
 @observer
 export class AlertRuleList extends React.Component<IContainerProps, any> {
   stateFilters = [
-    { text: 'All', value: 'all' },
+    { text: 'Alle', value: 'all' },
     { text: 'OK', value: 'ok' },
-    { text: 'Not OK', value: 'not_ok' },
-    { text: 'Alerting', value: 'alerting' },
-    { text: 'No Data', value: 'no_data' },
-    { text: 'Paused', value: 'paused' },
+    { text: 'Nicht OK', value: 'not_ok' },
+    { text: 'Alarmierung', value: 'alerting' },
+    { text: 'Keine Daten', value: 'no_data' },
+    { text: 'Pausiert', value: 'paused' },
   ];
 
   constructor(props) {
@@ -62,7 +62,7 @@ export class AlertRuleList extends React.Component<IContainerProps, any> {
                 <input
                   type="text"
                   className="gf-form-input"
-                  placeholder="Search alerts"
+                  placeholder="Meldungen suchen"
                   value={alertList.search}
                   onChange={this.onSearchQueryChange}
                 />
@@ -70,7 +70,7 @@ export class AlertRuleList extends React.Component<IContainerProps, any> {
               </label>
             </div>
             <div className="gf-form">
-              <label className="gf-form-label">States</label>
+              <label className="gf-form-label">Zustände</label>
 
               <div className="gf-form-select-wrapper width-13">
                 <select className="gf-form-input" onChange={this.onStateFilterChanged} value={alertList.stateFilter}>
@@ -82,7 +82,7 @@ export class AlertRuleList extends React.Component<IContainerProps, any> {
             <div className="page-action-bar__spacer" />
 
             <a className="btn btn-secondary" onClick={this.onOpenHowTo}>
-              <i className="fa fa-info-circle" /> How to add an alert
+              <i className="fa fa-info-circle" /> Wie füge ich eine Warnung hinzu
             </a>
           </div>
 
@@ -160,7 +160,7 @@ export class AlertRuleItem extends React.Component<AlertRuleItemProps, any> {
         <div className="alert-rule-item__actions">
           <button
             className="btn btn-small btn-inverse alert-list__btn width-2"
-            title="Pausing an alert rule prevents it from executing"
+            title="Durch das pausieren einer Warnungsregel wird verhindert, dass diese ausgeführt wird"
             onClick={this.toggleState}
           >
             <i className={stateClass} />

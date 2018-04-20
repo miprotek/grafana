@@ -11,14 +11,14 @@ export const ServerStatsStore = types
       const backendSrv = getEnv(self).backendSrv;
       const res = yield backendSrv.get('/api/admin/stats');
       self.stats.clear();
-      self.stats.push(ServerStat.create({ name: 'Total dashboards', value: res.dashboards }));
-      self.stats.push(ServerStat.create({ name: 'Total users', value: res.users }));
-      self.stats.push(ServerStat.create({ name: 'Active users (seen last 30 days)', value: res.activeUsers }));
-      self.stats.push(ServerStat.create({ name: 'Total orgs', value: res.orgs }));
-      self.stats.push(ServerStat.create({ name: 'Total playlists', value: res.playlists }));
-      self.stats.push(ServerStat.create({ name: 'Total snapshots', value: res.snapshots }));
-      self.stats.push(ServerStat.create({ name: 'Total dashboard tags', value: res.tags }));
-      self.stats.push(ServerStat.create({ name: 'Total starred dashboards', value: res.stars }));
-      self.stats.push(ServerStat.create({ name: 'Total alerts', value: res.alerts }));
+      self.stats.push(ServerStat.create({ name: 'Insgesamt Dashboards', value: res.dashboards }));
+      self.stats.push(ServerStat.create({ name: 'Gesamtzahl der Nutzer', value: res.users }));
+      self.stats.push(ServerStat.create({ name: 'Aktive Benutzer (Innerhalb der letzten 30 Tage)', value: res.activeUsers }));
+      self.stats.push(ServerStat.create({ name: 'Gesamtzahl der Organisationen', value: res.orgs }));
+      self.stats.push(ServerStat.create({ name: 'Gesamtzahl der Playlisten', value: res.playlists }));
+      self.stats.push(ServerStat.create({ name: 'Gesamtzahl der Snapshots', value: res.snapshots }));
+      self.stats.push(ServerStat.create({ name: 'Gesamtzahl der Dashboard tags', value: res.tags }));
+      self.stats.push(ServerStat.create({ name: 'Gesamtzahl der markierten Dashboards', value: res.stars }));
+      self.stats.push(ServerStat.create({ name: 'Gesamtzahl der Meldungen', value: res.alerts }));
     }),
   }));
