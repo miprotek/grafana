@@ -8,8 +8,8 @@ import (
 )
 
 var (
-	ErrInvalidCredentials   = errors.New("Invalid Username or Password")
-	ErrTooManyLoginAttempts = errors.New("Too many consecutive incorrect login attempts for user. Login for user temporarily blocked")
+	ErrInvalidCredentials   = errors.New("Ungültiger Benutzername oder Passwort")
+	ErrTooManyLoginAttempts = errors.New("Zuviele falsche Anmeldeversuche. Login für Benutzer temporär geblockt")
 )
 
 type LoginUserQuery struct {

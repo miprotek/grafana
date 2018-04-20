@@ -62,7 +62,7 @@ var absoluteFormat = 'D.MMM.YYYY HH:mm:ss';
 
 var rangeIndex = {};
 _.each(rangeOptions, function(frame) {
-  rangeIndex[frame.from + ' to ' + frame.to] = frame;
+  rangeIndex[frame.from + ' bis ' + frame.to] = frame;
 });
 
 export function getRelativeTimesList(timepickerSettings, currentDisplay) {
@@ -130,7 +130,7 @@ export function describeTextRange(expr: any) {
 }
 
 export function describeTimeRange(range) {
-  var option = rangeIndex[range.from.toString() + ' to ' + range.to.toString()];
+  var option = rangeIndex[range.from.toString() + ' bis ' + range.to.toString()];
   if (option) {
     return option.display;
   }
