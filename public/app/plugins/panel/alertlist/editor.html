@@ -20,7 +20,7 @@
     <gf-form-switch class="gf-form" label="Meldungen von diesem Dashboard" label-class="width-18" checked="ctrl.panel.onlyAlertsOnDashboard" on-change="ctrl.updateStateFilter()"></gf-form-switch>
   </div>
   <div class="section gf-form-group" ng-show="ctrl.panel.show === 'current'">
-    <h5 class="section-heading">State filter</h5>
+    <h5 class="section-heading">Status Filter</h5>
     <gf-form-switch class="gf-form" label="Ok" label-class="width-10" checked="ctrl.stateFilter['ok']" on-change="ctrl.updateStateFilter()"></gf-form-switch>
     <gf-form-switch class="gf-form" label="Pausiert" label-class="width-10" checked="ctrl.stateFilter['paused']" on-change="ctrl.updateStateFilter()"></gf-form-switch>
     <gf-form-switch class="gf-form" label="Keine Daten" label-class="width-10" checked="ctrl.stateFilter['no_data']" on-change="ctrl.updateStateFilter()"></gf-form-switch>

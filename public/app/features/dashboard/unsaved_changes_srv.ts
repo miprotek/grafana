@@ -38,7 +38,7 @@ export class Tracker {
         return undefined;
       }
       if (this.hasChanges()) {
-        return 'There are unsaved changes to this dashboard';
+        return 'Dieses Dashboard enthält ungespeicherte Änderungen';
       }
       return undefined;
     };

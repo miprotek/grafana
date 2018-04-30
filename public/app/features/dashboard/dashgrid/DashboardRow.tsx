@@ -57,9 +57,9 @@ export class DashboardRow extends React.Component<DashboardRowProps, any> {
 
   delete() {
     appEvents.emit('confirm-modal', {
-      title: 'Delete Row',
-      text: 'Are you sure you want to remove this row and all its panels?',
-      altActionText: 'Delete row only',
+      title: 'Zeile löschen',
+      text: 'Möchten Sie diese Zeile und alle ihre Bereiche wirklich entfernen?',
+      altActionText: 'Nur Zeile löschen',
       icon: 'fa-trash',
       onConfirm: () => {
         const panelContainer = this.props.getPanelContainer();
@@ -93,7 +93,7 @@ export class DashboardRow extends React.Component<DashboardRowProps, any> {
         <a className="dashboard-row__title pointer" onClick={this.toggle}>
           <i className={chevronClass} />
           {title}
-          <span className="dashboard-row__panel_count">({hiddenPanels} hidden panels)</span>
+          <span className="dashboard-row__panel_count">({hiddenPanels} versteckte Panels)</span>
         </a>
         {config.bootData.user.orgRole !== 'Viewer' && (
           <div className="dashboard-row__actions">

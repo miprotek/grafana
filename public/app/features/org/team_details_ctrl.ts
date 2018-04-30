@@ -26,9 +26,9 @@ export default class TeamDetailsCtrl {
 
   removeTeamMember(teamMember: TeamMember) {
     this.$scope.appEvent('confirm-modal', {
-      title: 'Remove Member',
-      text: 'Are you sure you want to remove ' + teamMember.login + ' from this group?',
-      yesText: 'Remove',
+      title: 'Mitglied entfernen',
+      text: 'Sind Sie sicher, dass Sie ' + teamMember.login + ' von dieser Gruppe entfernen wollen?',
+      yesText: 'Entfernen',
       icon: 'fa-warning',
       onConfirm: () => {
         this.removeMemberConfirmed(teamMember);

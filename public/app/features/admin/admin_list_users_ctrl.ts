@@ -39,10 +39,10 @@ export default class AdminListUsersCtrl {
 
   deleteUser(user) {
     this.$scope.appEvent('confirm-modal', {
-      title: 'Delete',
-      text: 'Do you want to delete ' + user.login + '?',
+      title: 'Löschen',
+      text: 'Wollen Sie ' + user.login + ' löschen?',
       icon: 'fa-trash',
-      yesText: 'Delete',
+      yesText: 'Löschen',
       onConfirm: () => {
         this.backendSrv.delete('/api/admin/users/' + user.id).then(() => {
           this.getUsers();

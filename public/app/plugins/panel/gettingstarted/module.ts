@@ -26,7 +26,7 @@ class GettingStartedPanelCtrl extends PanelCtrl {
 
     this.steps.push({
       title: 'Erstellen Sie Ihre erste Datenquelle',
-      cta: 'Add data source',
+      cta: 'Datenquelle hinzufügen',
       icon: 'icon-gf icon-gf-datasources',
       href: 'datasources/new?gettingstarted',
       check: () => {

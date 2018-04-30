@@ -53,7 +53,7 @@ export class FolderSettings extends React.Component<IContainerProps, any> {
         view.updatePathAndQuery(newUrl, {}, {});
 
         appEvents.emit('dashboard-saved');
-        appEvents.emit('alert-success', ['Folder saved']);
+        appEvents.emit('alert-success', ['Ordner gespeichert']);
       })
       .then(() => {
         return nav.initFolderNav(toJS(folder.folder), 'manage-folder-settings');
@@ -71,13 +71,13 @@ export class FolderSettings extends React.Component<IContainerProps, any> {
     const title = folder.folder.title;
 
     appEvents.emit('confirm-modal', {
-      title: 'Delete',
-      text: `Do you want to delete this folder and all its dashboards?`,
+      title: 'Löschen',
+      text: `Wollen Sie diesen Ordner und alle enthaltenen Dashboards löschen?`,
       icon: 'fa-trash',
-      yesText: 'Delete',
+      yesText: 'Löschen',
       onConfirm: () => {
         return folder.deleteFolder().then(() => {
-          appEvents.emit('alert-success', ['Folder Deleted', `${title} has been deleted`]);
+          appEvents.emit('alert-success', ['Ordner gelöscht', `${title} wurde gelöscht`]);
           view.updatePathAndQuery('dashboards', '', '');
         });
       },
@@ -91,10 +91,10 @@ export class FolderSettings extends React.Component<IContainerProps, any> {
       const { nav, folder, view } = this.props;
 
       appEvents.emit('confirm-modal', {
-        title: 'Conflict',
-        text: 'Someone else has updated this folder.',
-        text2: 'Would you still like to save this folder?',
-        yesText: 'Save & Overwrite',
+        title: 'Konflikt',
+        text: 'Jemand anderes hat diesen Ordner aktualisiert.',
+        text2: 'Wollen Sie diesen Ordner trotzdem speichern?',
+        yesText: 'Speichern & Überschreiben',
         icon: 'fa-warning',
         onConfirm: () => {
           folder
@@ -103,7 +103,7 @@ export class FolderSettings extends React.Component<IContainerProps, any> {
               view.updatePathAndQuery(newUrl, {}, {});
 
               appEvents.emit('dashboard-saved');
-              appEvents.emit('alert-success', ['Folder saved']);
+              appEvents.emit('alert-success', ['Ordner gespeichert']);
             })
             .then(() => {
               return nav.initFolderNav(toJS(folder.folder), 'manage-folder-settings');
@@ -124,7 +124,7 @@ export class FolderSettings extends React.Component<IContainerProps, any> {
       <div>
         <PageHeader model={nav as any} />
         <div className="page-container page-body">
-          <h2 className="page-sub-heading">Folder Settings</h2>
+          <h2 className="page-sub-heading">Ordnereinstellungen</h2>
 
           <div className="section gf-form-group">
             <form name="folderSettingsForm" onSubmit={this.save.bind(this)}>
@@ -143,10 +143,10 @@ export class FolderSettings extends React.Component<IContainerProps, any> {
                   className="btn btn-success"
                   disabled={!folder.folder.canSave || !folder.folder.hasChanged}
                 >
-                  <i className="fa fa-save" /> Save
+                  <i className="fa fa-save" /> Speichern
                 </button>
                 <button className="btn btn-danger" onClick={this.delete.bind(this)} disabled={!folder.folder.canSave}>
-                  <i className="fa fa-trash" /> Delete
+                  <i className="fa fa-trash" /> Löschen
                 </button>
               </div>
             </form>

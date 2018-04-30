@@ -63,12 +63,12 @@ export class AddPanelPanel extends React.Component<AddPanelPanelProps, AddPanelP
 
     var newPanel: any = {
       type: panelPluginInfo.id,
-      title: 'Panel Title',
+      title: 'Panel Titel',
       gridPos: { x: gridPos.x, y: gridPos.y, w: gridPos.w, h: gridPos.h },
     };
 
     if (panelPluginInfo.id === 'row') {
-      newPanel.title = 'Row title';
+      newPanel.title = 'Row Titel';
       newPanel.gridPos = { x: 0, y: 0 };
     }
 

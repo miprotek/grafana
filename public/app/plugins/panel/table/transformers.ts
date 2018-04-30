@@ -6,12 +6,12 @@ import TableModel from '../../../core/table_model';
 var transformers = {};
 
 transformers['timeseries_to_rows'] = {
-  description: 'Time series to rows',
+  description: 'Zeitreihe zu Zeilen',
   getColumns: function() {
     return [];
   },
   transform: function(data, panel, model) {
-    model.columns = [{ text: 'Time', type: 'date' }, { text: 'Metric' }, { text: 'Value' }];
+    model.columns = [{ text: 'Zeit', type: 'date' }, { text: 'Metrik' }, { text: 'Wert' }];
 
     for (var i = 0; i < data.length; i++) {
       var series = data[i];
@@ -24,12 +24,12 @@ transformers['timeseries_to_rows'] = {
 };
 
 transformers['timeseries_to_columns'] = {
-  description: 'Time series to columns',
+  description: 'Zeitreihe zu Spalten',
   getColumns: function() {
     return [];
   },
   transform: function(data, panel, model) {
-    model.columns.push({ text: 'Time', type: 'date' });
+    model.columns.push({ text: 'Zeit', type: 'date' });
 
     // group by time
     var points = {};
@@ -72,9 +72,9 @@ transformers['timeseries_aggregations'] = {
       { text: 'Avg', value: 'avg' },
       { text: 'Min', value: 'min' },
       { text: 'Max', value: 'max' },
-      { text: 'Total', value: 'total' },
-      { text: 'Current', value: 'current' },
-      { text: 'Count', value: 'count' },
+      { text: 'Gesamt', value: 'total' },
+      { text: 'Momentan', value: 'current' },
+      { text: 'Zählen', value: 'count' },
     ];
   },
   transform: function(data, panel, model) {
@@ -109,8 +109,8 @@ transformers['annotations'] = {
     return [];
   },
   transform: function(data, panel, model) {
-    model.columns.push({ text: 'Time', type: 'date' });
-    model.columns.push({ text: 'Title' });
+    model.columns.push({ text: 'Zeit', type: 'date' });
+    model.columns.push({ text: 'Titel' });
     model.columns.push({ text: 'Text' });
     model.columns.push({ text: 'Tags' });
 
@@ -263,7 +263,7 @@ transformers['table'] = {
 };
 
 transformers['json'] = {
-  description: 'JSON Data',
+  description: 'JSON Daten',
   getColumns: function(data) {
     if (!data || data.length === 0) {
       return [];
@@ -340,7 +340,7 @@ function transformDataToTable(data, panel) {
 
   var transformer = transformers[panel.transform];
   if (!transformer) {
-    throw { message: 'Transformer ' + panel.transform + ' not found' };
+    throw { message: 'Transformer ' + panel.transform + ' nicht gefunden' };
   }
 
   transformer.transform(data, panel, model);

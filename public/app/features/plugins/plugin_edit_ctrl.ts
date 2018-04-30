@@ -49,7 +49,7 @@ export class PluginEditCtrl {
       this.navModel.main.children.push({
         icon: 'gicon gicon-cog',
         id: 'config',
-        text: 'Config',
+        text: 'Konfig',
         url: `plugins/${this.model.id}/edit?tab=config`,
       });
 

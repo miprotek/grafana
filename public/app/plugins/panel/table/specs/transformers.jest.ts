@@ -266,8 +266,8 @@ describe('when transforming time series table', () => {
       var panel = {
         transform: 'json',
         columns: [
-          { text: 'Timestamp', value: 'timestamp' },
-          { text: 'Message', value: 'message' },
+          { text: 'Zeitstempel', value: 'timestamp' },
+          { text: 'Nachricht', value: 'message' },
           { text: 'nested.level2', value: 'nested.level2' },
         ],
       };

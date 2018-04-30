@@ -46,7 +46,7 @@ export class FolderSettingsCtrl {
         }
 
         appEvents.emit('dashboard-saved');
-        appEvents.emit('alert-success', ['Folder saved']);
+        appEvents.emit('alert-success', ['Ordner gesichert']);
       })
       .catch(this.handleSaveFolderError);
   }
@@ -62,13 +62,13 @@ export class FolderSettingsCtrl {
     }
 
     appEvents.emit('confirm-modal', {
-      title: 'Delete',
-      text: `Do you want to delete this folder and all its dashboards?`,
+      title: 'Löschen',
+      text: `Wollen Sie diesen Ordner und alle enthaltenen Dashboards löschen?`,
       icon: 'fa-trash',
-      yesText: 'Delete',
+      yesText: 'Löschen',
       onConfirm: () => {
         return this.backendSrv.deleteFolder(this.uid).then(() => {
-          appEvents.emit('alert-success', ['Folder Deleted', `${this.folder.title} has been deleted`]);
+          appEvents.emit('alert-success', ['Ordner gelöscht', `${this.folder.title} wurde gelöscht`]);
           this.$location.url('dashboards');
         });
       },

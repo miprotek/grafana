@@ -23,15 +23,15 @@ class SingleStatCtrl extends MetricsPanelCtrl {
   valueNameOptions: any[] = [
     { value: 'min', text: 'Min' },
     { value: 'max', text: 'Max' },
-    { value: 'avg', text: 'Average' },
-    { value: 'current', text: 'Current' },
-    { value: 'total', text: 'Total' },
+    { value: 'avg', text: 'Durchschnitt' },
+    { value: 'current', text: 'Momentan' },
+    { value: 'total', text: 'Gesamt' },
     { value: 'name', text: 'Name' },
-    { value: 'first', text: 'First' },
+    { value: 'first', text: 'Erste' },
     { value: 'delta', text: 'Delta' },
-    { value: 'diff', text: 'Difference' },
-    { value: 'range', text: 'Range' },
-    { value: 'last_time', text: 'Time of last point' },
+    { value: 'diff', text: 'Unterschied' },
+    { value: 'range', text: 'Reichweite' },
+    { value: 'last_time', text: 'Zeit des letzten Punkt' },
   ];
   tableColumnOptions: any;
 
@@ -48,7 +48,7 @@ class SingleStatCtrl extends MetricsPanelCtrl {
     postfix: '',
     nullText: null,
     valueMaps: [{ value: 'null', op: '=', text: 'N/A' }],
-    mappingTypes: [{ name: 'value to text', value: 1 }, { name: 'range to text', value: 2 }],
+    mappingTypes: [{ name: 'Wert zu Text', value: 1 }, { name: 'Bereich zu text', value: 2 }],
     rangeMaps: [{ from: 'null', to: 'null', text: 'N/A' }],
     mappingType: 1,
     nullPointMode: 'connected',
@@ -283,7 +283,7 @@ class SingleStatCtrl extends MetricsPanelCtrl {
 
     if (this.series.length > 1) {
       var error: any = new Error();
-      error.message = 'Multiple Series Error';
+      error.message = 'Mehrere Serienfehler';
       error.data =
         'Metric query returns ' +
         this.series.length +
@@ -654,7 +654,7 @@ class SingleStatCtrl extends MetricsPanelCtrl {
 
     function hookupDrilldownLinkTooltip() {
       // drilldown link tooltip
-      var drilldownTooltip = $('<div id="tooltip" class="">hello</div>"');
+      var drilldownTooltip = $('<div id="tooltip" class="">Hallo</div>"');
 
       elem.mouseleave(function() {
         if (panel.links.length === 0) {

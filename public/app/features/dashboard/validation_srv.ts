@@ -12,11 +12,11 @@ export class ValidationSrv {
   constructor(private $q, private backendSrv) {}
 
   validateNewDashboardName(folderId, name) {
-    return this.validate(folderId, name, 'A dashboard in this folder with the same name already exists');
+    return this.validate(folderId, name, 'Ein Dashboard mit dem gleichen Namen existiert bereits in diesem Ordner');
   }
 
   validateNewFolderName(name) {
-    return this.validate(0, name, 'A folder or dashboard in the general folder with the same name already exists');
+    return this.validate(0, name, 'Ein Ordner oder Dashboard im allgemeinen Ordner mit dem selben Namen ist bereits vorhanden');
   }
 
   private validate(folderId, name, existingErrorMessage) {
@@ -26,14 +26,14 @@ export class ValidationSrv {
     if (name.length === 0) {
       return this.$q.reject({
         type: 'REQUIRED',
-        message: 'Name is required',
+        message: 'Name ist erforderlich',
       });
     }
 
     if (folderId === 0 && nameLowerCased === this.rootName) {
       return this.$q.reject({
         type: 'EXISTING',
-        message: 'This is a reserved name and cannot be used for a folder.',
+        message: 'Dies ist ein reservierter Name und kann nicht für einen Ordner verwendet werden.',
       });
     }
 

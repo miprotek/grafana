@@ -83,10 +83,10 @@
 
       <div class="gf-form" ng-show="ctrl.link.type === 'dashboards'">
         <span class="gf-form-label width-8">Mit tags</span>
-        <bootstrap-tagsinput ng-model="ctrl.link.tags" tagclass="label label-tag" placeholder="add tags" style="margin-right: .25rem"></bootstrap-tagsinput>
+        <bootstrap-tagsinput ng-model="ctrl.link.tags" tagclass="label label-tag" placeholder="Tags hinzufügen" style="margin-right: .25rem"></bootstrap-tagsinput>
       </div>
 
-      <gf-form-switch ng-show="ctrl.link.type === 'dashboards'" class="gf-form" label="As dropdown" checked="ctrl.link.asDropdown"
+      <gf-form-switch ng-show="ctrl.link.type === 'dashboards'" class="gf-form" label="Als Dropdown" checked="ctrl.link.asDropdown"
         switch-class="max-width-4" label-class="width-8"></gf-form-switch>
       <div class="gf-form" ng-show="ctrl.link.type === 'dashboards' && ctrl.link.asDropdown">
         <span class="gf-form-label width-8">Titel</span>
@@ -120,9 +120,9 @@
     <div class="gf-form-group">
       <h5 class="section-heading">Einbeziehen</h5>
       <div>
-        <gf-form-switch class="gf-form" label="Time range" checked="ctrl.link.keepTime" switch-class="max-width-6" label-class="width-9"></gf-form-switch>
-        <gf-form-switch class="gf-form" label="Variable values" checked="ctrl.link.includeVars" switch-class="max-width-6" label-class="width-9"></gf-form-switch>
-        <gf-form-switch class="gf-form" label="Open in new tab" checked="ctrl.link.targetBlank" switch-class="max-width-6" label-class="width-9"></gf-form-switch>
+        <gf-form-switch class="gf-form" label="Zeitspanne" checked="ctrl.link.keepTime" switch-class="max-width-6" label-class="width-9"></gf-form-switch>
+        <gf-form-switch class="gf-form" label="Variable Werte" checked="ctrl.link.includeVars" switch-class="max-width-6" label-class="width-9"></gf-form-switch>
+        <gf-form-switch class="gf-form" label="In neuem Tab öffnen" checked="ctrl.link.targetBlank" switch-class="max-width-6" label-class="width-9"></gf-form-switch>
       </div>
     </div>
   </div>

@@ -1,12 +1,12 @@
 {
   "type": "panel",
-  "name": "Table",
+  "name": "Tabelle",
   "id": "table",
 
   "info": {
-    "description": "Table Panel for Grafana",
+    "description": "Tabellen Panel für Grafana",
     "author": {
-      "name": "Grafana Project",
+      "name": "Grafana Projekt",
       "url": "https://grafana.com"
 },
     "logos": {

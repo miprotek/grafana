@@ -24,7 +24,7 @@ export class ServerStats extends React.Component<IContainerProps, any> {
             <thead>
               <tr>
                 <th>Name</th>
-                <th>Value</th>
+                <th>Wert</th>
               </tr>
             </thead>
             <tbody>{serverStats.stats.map(StatItem)}</tbody>

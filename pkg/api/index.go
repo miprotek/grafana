@@ -88,14 +88,14 @@ func setIndexViewData(c *m.ReqContext) (*dtos.IndexViewData, error) {
 
 	if c.OrgRole == m.ROLE_ADMIN || c.OrgRole == m.ROLE_EDITOR {
 		data.NavTree = append(data.NavTree, &dtos.NavLink{
-			Text: "Create",
+			Text: "Erstellen",
 			Id:   "create",
 			Icon: "fa fa-fw fa-plus",
 			Url:  setting.AppSubUrl + "/dashboard/new",
 			Children: []*dtos.NavLink{
 				{Text: "Dashboard", Icon: "gicon gicon-dashboard-new", Url: setting.AppSubUrl + "/dashboard/new"},
-				{Text: "Ordner", SubTitle: "Create a new folder to organize your dashboards", Id: "folder", Icon: "gicon gicon-folder-new", Url: setting.AppSubUrl + "/dashboards/folder/new"},
-				{Text: "Importieren", SubTitle: "Import dashboard from file or Grafana.com", Id: "import", Icon: "gicon gicon-dashboard-import", Url: setting.AppSubUrl + "/dashboard/import"},
+				{Text: "Ordner", SubTitle: "Einen neuen Ordner erstellen um Ihre Dashboards zu organisieren", Id: "folder", Icon: "gicon gicon-folder-new", Url: setting.AppSubUrl + "/dashboards/folder/new"},
+				{Text: "Importieren", SubTitle: "Dashboard aus einer Datei oder von Grafana.com importieren", Id: "import", Icon: "gicon gicon-dashboard-import", Url: setting.AppSubUrl + "/dashboard/import"},
 			},
 		})
 	}

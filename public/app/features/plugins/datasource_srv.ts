@@ -36,7 +36,7 @@ export class DatasourceSrv {
   loadDatasource(name) {
     var dsConfig = config.datasources[name];
     if (!dsConfig) {
-      return this.$q.reject({ message: 'Datasource named ' + name + ' was not found' });
+      return this.$q.reject({ message: 'Datenquelle mit Namen ' + name + ' konnte nicht gefunden werden' });
     }
 
     var deferred = this.$q.defer();

@@ -15,15 +15,15 @@ func init() {
 	alerting.RegisterNotifier(&alerting.NotifierPlugin{
 		Type:        "email",
 		Name:        "Email",
-		Description: "Sends notifications using Grafana server configured SMTP settings",
+		Description: "Sendet Benachrichtigungen und benutzt dafür die Grafana Server SMTP Einstellungen",
 		Factory:     NewEmailNotifier,
 		OptionsTemplate: `
-      <h3 class="page-heading">Email addresses</h3>
+      <h3 class="page-heading">Email Addressen</h3>
       <div class="gf-form">
          <textarea rows="7" class="gf-form-input width-27" required ng-model="ctrl.model.settings.addresses"></textarea>
       </div>
       <div class="gf-form">
-      <span>You can enter multiple email addresses using a ";" separator</span>
+      <span>Sie können mehrere Email Adressen angeben, indem Sie ";" als Separator benutzen</span>
       </div>
     `,
 	})
