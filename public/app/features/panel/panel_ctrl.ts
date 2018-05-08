@@ -199,7 +199,7 @@ export class PanelCtrl {
       });
 
       menu.push({
-        text: 'Copy',
+        text: 'Kopieren',
         click: 'ctrl.copyPanel()',
         role: 'Editor',
       });

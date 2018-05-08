@@ -950,7 +950,7 @@ kbn.getUnitFormats = function() {
       text: 'Durchsatz',
       submenu: [
         { text: 'Punkte/sek (ops)', value: 'ops' },
-        { text: 'requets/sec (rps)', value: 'reqps' },
+        { text: 'Anfragen/sec (rps)', value: 'reqps' },
         { text: 'Lesevorgänge/sek (rps)', value: 'rps' },
         { text: 'Schreibvorgänge/sek (wps)', value: 'wps' },
         { text: 'I/O Punkte/sek (iops)', value: 'iops' },
@@ -1101,7 +1101,7 @@ kbn.getUnitFormats = function() {
     {
       text: 'Konzentration',
       submenu: [
-        { text: 'parts-per-million (ppm)', value: 'ppm' },
+        { text: 'Teile pro Million (ppm)', value: 'ppm' },
         { text: 'Teile pro Milliarde (ppb)', value: 'conppb' },
         { text: 'Nanogramm pro Kubikmeter (ng/m3)', value: 'conngm3' },
         { text: 'Nanogramm pro Normale Kubikmeter (ng/Nm3)', value: 'conngNm3' },

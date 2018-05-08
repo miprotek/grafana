@@ -125,13 +125,13 @@ func setIndexViewData(c *m.ReqContext) (*dtos.IndexViewData, error) {
 
 	if setting.ExploreEnabled {
 		data.NavTree = append(data.NavTree, &dtos.NavLink{
-			Text:     "Explore",
+			Text:     "Erkunden",
 			Id:       "explore",
-			SubTitle: "Explore your data",
+			SubTitle: "Erkunden Sie Ihre Daten",
 			Icon:     "fa fa-rocket",
 			Url:      setting.AppSubUrl + "/explore",
 			Children: []*dtos.NavLink{
-				{Text: "New tab", Icon: "gicon gicon-dashboard-new", Url: setting.AppSubUrl + "/explore"},
+				{Text: "Neuer Tab", Icon: "gicon gicon-dashboard-new", Url: setting.AppSubUrl + "/explore"},
 			},
 		})
 	}

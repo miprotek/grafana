@@ -143,7 +143,7 @@ export class AddPanelPanel extends React.Component<AddPanelPanelProps, AddPanelP
   }
 
   noCopiedPanelPlugins() {
-    return <div className="add-panel__no-panels">No copied panels yet.</div>;
+    return <div className="add-panel__no-panels">Es gibt noch keine kopierten Panels.</div>;
   }
 
   filterChange(evt) {
@@ -163,7 +163,7 @@ export class AddPanelPanel extends React.Component<AddPanelPanelProps, AddPanelP
 
   openCopy() {
     this.setState({
-      tab: 'Copy',
+      tab: 'Kopieren',
       filter: '',
       panelPlugins: this.getPanelPlugins(''),
       copiedPanelPlugins: this.getCopiedPanelPlugins(''),
@@ -172,7 +172,7 @@ export class AddPanelPanel extends React.Component<AddPanelPanelProps, AddPanelP
 
   openAdd() {
     this.setState({
-      tab: 'Add',
+      tab: 'Hinzufügen',
       filter: '',
       panelPlugins: this.getPanelPlugins(''),
       copiedPanelPlugins: this.getCopiedPanelPlugins(''),
@@ -181,20 +181,20 @@ export class AddPanelPanel extends React.Component<AddPanelPanelProps, AddPanelP
 
   render() {
     let addClass = classNames({
-      'active active--panel': this.state.tab === 'Add',
-      '': this.state.tab === 'Copy',
+      'active active--panel': this.state.tab === 'Hinzufügen',
+      '': this.state.tab === 'Kopieren',
     });
 
     let copyClass = classNames({
-      '': this.state.tab === 'Add',
-      'active active--panel': this.state.tab === 'Copy',
+      '': this.state.tab === 'Hinzufügen',
+      'active active--panel': this.state.tab === 'Kopieren',
     });
 
     let panelTab;
 
-    if (this.state.tab === 'Add') {
+    if (this.state.tab === 'Hinzufügen') {
       panelTab = this.state.panelPlugins.map(this.renderPanelItem);
-    } else if (this.state.tab === 'Copy') {
+    } else if (this.state.tab === 'Kopieren') {
       if (this.state.copiedPanelPlugins.length > 0) {
         panelTab = this.state.copiedPanelPlugins.map(this.renderPanelItem);
       } else {
@@ -211,12 +211,12 @@ export class AddPanelPanel extends React.Component<AddPanelPanelProps, AddPanelP
             <ul className="gf-tabs">
               <li className="gf-tabs-item">
                 <div className={'gf-tabs-link pointer ' + addClass} onClick={this.openAdd.bind(this)}>
-                  Add
+                  Hinzufügen
                 </div>
               </li>
               <li className="gf-tabs-item">
                 <div className={'gf-tabs-link pointer ' + copyClass} onClick={this.openCopy.bind(this)}>
-                  Paste
+                  Einfügen
                 </div>
               </li>
             </ul>
