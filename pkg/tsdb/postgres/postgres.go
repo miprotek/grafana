@@ -131,7 +131,7 @@ func (e PostgresQueryEndpoint) getTypedRowData(rows *core.Rows) (tsdb.RowValues,
 	// convert types not handled by lib/pq
 	// unhandled types are returned as []byte
 	for i := 0; i < len(types); i++ {
-		if value, ok := values[i].([]byte); ok == true {
+		if value, ok := values[i].([]byte); ok {
 			switch types[i].DatabaseTypeName() {
 			case "NUMERIC":
 				if v, err := strconv.ParseFloat(string(value), 64); err == nil {
@@ -198,7 +198,7 @@ func (e PostgresQueryEndpoint) transformToTimeSeries(query *tsdb.Query, rows *co
 	fillValue := null.Float{}
 	if fillMissing {
 		fillInterval = query.Model.Get("fillInterval").MustFloat64() * 1000
-		if query.Model.Get("fillNull").MustBool(false) == false {
+		if !query.Model.Get("fillNull").MustBool(false) {
 			fillValue.Float64 = query.Model.Get("fillValue").MustFloat64()
 			fillValue.Valid = true
 		}
@@ -233,7 +233,7 @@ func (e PostgresQueryEndpoint) transformToTimeSeries(query *tsdb.Query, rows *co
 		}
 
 		if metricIndex >= 0 {
-			if columnValue, ok := values[metricIndex].(string); ok == true {
+			if columnValue, ok := values[metricIndex].(string); ok {
 				metric = columnValue
 			} else {
 				return fmt.Errorf("Column metric must be of type char,varchar or text, got: %T %v", values[metricIndex], values[metricIndex])
@@ -245,22 +245,16 @@ func (e PostgresQueryEndpoint) transformToTimeSeries(query *tsdb.Query, rows *co
 				continue
 			}
 
-			switch columnValue := values[i].(type) {
-			case int64:
-				value = null.FloatFrom(float64(columnValue))
-			case float64:
-				value = null.FloatFrom(columnValue)
-			case nil:
-				value.Valid = false
-			default:
-				return fmt.Errorf("Value column must have numeric datatype, column: %s type: %T value: %v", col, columnValue, columnValue)
+			if value, err = tsdb.ConvertSqlValueColumnToFloat(col, values[i]); err != nil {
+				return err
 			}
+
 			if metricIndex == -1 {
 				metric = col
 			}
 
 			series, exist := pointsBySeries[metric]
-			if exist == false {
+			if !exist {
 				series = &tsdb.TimeSeries{Name: metric}
 				pointsBySeries[metric] = series
 				seriesByQueryOrder.PushBack(metric)
@@ -268,7 +262,7 @@ func (e PostgresQueryEndpoint) transformToTimeSeries(query *tsdb.Query, rows *co
 
 			if fillMissing {
 				var intervalStart float64
-				if exist == false {
+				if !exist {
 					intervalStart = float64(tsdbQuery.TimeRange.MustGetFrom().UnixNano() / 1e6)
 				} else {
 					intervalStart = series.Points[len(series.Points)-1][1].Float64 + fillInterval

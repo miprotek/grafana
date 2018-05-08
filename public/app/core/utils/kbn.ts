@@ -485,6 +485,7 @@ kbn.valueFormats.EHs = kbn.formatBuilders.decimalSIPrefix('H/s', 6);
 
 // Throughput
 kbn.valueFormats.ops = kbn.formatBuilders.simpleCountUnit('ops');
+kbn.valueFormats.reqps = kbn.formatBuilders.simpleCountUnit('reqps');
 kbn.valueFormats.rps = kbn.formatBuilders.simpleCountUnit('rps');
 kbn.valueFormats.wps = kbn.formatBuilders.simpleCountUnit('wps');
 kbn.valueFormats.iops = kbn.formatBuilders.simpleCountUnit('iops');
@@ -595,7 +596,7 @@ kbn.valueFormats.radr = kbn.formatBuilders.decimalSIPrefix('R');
 kbn.valueFormats.radsvh = kbn.formatBuilders.decimalSIPrefix('Sv/h');
 
 // Concentration
-kbn.valueFormats.conppm = kbn.formatBuilders.fixedUnit('ppm');
+kbn.valueFormats.ppm = kbn.formatBuilders.fixedUnit('ppm');
 kbn.valueFormats.conppb = kbn.formatBuilders.fixedUnit('ppb');
 kbn.valueFormats.conngm3 = kbn.formatBuilders.fixedUnit('ng/m3');
 kbn.valueFormats.conngNm3 = kbn.formatBuilders.fixedUnit('ng/Nm3');
@@ -815,8 +816,8 @@ kbn.valueFormats.timeticks = function(size, decimals, scaledDecimals) {
   return kbn.valueFormats.s(size / 100, decimals, scaledDecimals);
 };
 
-kbn.valueFormats.dateTimeAsIso = function(epoch) {
-  var time = moment(epoch);
+kbn.valueFormats.dateTimeAsIso = function(epoch, isUtc) {
+  var time = isUtc ? moment.utc(epoch) : moment(epoch);
 
   if (moment().isSame(epoch, 'day')) {
     return time.format('HH:mm:ss');
@@ -824,8 +825,8 @@ kbn.valueFormats.dateTimeAsIso = function(epoch) {
   return time.format('YYYY-MM-DD HH:mm:ss');
 };
 
-kbn.valueFormats.dateTimeAsUS = function(epoch) {
-  var time = moment(epoch);
+kbn.valueFormats.dateTimeAsUS = function(epoch, isUtc) {
+  var time = isUtc ? moment.utc(epoch) : moment(epoch);
 
   if (moment().isSame(epoch, 'day')) {
     return time.format('h:mm:ss a');
@@ -833,8 +834,9 @@ kbn.valueFormats.dateTimeAsUS = function(epoch) {
   return time.format('DD.MM.YYYY h:mm:ss a');
 };
 
-kbn.valueFormats.dateTimeFromNow = function(epoch) {
-  return moment(epoch).fromNow();
+kbn.valueFormats.dateTimeFromNow = function(epoch, isUtc) {
+  var time = isUtc ? moment.utc(epoch) : moment(epoch);
+  return time.fromNow();
 };
 
 ///// FORMAT MENU /////
@@ -948,6 +950,7 @@ kbn.getUnitFormats = function() {
       text: 'Durchsatz',
       submenu: [
         { text: 'Punkte/sek (ops)', value: 'ops' },
+        { text: 'requets/sec (rps)', value: 'reqps' },
         { text: 'Lesevorgänge/sek (rps)', value: 'rps' },
         { text: 'Schreibvorgänge/sek (wps)', value: 'wps' },
         { text: 'I/O Punkte/sek (iops)', value: 'iops' },
@@ -1098,7 +1101,7 @@ kbn.getUnitFormats = function() {
     {
       text: 'Konzentration',
       submenu: [
-        { text: 'Teile pro Million (ppm)', value: 'conppm' },
+        { text: 'parts-per-million (ppm)', value: 'ppm' },
         { text: 'Teile pro Milliarde (ppb)', value: 'conppb' },
         { text: 'Nanogramm pro Kubikmeter (ng/m3)', value: 'conngm3' },
         { text: 'Nanogramm pro Normale Kubikmeter (ng/Nm3)', value: 'conngNm3' },

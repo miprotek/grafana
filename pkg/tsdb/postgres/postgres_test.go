@@ -17,11 +17,12 @@ import (
 	. "github.com/smartystreets/goconvey/convey"
 )
 
-// To run this test, set runMySqlTests=true
-// and set up a PostgreSQL db named grafanadstest and a user/password grafanatest/grafanatest!
+// To run this test, set runPostgresTests=true
+// Or from the commandline: GRAFANA_TEST_DB=postgres go test -v ./pkg/tsdb/postgres
+// The tests require a PostgreSQL db named grafanadstest and a user/password grafanatest/grafanatest!
 // Use the docker/blocks/postgres_tests/docker-compose.yaml to spin up a
 // preconfigured Postgres server suitable for running these tests.
-// Thers's also a dashboard.json in same directory that you can import to Grafana
+// There is also a dashboard.json in same directory that you can import to Grafana
 // once you've created a datasource for the test server/database.
 func TestPostgres(t *testing.T) {
 	// change to true to run the MySQL tests
@@ -352,12 +353,12 @@ func TestPostgres(t *testing.T) {
 			_, err = sess.InsertMulti(series)
 			So(err, ShouldBeNil)
 
-			Convey("When doing a metric query using epoch (int64) as time column should return metric with time in milliseconds", func() {
+			Convey("When doing a metric query using epoch (int64) as time column and value column (int64) should return metric with time in milliseconds", func() {
 				query := &tsdb.TsdbQuery{
 					Queries: []*tsdb.Query{
 						{
 							Model: simplejson.NewFromAny(map[string]interface{}{
-								"rawSql": `SELECT "timeInt64" as time, "valueOne" FROM metric_values ORDER BY time LIMIT 1`,
+								"rawSql": `SELECT "timeInt64" as time, "timeInt64" FROM metric_values ORDER BY time LIMIT 1`,
 								"format": "time_series",
 							}),
 							RefId: "A",
@@ -374,12 +375,12 @@ func TestPostgres(t *testing.T) {
 				So(queryResult.Series[0].Points[0][1].Float64, ShouldEqual, float64(tInitial.UnixNano()/1e6))
 			})
 
-			Convey("When doing a metric query using epoch (int64 nullable) as time column should return metric with time in milliseconds", func() {
+			Convey("When doing a metric query using epoch (int64 nullable) as time column and value column (int64 nullable) should return metric with time in milliseconds", func() {
 				query := &tsdb.TsdbQuery{
 					Queries: []*tsdb.Query{
 						{
 							Model: simplejson.NewFromAny(map[string]interface{}{
-								"rawSql": `SELECT "timeInt64Nullable" as time, "valueOne" FROM metric_values ORDER BY time LIMIT 1`,
+								"rawSql": `SELECT "timeInt64Nullable" as time, "timeInt64Nullable" FROM metric_values ORDER BY time LIMIT 1`,
 								"format": "time_series",
 							}),
 							RefId: "A",
@@ -396,12 +397,12 @@ func TestPostgres(t *testing.T) {
 				So(queryResult.Series[0].Points[0][1].Float64, ShouldEqual, float64(tInitial.UnixNano()/1e6))
 			})
 
-			Convey("When doing a metric query using epoch (float64) as time column should return metric with time in milliseconds", func() {
+			Convey("When doing a metric query using epoch (float64) as time column and value column (float64) should return metric with time in milliseconds", func() {
 				query := &tsdb.TsdbQuery{
 					Queries: []*tsdb.Query{
 						{
 							Model: simplejson.NewFromAny(map[string]interface{}{
-								"rawSql": `SELECT "timeFloat64" as time, "valueOne" FROM metric_values ORDER BY time LIMIT 1`,
+								"rawSql": `SELECT "timeFloat64" as time, "timeFloat64" FROM metric_values ORDER BY time LIMIT 1`,
 								"format": "time_series",
 							}),
 							RefId: "A",
@@ -418,12 +419,12 @@ func TestPostgres(t *testing.T) {
 				So(queryResult.Series[0].Points[0][1].Float64, ShouldEqual, float64(tInitial.UnixNano()/1e6))
 			})
 
-			Convey("When doing a metric query using epoch (float64 nullable) as time column should return metric with time in milliseconds", func() {
+			Convey("When doing a metric query using epoch (float64 nullable) as time column and value column (float64 nullable) should return metric with time in milliseconds", func() {
 				query := &tsdb.TsdbQuery{
 					Queries: []*tsdb.Query{
 						{
 							Model: simplejson.NewFromAny(map[string]interface{}{
-								"rawSql": `SELECT "timeFloat64Nullable" as time, "valueOne" FROM metric_values ORDER BY time LIMIT 1`,
+								"rawSql": `SELECT "timeFloat64Nullable" as time, "timeFloat64Nullable" FROM metric_values ORDER BY time LIMIT 1`,
 								"format": "time_series",
 							}),
 							RefId: "A",
@@ -440,12 +441,12 @@ func TestPostgres(t *testing.T) {
 				So(queryResult.Series[0].Points[0][1].Float64, ShouldEqual, float64(tInitial.UnixNano()/1e6))
 			})
 
-			Convey("When doing a metric query using epoch (int32) as time column should return metric with time in milliseconds", func() {
+			Convey("When doing a metric query using epoch (int32) as time column and value column (int32) should return metric with time in milliseconds", func() {
 				query := &tsdb.TsdbQuery{
 					Queries: []*tsdb.Query{
 						{
 							Model: simplejson.NewFromAny(map[string]interface{}{
-								"rawSql": `SELECT "timeInt32" as time, "valueOne" FROM metric_values ORDER BY time LIMIT 1`,
+								"rawSql": `SELECT "timeInt32" as time, "timeInt32" FROM metric_values ORDER BY time LIMIT 1`,
 								"format": "time_series",
 							}),
 							RefId: "A",
@@ -462,12 +463,12 @@ func TestPostgres(t *testing.T) {
 				So(queryResult.Series[0].Points[0][1].Float64, ShouldEqual, float64(tInitial.UnixNano()/1e6))
 			})
 
-			Convey("When doing a metric query using epoch (int32 nullable) as time column should return metric with time in milliseconds", func() {
+			Convey("When doing a metric query using epoch (int32 nullable) as time column and value column (int32 nullable) should return metric with time in milliseconds", func() {
 				query := &tsdb.TsdbQuery{
 					Queries: []*tsdb.Query{
 						{
 							Model: simplejson.NewFromAny(map[string]interface{}{
-								"rawSql": `SELECT "timeInt32Nullable" as time, "valueOne" FROM metric_values ORDER BY time LIMIT 1`,
+								"rawSql": `SELECT "timeInt32Nullable" as time, "timeInt32Nullable" FROM metric_values ORDER BY time LIMIT 1`,
 								"format": "time_series",
 							}),
 							RefId: "A",
@@ -484,12 +485,12 @@ func TestPostgres(t *testing.T) {
 				So(queryResult.Series[0].Points[0][1].Float64, ShouldEqual, float64(tInitial.UnixNano()/1e6))
 			})
 
-			Convey("When doing a metric query using epoch (float32) as time column should return metric with time in milliseconds", func() {
+			Convey("When doing a metric query using epoch (float32) as time column and value column (float32) should return metric with time in milliseconds", func() {
 				query := &tsdb.TsdbQuery{
 					Queries: []*tsdb.Query{
 						{
 							Model: simplejson.NewFromAny(map[string]interface{}{
-								"rawSql": `SELECT "timeFloat32" as time, "valueOne" FROM metric_values ORDER BY time LIMIT 1`,
+								"rawSql": `SELECT "timeFloat32" as time, "timeFloat32" FROM metric_values ORDER BY time LIMIT 1`,
 								"format": "time_series",
 							}),
 							RefId: "A",
@@ -506,12 +507,12 @@ func TestPostgres(t *testing.T) {
 				So(queryResult.Series[0].Points[0][1].Float64, ShouldEqual, float64(float64(float32(tInitial.Unix())))*1e3)
 			})
 
-			Convey("When doing a metric query using epoch (float32 nullable) as time column should return metric with time in milliseconds", func() {
+			Convey("When doing a metric query using epoch (float32 nullable) as time column and value column (float32 nullable) should return metric with time in milliseconds", func() {
 				query := &tsdb.TsdbQuery{
 					Queries: []*tsdb.Query{
 						{
 							Model: simplejson.NewFromAny(map[string]interface{}{
-								"rawSql": `SELECT "timeFloat32Nullable" as time, "valueOne" FROM metric_values ORDER BY time LIMIT 1`,
+								"rawSql": `SELECT "timeFloat32Nullable" as time, "timeFloat32Nullable" FROM metric_values ORDER BY time LIMIT 1`,
 								"format": "time_series",
 							}),
 							RefId: "A",
