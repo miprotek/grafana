@@ -230,7 +230,7 @@ export class AddPanelPanel extends React.Component<AddPanelPanelProps, AddPanelP
                 <input
                   type="text"
                   className="gf-form-input max-width-20"
-                  placeholder="Panel Search Filter"
+                  placeholder="Panel Suchfilter"
                   value={this.state.filter}
                   onChange={this.filterChange.bind(this)}
                 />
