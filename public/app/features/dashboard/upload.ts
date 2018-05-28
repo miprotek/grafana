@@ -4,7 +4,7 @@ var template = `
 <input type="file" id="dashupload" name="dashupload" class="hide"/>
 <label class="btn btn-success" for="dashupload">
   <i class="fa fa-upload"></i>
-  Upload .json File
+  .json Datei hochladen
 </label>
 `;
 

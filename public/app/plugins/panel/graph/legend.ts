@@ -101,6 +101,15 @@ module.directive('graphLegend', function(popoverSrv, $timeout) {
           return '';
         }
         var html = '<th class="pointer" data-stat="' + statName + '">' + statName;
+        if (statName === 'current') {
+          html = '<th class="pointer" data-stat="' + statName + '">momentan';
+        }
+        if (statName === 'total') {
+          html = '<th class="pointer" data-stat="' + statName + '">gesamt';
+        }
+        if (statName === 'avg') {
+          html = '<th class="pointer" data-stat="' + statName + '">durchschnitt';
+        }
 
         if (panel.legend.sort === statName) {
           var cssClass = panel.legend.sortDesc ? 'fa fa-caret-down' : 'fa fa-caret-up';

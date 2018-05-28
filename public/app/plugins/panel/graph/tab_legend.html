@@ -2,15 +2,15 @@
 	<div class="section gf-form-group">
 		<h5 class="section-heading">Optionen</h5>
 		<gf-form-switch class="gf-form"
-			label="Show" label-class="width-7"
+			label="Anzeigen" label-class="width-7"
 			checked="ctrl.panel.legend.show" on-change="ctrl.refresh()">
 		</gf-form-switch>
 		<gf-form-switch class="gf-form"
-			label="As Table" label-class="width-7"
+			label="Als Tabelle" label-class="width-7"
 			checked="ctrl.panel.legend.alignAsTable" on-change="ctrl.render()">
 		</gf-form-switch>
 		<gf-form-switch class="gf-form"
-			label="To the right" label-class="width-7"
+			label="Rechte Seite" label-class="width-7"
 			checked="ctrl.panel.legend.rightSide" on-change="ctrl.render()">
 		</gf-form-switch>
 		<div ng-if="ctrl.panel.legend.rightSide" class="gf-form">
@@ -36,19 +36,19 @@
 
 		<div class="gf-form-inline">
 			<gf-form-switch class="gf-form"
-				label="Avg" label-class="width-4"
+				label="ø" label-class="width-4"
 				checked="ctrl.panel.legend.avg" on-change="ctrl.legendValuesOptionChanged()">
 			</gf-form-switch>
 
 			<gf-form-switch class="gf-form max-width-12"
-				label="Current" label-class="width-6" switch-class="max-width-5"
+				label="Momentan" label-class="width-6" switch-class="max-width-5"
 				checked="ctrl.panel.legend.current" on-change="ctrl.legendValuesOptionChanged()">
 			</gf-form-switch>
 		</div>
 
 		<div class="gf-form-inline">
 			<gf-form-switch class="gf-form"
-				label="Total" label-class="width-4"
+				label="Gesamt" label-class="width-4"
 				checked="ctrl.panel.legend.total" on-change="ctrl.legendValuesOptionChanged()">
 			</gf-form-switch>
 
@@ -62,11 +62,11 @@
 	<div class="section gf-form-group">
 		<h5 class="section-heading">Serie verstecken</h5>
 		<gf-form-switch class="gf-form"
-			label="With only nulls" label-class="width-10"
+			label="Nur mit nulls" label-class="width-10"
 			checked="ctrl.panel.legend.hideEmpty" on-change="ctrl.render()">
 		</gf-form-switch>
 		<gf-form-switch class="gf-form"
-			label="With only zeros" label-class="width-10"
+			label="Nur mit Nullen" label-class="width-10"
 			checked="ctrl.panel.legend.hideZero" on-change="ctrl.render()">
 		</gf-form-switch>
 	</div>

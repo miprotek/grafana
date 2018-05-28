@@ -133,12 +133,12 @@ class GraphCtrl extends MetricsPanelCtrl {
   }
 
   onInitEditMode() {
-    this.addEditorTab('Axes', axesEditorComponent, 2);
-    this.addEditorTab('Legend', 'public/app/plugins/panel/graph/tab_legend.html', 3);
-    this.addEditorTab('Display', 'public/app/plugins/panel/graph/tab_display.html', 4);
+    this.addEditorTab('Axen', axesEditorComponent, 2);
+    this.addEditorTab('Legende', 'public/app/plugins/panel/graph/tab_legend.html', 3);
+    this.addEditorTab('Anzeige', 'public/app/plugins/panel/graph/tab_display.html', 4);
 
     if (config.alertingEnabled) {
-      this.addEditorTab('Alert', alertTab, 5);
+      this.addEditorTab('Alarm', alertTab, 5);
     }
 
     this.subTabIndex = 0;

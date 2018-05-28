@@ -12,9 +12,9 @@ class AlertListPanel extends PanelCtrl {
   showOptions = [{ text: 'Momentaner Status', value: 'current' }, { text: 'Kürzliche Statusänderungen', value: 'changes' }];
 
   sortOrderOptions = [
-    { text: 'Alphabetical (asc)', value: 1 },
-    { text: 'Alphabetical (desc)', value: 2 },
-    { text: 'Importance', value: 3 },
+    { text: 'Alphabetisch (asc)', value: 1 },
+    { text: 'Alphabetisch (desc)', value: 2 },
+    { text: 'Wichtigkeit', value: 3 },
   ];
 
   stateFilter: any = {};
