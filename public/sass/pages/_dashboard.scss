@@ -2,6 +2,10 @@
   padding: $dashboard-padding;
   width: 100%;
   min-height: 100%;
+  background-image: url(../img/heatmap_bg_test.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 .template-variable {
