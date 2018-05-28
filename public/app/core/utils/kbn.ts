@@ -448,6 +448,7 @@ kbn.valueFormats.currencyISK = kbn.formatBuilders.currency('kr');
 kbn.valueFormats.currencyNOK = kbn.formatBuilders.currency('kr');
 kbn.valueFormats.currencySEK = kbn.formatBuilders.currency('kr');
 kbn.valueFormats.currencyCZK = kbn.formatBuilders.currency('czk');
+kbn.valueFormats.currencyCHF = kbn.formatBuilders.currency('CHF');
 
 // Data (Binary)
 kbn.valueFormats.bits = kbn.formatBuilders.binarySIPrefix('b');
@@ -873,6 +874,7 @@ kbn.getUnitFormats = function() {
         { text: 'Norwegische Kronen (kr)', value: 'currencyNOK' },
         { text: 'Schwedische Kronen (kr)', value: 'currencySEK' },
         { text: 'Tschechische Kronen (czk)', value: 'currencyCZK' },
+        { text: 'Swiss franc (CHF)', value: 'currencyCHF' },
       ],
     },
     {
@@ -989,20 +991,21 @@ kbn.getUnitFormats = function() {
     {
       text: 'Geschwindigkeit',
       submenu: [
-        { text: 'm/s', value: 'velocityms' },
-        { text: 'km/h', value: 'velocitykmh' },
-        { text: 'mph', value: 'velocitymph' },
+        { text: 'metres/second (m/s)', value: 'velocityms' },
+        { text: 'kilometers/hour (km/h)', value: 'velocitykmh' },
+        { text: 'miles/hour (mph)', value: 'velocitymph' },
         { text: 'Knoten (kn)', value: 'velocityknot' },
       ],
     },
     {
       text: 'Volumen',
       submenu: [
-        { text: 'Milliliter', value: 'mlitre' },
-        { text: 'Liter', value: 'litre' },
-        { text: 'Kubik Meter', value: 'm3' },
-        { text: 'Kubik Dezimeter', value: 'dm3' },
-        { text: 'Gallonen', value: 'gallons' },
+        { text: 'millilitre (mL)', value: 'mlitre' },
+        { text: 'litre (L)', value: 'litre' },
+        { text: 'cubic metre', value: 'm3' },
+        { text: 'Normal cubic metre', value: 'Nm3' },
+        { text: 'cubic decimetre', value: 'dm3' },
+        { text: 'gallons', value: 'gallons' },
       ],
     },
     {
