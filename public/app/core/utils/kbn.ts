@@ -1000,12 +1000,12 @@ kbn.getUnitFormats = function() {
     {
       text: 'Volumen',
       submenu: [
-        { text: 'millilitre (mL)', value: 'mlitre' },
-        { text: 'litre (L)', value: 'litre' },
-        { text: 'cubic metre', value: 'm3' },
-        { text: 'Normal cubic metre', value: 'Nm3' },
-        { text: 'cubic decimetre', value: 'dm3' },
-        { text: 'gallons', value: 'gallons' },
+        { text: 'Milliliter (mL)', value: 'mlitre' },
+        { text: 'Liter (L)', value: 'litre' },
+        { text: 'Kubik Meter', value: 'm3' },
+        { text: 'Normale Kubik Meter', value: 'Nm3' },
+        { text: 'Kubik Dezimeter', value: 'dm3' },
+        { text: 'Gallonen', value: 'gallons' },
       ],
     },
     {
