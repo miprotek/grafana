@@ -4,7 +4,7 @@
 		<h5 class="section-heading" ng-show="$index === 0">Linke Y</h5>
 		<h5 class="section-heading" ng-show="$index === 1">Rechte Y</h5>
 
-		<gf-form-switch class="gf-form" label="Show" label-class="width-6" checked="yaxis.show" on-change="ctrl.render()"></gf-form-switch>
+		<gf-form-switch class="gf-form" label="Anzeigen" label-class="width-6" checked="yaxis.show" on-change="ctrl.render()"></gf-form-switch>
 
 		<div ng-if="yaxis.show">
 			<div class="gf-form">
@@ -46,7 +46,7 @@
 
 	<div class="section gf-form-group">
 		<h5 class="section-heading">X-Axen</h5>
-		<gf-form-switch class="gf-form" label="Show" label-class="width-6" checked="ctrl.panel.xaxis.show" on-change="ctrl.render()"></gf-form-switch>
+		<gf-form-switch class="gf-form" label="Anzeigen" label-class="width-6" checked="ctrl.panel.xaxis.show" on-change="ctrl.render()"></gf-form-switch>
 
 		<div class="gf-form">
 			<label class="gf-form-label width-6">Modus</label>
@@ -70,12 +70,12 @@
 		<div>
 			<br/>
 			<h5 class="section-heading">Y-Axen</h5>
-			<gf-form-switch class="gf-form" label="Align" tooltip="Align left and right Y-axes" label-class="width-6" switch-class="width-5" checked="ctrl.panel.yaxis.align" on-change="ctrl.render()"></gf-form-switch>
+			<gf-form-switch class="gf-form" label="Ausrichten" tooltip="Linke und Rechte Y-Axen ausrichten" label-class="width-6" switch-class="width-5" checked="ctrl.panel.yaxis.align" on-change="ctrl.render()"></gf-form-switch>
 			<div class="gf-form" ng-show="ctrl.panel.yaxis.align">
 				<label class="gf-form-label width-6">
 					Level
 				</label>
-				<input type="number" class="gf-form-input width-5" placeholder="0" ng-model="ctrl.panel.yaxis.alignLevel" ng-change="ctrl.render()" ng-model-onblur bs-tooltip="'Alignment of Y-axes are based on this value, starting from Y=0'" data-placement="right">
+				<input type="number" class="gf-form-input width-5" placeholder="0" ng-model="ctrl.panel.yaxis.alignLevel" ng-change="ctrl.render()" ng-model-onblur bs-tooltip="'Die Ausrichtung der Y-Achsen basiert auf diesem Wert, beginnend mit Y=0'" data-placement="right">
 			</div>
 		</div>
 

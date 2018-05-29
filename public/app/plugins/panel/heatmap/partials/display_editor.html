@@ -16,7 +16,7 @@
         </span>
       </div>
       <div class="gf-form">
-        <label class="gf-form-label width-9">Scale</label>
+        <label class="gf-form-label width-9">Skalierung</label>
         <div class="gf-form-select-wrapper width-8">
           <select class="input-small gf-form-input" ng-model="ctrl.panel.color.colorScale" ng-options="s for s in ctrl.opacityScales" ng-change="ctrl.render()"></select>
         </div>
@@ -76,7 +76,7 @@
   <div class="section gf-form-group">
     <h5 class="section-heading">Tooltip</h5>
     <gf-form-switch class="gf-form" label-class="width-8"
-      label="Show tooltip"
+      label="Tooltip anzeigen"
       checked="ctrl.panel.tooltip.show" on-change="ctrl.render()">
     </gf-form-switch>
     <div ng-if="ctrl.panel.tooltip.show">
