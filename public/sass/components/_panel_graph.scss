@@ -93,7 +93,7 @@
   font-size: 85%;
   text-align: left;
   &.current::before {
-    content: 'Momentan: ';
+    content: 'Ist: ';
   }
   &.max::before {
     content: 'Max: ';
@@ -105,7 +105,7 @@
     content: 'Gesamt: ';
   }
   &.avg::before {
-    content: 'Durchschnitt: ';
+    content: 'Ø: ';
   }
 }
 

@@ -102,13 +102,13 @@ module.directive('graphLegend', function(popoverSrv, $timeout) {
         }
         var html = '<th class="pointer" data-stat="' + statName + '">' + statName;
         if (statName === 'current') {
-          html = '<th class="pointer" data-stat="' + statName + '">momentan';
+          html = '<th class="pointer" data-stat="' + statName + '">ist';
         }
         if (statName === 'total') {
           html = '<th class="pointer" data-stat="' + statName + '">gesamt';
         }
         if (statName === 'avg') {
-          html = '<th class="pointer" data-stat="' + statName + '">durchschnitt';
+          html = '<th class="pointer" data-stat="' + statName + '">Ø';
         }
 
         if (panel.legend.sort === statName) {
