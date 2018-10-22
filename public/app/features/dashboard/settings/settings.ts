@@ -2,6 +2,7 @@ import { coreModule, appEvents, contextSrv } from 'app/core/core';
 import { DashboardModel } from '../dashboard_model';
 import $ from 'jquery';
 import _ from 'lodash';
+import angular from 'angular';
 import config from 'app/core/config';
 
 export class SettingsCtrl {
@@ -31,7 +32,7 @@ export class SettingsCtrl {
 
     this.$scope.$on('$destroy', () => {
       this.dashboard.updateSubmenuVisibility();
-      this.$rootScope.$broadcast('refresh');
+      this.dashboard.startRefresh();
       setTimeout(() => {
         this.$rootScope.appEvent('dash-scroll', { restore: true });
       });
@@ -108,7 +109,7 @@ export class SettingsCtrl {
     const params = this.$location.search();
     const url = this.$location.path();
 
-    for (let section of this.sections) {
+    for (const section of this.sections) {
       const sectionParams = _.defaults({ editview: section.id }, params);
       section.url = config.appSubUrl + url + '?' + $.param(sectionParams);
     }
@@ -118,7 +119,7 @@ export class SettingsCtrl {
     this.viewId = this.$location.search().editview;
 
     if (this.viewId) {
-      this.json = JSON.stringify(this.dashboard.getSaveModelClone(), null, 2);
+      this.json = angular.toJson(this.dashboard.getSaveModelClone(), true);
     }
 
     if (this.viewId === 'settings' && this.dashboard.meta.canMakeEditable) {
@@ -155,7 +156,7 @@ export class SettingsCtrl {
   }
 
   hideSettings() {
-    var urlParams = this.$location.search();
+    const urlParams = this.$location.search();
     delete urlParams.editview;
     setTimeout(() => {
       this.$rootScope.$apply(() => {
@@ -178,8 +179,8 @@ export class SettingsCtrl {
   }
 
   deleteDashboard() {
-    var confirmText = '';
-    var text2 = this.dashboard.title;
+    let confirmText = '';
+    let text2 = this.dashboard.title;
 
     const alerts = _.sumBy(this.dashboard.panels, panel => {
       return panel.alert ? 1 : 0;

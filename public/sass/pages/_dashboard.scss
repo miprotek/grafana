@@ -1,11 +1,12 @@
 .dashboard-container {
-  padding: $dashboard-padding;
+  padding: $dashboard-padding $dashboard-padding 0 $dashboard-padding;
   width: 100%;
-  min-height: 100%;
-  background-image: url(../img/heatmap_bg_test.svg);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+  height: 100%;
+  box-sizing: border-box;
+
+  &--has-submenu {
+    height: calc(100% - 50px);
+  }
 }
 
 .template-variable {
@@ -20,6 +21,7 @@ div.flot-text {
   height: 100%;
 
   &--solo {
+    margin: 0;
     .panel-container {
       border: none;
       z-index: $zindex-sidemenu + 1;
@@ -32,15 +34,42 @@ div.flot-text {
   height: 100%;
 }
 
+.panel-editor-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.panel-editor-container__panel {
+  height: 35%;
+}
+
+.panel-editor-container__editor {
+  height: 65%;
+}
+
 .panel-container {
   background-color: $panel-bg;
   border: $panel-border;
   position: relative;
   border-radius: 3px;
+  height: 100%;
 
   &.panel-transparent {
     background-color: transparent;
     border: none;
+  }
+
+  &:hover {
+    .panel-menu-toggle {
+      visibility: visible;
+      transition: opacity 0.1s ease-in 0.2s;
+      opacity: 1;
+    }
+  }
+
+  &--is-editing {
+    height: auto;
   }
 }
 
@@ -72,16 +101,25 @@ div.flot-text {
   font-weight: $font-weight-semi-bold;
   position: relative;
   width: 100%;
-  display: block;
-  padding-bottom: 2px;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  padding: 4px 0 4px;
 }
 
 .panel-title-text {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: calc(100% - 38px);
   cursor: pointer;
   font-weight: $font-weight-semi-bold;
 
   &:hover {
     color: $link-hover-color;
+  }
+  .panel-has-alert & {
+    max-width: calc(100% - 54px);
   }
 }
 
@@ -101,7 +139,7 @@ div.flot-text {
   width: 16px;
   height: 16px;
   left: 1px;
-  top: 4px;
+  top: 2px;
 
   &:hover {
     color: $link-hover-color;
@@ -118,8 +156,6 @@ div.flot-text {
 }
 
 .panel-header {
-  text-align: center;
-
   &:hover {
     transition: background-color 0.1s ease-in-out;
     background-color: $panel-header-hover-bg;
@@ -160,8 +196,8 @@ div.flot-text {
 
   .fa {
     position: relative;
-    top: -4px;
-    left: -6px;
+    top: -2px;
+    left: 6px;
     font-size: 75%;
     z-index: 1;
   }
@@ -178,7 +214,7 @@ div.flot-text {
     display: block;
     @include panel-corner-color(lighten($panel-bg, 4%));
     .fa {
-      left: -5px;
+      left: 4px;
     }
     .fa:before {
       content: '\f08e';
@@ -192,14 +228,6 @@ div.flot-text {
     .fa:before {
       content: '\f12a';
     }
-  }
-}
-
-.panel-hover-highlight {
-  .panel-menu-toggle {
-    visibility: visible;
-    transition: opacity 0.1s ease-in 0.2s;
-    opacity: 1;
   }
 }
 
@@ -229,5 +257,5 @@ div.flot-text {
 }
 
 .panel-full-edit {
-  margin: $dashboard-padding (-$dashboard-padding) 0 (-$dashboard-padding);
+  padding-top: $dashboard-padding;
 }

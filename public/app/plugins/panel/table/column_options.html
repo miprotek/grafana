@@ -156,30 +156,35 @@
     <div class="section gf-form-group" ng-if="style.link">
       <h5 class="section-heading">Link</h5>
       <div class="gf-form">
-        <label class="gf-form-label width-9">Url</label>
-        <input type="text" class="gf-form-input width-29" ng-model="style.linkUrl" ng-blur="editor.render()" ng-model-onblur data-placement="right">
-        <info-popover mode="right-absolute">
+        <label class="gf-form-label width-9">
+          Url
+          <info-popover mode="right-normal">
           <p>Eine URL spezifizieren (Relativ oder Absolut)</p>
-          <span>
+            <span>
             Verwenden Sie spezielle Variablen, um Zellenwerte anzugeben:
-            <br>
+              <br>
             <em>${__cell}</em> bezieht sich auf den aktuellen Zellenwert
-            <br>
+              <br>
             <em>${__cell_n}</em> bezieht sich auf den N-ten Spaltenwert in der aktuellen Zeile. Spaltenindizen werden von 0 gestartet. Zum Beispiel,
             <em>${__cell_1}</em> bezieht sich auf den Wert der zweiten Spalte.
-          </span>
-        </info-popover>
+              <br>
+              <em>${__cell:raw}</em> syntax. By default values are URI encoded. If the value is a complete URL you can disable all encoding using
+            </span>
+          </info-popover>
+        </label>
+        <input type="text" class="gf-form-input width-29" ng-model="style.linkUrl" ng-blur="editor.render()" ng-model-onblur data-placement="right">
       </div>
       <div class="gf-form">
-        <label class="gf-form-label width-9">Tooltip</label>
+        <label class="gf-form-label width-9">
+          Tooltip
+          <info-popover mode="right-normal">
+          <p>Geben Sie den Text für die Link-Tooltip an.</p>
+            <span>
+            Dieser Titel wird angezeigt, wenn der Benutzer den Mauszeiger über die Zelle mit der Verknüpfung bewegt. Verwenden Sie dieselben Variablen wie für die URL.
+            </span>
+          </info-popover></label>
         <input type="text" class="gf-form-input width-29" ng-model="style.linkTooltip" ng-blur="editor.render()" ng-model-onblur
           data-placement="right">
-        <info-popover mode="right-absolute">
-          <p>Geben Sie den Text für die Link-Tooltip an.</p>
-          <span>
-            Dieser Titel wird angezeigt, wenn der Benutzer den Mauszeiger über die Zelle mit der Verknüpfung bewegt. Verwenden Sie dieselben Variablen wie für die URL.
-          </span>
-        </info-popover>
       </div>
       <gf-form-switch class="gf-form" label-class="width-9" label="Open in new tab" checked="style.linkTargetBlank"></gf-form-switch>
     </div>

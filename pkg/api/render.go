@@ -3,7 +3,9 @@ package api
 import (
 	"fmt"
 	"net/http"
+	"runtime"
 	"strconv"
+	"strings"
 	"time"
 
 	m "github.com/grafana/grafana/pkg/models"
@@ -39,19 +41,29 @@ func (hs *HTTPServer) RenderToPng(c *m.ReqContext) {
 	}
 
 	result, err := hs.RenderService.Render(c.Req.Context(), rendering.Opts{
-		Width:    width,
-		Height:   height,
-		Timeout:  time.Duration(timeout) * time.Second,
-		OrgId:    c.OrgId,
-		UserId:   c.UserId,
-		OrgRole:  c.OrgRole,
-		Path:     c.Params("*") + queryParams,
-		Timezone: queryReader.Get("tz", ""),
-		Encoding: queryReader.Get("encoding", ""),
+		Width:           width,
+		Height:          height,
+		Timeout:         time.Duration(timeout) * time.Second,
+		OrgId:           c.OrgId,
+		UserId:          c.UserId,
+		OrgRole:         c.OrgRole,
+		Path:            c.Params("*") + queryParams,
+		Timezone:        queryReader.Get("tz", ""),
+		Encoding:        queryReader.Get("encoding", ""),
+		ConcurrentLimit: 30,
 	})
 
 	if err != nil && err == rendering.ErrTimeout {
 		c.Handle(500, err.Error(), err)
+		return
+	}
+
+	if err != nil && err == rendering.ErrPhantomJSNotInstalled {
+		if strings.HasPrefix(runtime.GOARCH, "arm") {
+			c.Handle(500, "Rendering failed - PhantomJS isn't included in arm build per default", err)
+		} else {
+			c.Handle(500, "Rendering failed - PhantomJS isn't installed correctly", err)
+		}
 		return
 	}
 

@@ -13,20 +13,20 @@ import (
 )
 
 // POST /api/tsdb/query
-func QueryMetrics(c *m.ReqContext, reqDto dtos.MetricRequest) Response {
+func (hs *HTTPServer) QueryMetrics(c *m.ReqContext, reqDto dtos.MetricRequest) Response {
 	timeRange := tsdb.NewTimeRange(reqDto.From, reqDto.To)
 
 	if len(reqDto.Queries) == 0 {
 		return Error(400, "Keine Abfragen in Abfrage gefunden", nil)
 	}
 
-	dsID, err := reqDto.Queries[0].Get("datasourceId").Int64()
+	datasourceId, err := reqDto.Queries[0].Get("datasourceId").Int64()
 	if err != nil {
 		return Error(400, "In der Anfrage fehlt datasourceId", nil)
 	}
 
-	dsQuery := m.GetDataSourceByIdQuery{Id: dsID, OrgId: c.OrgId}
-	if err := bus.Dispatch(&dsQuery); err != nil {
+	ds, err := hs.getDatasourceFromCache(datasourceId, c)
+	if err != nil {
 		return Error(500, "Fehler beim abrufen der Datenquelle", err)
 	}
 
@@ -38,11 +38,11 @@ func QueryMetrics(c *m.ReqContext, reqDto dtos.MetricRequest) Response {
 			MaxDataPoints: query.Get("maxDataPoints").MustInt64(100),
 			IntervalMs:    query.Get("intervalMs").MustInt64(1000),
 			Model:         query,
-			DataSource:    dsQuery.Result,
+			DataSource:    ds,
 		})
 	}
 
-	resp, err := tsdb.HandleRequest(context.Background(), dsQuery.Result, request)
+	resp, err := tsdb.HandleRequest(c.Req.Context(), ds, request)
 	if err != nil {
 		return Error(500, "Metrikanforderungsfehler", err)
 	}
@@ -52,7 +52,7 @@ func QueryMetrics(c *m.ReqContext, reqDto dtos.MetricRequest) Response {
 		if res.Error != nil {
 			res.ErrorString = res.Error.Error()
 			resp.Message = res.ErrorString
-			statusCode = 500
+			statusCode = 400
 		}
 	}
 
@@ -99,7 +99,7 @@ func GetTestDataRandomWalk(c *m.ReqContext) Response {
 	timeRange := tsdb.NewTimeRange(from, to)
 	request := &tsdb.TsdbQuery{TimeRange: timeRange}
 
-	dsInfo := &m.DataSource{Type: "grafana-testdata-datasource"}
+	dsInfo := &m.DataSource{Type: "testdata"}
 	request.Queries = append(request.Queries, &tsdb.Query{
 		RefId:      "A",
 		IntervalMs: intervalMs,

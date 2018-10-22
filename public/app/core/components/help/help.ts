@@ -25,6 +25,7 @@ export class HelpCtrl {
         { keys: ['d', 'k'], description: 'Kioskmodus umschalten (versteckt obere Navigationsleiste)' },
         { keys: ['d', 'E'], description: 'Alle Zeilen erweitern' },
         { keys: ['d', 'C'], description: 'Alle Zeilen reduzieren' },
+        { keys: ['d', 'a'], description: 'Toggle auto fit panels (experimental feature)' },
         { keys: ['mod+o'], description: 'Geteiltes Diagramm-Fadenkreuz umschalten' },
       ],
       'Focused Panel': [

@@ -1,28 +1,22 @@
 import React from 'react';
 import classNames from 'classnames';
 import { PanelModel } from '../panel_model';
-import { PanelContainer } from './PanelContainer';
+import { DashboardModel } from '../dashboard_model';
 import templateSrv from 'app/features/templating/template_srv';
 import appEvents from 'app/core/app_events';
 
 export interface DashboardRowProps {
   panel: PanelModel;
-  getPanelContainer: () => PanelContainer;
+  dashboard: DashboardModel;
 }
 
 export class DashboardRow extends React.Component<DashboardRowProps, any> {
-  dashboard: any;
-  panelContainer: any;
-
   constructor(props) {
     super(props);
 
     this.state = {
       collapsed: this.props.panel.collapsed,
     };
-
-    this.panelContainer = this.props.getPanelContainer();
-    this.dashboard = this.panelContainer.getDashboard();
 
     this.toggle = this.toggle.bind(this);
     this.openSettings = this.openSettings.bind(this);
@@ -31,7 +25,7 @@ export class DashboardRow extends React.Component<DashboardRowProps, any> {
   }
 
   toggle() {
-    this.dashboard.toggleRow(this.props.panel);
+    this.props.dashboard.toggleRow(this.props.panel);
 
     this.setState(prevState => {
       return { collapsed: !prevState.collapsed };
@@ -39,7 +33,7 @@ export class DashboardRow extends React.Component<DashboardRowProps, any> {
   }
 
   update() {
-    this.dashboard.processRepeats();
+    this.props.dashboard.processRepeats();
     this.forceUpdate();
   }
 
@@ -61,14 +55,10 @@ export class DashboardRow extends React.Component<DashboardRowProps, any> {
       altActionText: 'Nur Zeile löschen',
       icon: 'fa-trash',
       onConfirm: () => {
-        const panelContainer = this.props.getPanelContainer();
-        const dashboard = panelContainer.getDashboard();
-        dashboard.removeRow(this.props.panel, true);
+        this.props.dashboard.removeRow(this.props.panel, true);
       },
       onAltAction: () => {
-        const panelContainer = this.props.getPanelContainer();
-        const dashboard = panelContainer.getDashboard();
-        dashboard.removeRow(this.props.panel, false);
+        this.props.dashboard.removeRow(this.props.panel, false);
       },
     });
   }
@@ -84,17 +74,21 @@ export class DashboardRow extends React.Component<DashboardRowProps, any> {
       'fa-chevron-right': this.state.collapsed,
     });
 
-    let title = templateSrv.replaceWithText(this.props.panel.title, this.props.panel.scopedVars);
-    const hiddenPanels = this.props.panel.panels ? this.props.panel.panels.length : 0;
+    const title = templateSrv.replaceWithText(this.props.panel.title, this.props.panel.scopedVars);
+    const count = this.props.panel.panels ? this.props.panel.panels.length : 0;
+    const panels = count === 1 ? 'panel' : 'panels';
+    const canEdit = this.props.dashboard.meta.canEdit === true;
 
     return (
       <div className={classes}>
         <a className="dashboard-row__title pointer" onClick={this.toggle}>
           <i className={chevronClass} />
           {title}
-          <span className="dashboard-row__panel_count">({hiddenPanels} versteckte Panels)</span>
+          <span className="dashboard-row__panel_count">
+            ({count} {panels})
+          </span>
         </a>
-        {this.dashboard.meta.canEdit === true && (
+        {canEdit && (
           <div className="dashboard-row__actions">
             <a className="pointer" onClick={this.openSettings}>
               <i className="fa fa-cog" />
@@ -104,7 +98,12 @@ export class DashboardRow extends React.Component<DashboardRowProps, any> {
             </a>
           </div>
         )}
-        <div className="dashboard-row__drag grid-drag-handle" />
+        {this.state.collapsed === true && (
+          <div className="dashboard-row__toggle-target" onClick={this.toggle}>
+            &nbsp;
+          </div>
+        )}
+        {canEdit && <div className="dashboard-row__drag grid-drag-handle" />}
       </div>
     );
   }

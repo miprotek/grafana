@@ -50,7 +50,7 @@ func TestAlertRuleExtraction(t *testing.T) {
 		So(err, ShouldBeNil)
 
 		Convey("Extractor should not modify the original json", func() {
-			dashJson, err := simplejson.NewJson([]byte(json))
+			dashJson, err := simplejson.NewJson(json)
 			So(err, ShouldBeNil)
 
 			dash := m.NewDashboardFromJson(dashJson)
@@ -79,7 +79,7 @@ func TestAlertRuleExtraction(t *testing.T) {
 
 		Convey("Parsing and validating dashboard containing graphite alerts", func() {
 
-			dashJson, err := simplejson.NewJson([]byte(json))
+			dashJson, err := simplejson.NewJson(json)
 			So(err, ShouldBeNil)
 
 			dash := m.NewDashboardFromJson(dashJson)
@@ -143,7 +143,7 @@ func TestAlertRuleExtraction(t *testing.T) {
 			panelWithoutId, err := ioutil.ReadFile("./test-data/panels-missing-id.json")
 			So(err, ShouldBeNil)
 
-			dashJson, err := simplejson.NewJson([]byte(panelWithoutId))
+			dashJson, err := simplejson.NewJson(panelWithoutId)
 			So(err, ShouldBeNil)
 			dash := m.NewDashboardFromJson(dashJson)
 			extractor := NewDashAlertExtractor(dash, 1)
@@ -159,7 +159,7 @@ func TestAlertRuleExtraction(t *testing.T) {
 			panelWithIdZero, err := ioutil.ReadFile("./test-data/panel-with-id-0.json")
 			So(err, ShouldBeNil)
 
-			dashJson, err := simplejson.NewJson([]byte(panelWithIdZero))
+			dashJson, err := simplejson.NewJson(panelWithIdZero)
 			So(err, ShouldBeNil)
 			dash := m.NewDashboardFromJson(dashJson)
 			extractor := NewDashAlertExtractor(dash, 1)
@@ -258,7 +258,7 @@ func TestAlertRuleExtraction(t *testing.T) {
 
 			Convey("Should fail on save", func() {
 				_, err := extractor.GetAlerts()
-				So(err, ShouldEqual, m.ErrDashboardContainsInvalidAlertData)
+				So(err.Error(), ShouldEqual, "Alert validation error: Panel id is not correct, alertName=Influxdb, panelId=1")
 			})
 		})
 	})

@@ -93,5 +93,6 @@ func GetTeamByID(c *m.ReqContext) Response {
 		return Error(500, "Fehler bei der Abfrage des Teams", err)
 	}
 
+	query.Result.AvatarUrl = dtos.GetGravatarUrlWithDefault(query.Result.Email, query.Result.Name)
 	return JSON(200, &query.Result)
 }

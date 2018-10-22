@@ -13,12 +13,13 @@ import (
 var (
 	logger log.Logger = log.New("fake.log")
 
-	twoDatasourcesConfig            = "./test-configs/two-datasources"
-	twoDatasourcesConfigPurgeOthers = "./test-configs/insert-two-delete-two"
-	doubleDatasourcesConfig         = "./test-configs/double-default"
-	allProperties                   = "./test-configs/all-properties"
-	versionZero                     = "./test-configs/version-0"
-	brokenYaml                      = "./test-configs/broken-yaml"
+	twoDatasourcesConfig            = "testdata/two-datasources"
+	twoDatasourcesConfigPurgeOthers = "testdata/insert-two-delete-two"
+	doubleDatasourcesConfig         = "testdata/double-default"
+	allProperties                   = "testdata/all-properties"
+	versionZero                     = "testdata/version-0"
+	brokenYaml                      = "testdata/broken-yaml"
+	multipleOrgsWithDefault         = "testdata/multiple-org-default"
 
 	fakeRepo *fakeRepository
 )
@@ -70,6 +71,19 @@ func TestDatasourceAsConfig(t *testing.T) {
 				Convey("should raise error", func() {
 					So(err, ShouldEqual, ErrInvalidConfigToManyDefault)
 				})
+			})
+		})
+
+		Convey("Multiple datasources in different organizations with isDefault in each organization", func() {
+			dc := newDatasourceProvisioner(logger)
+			err := dc.applyChanges(multipleOrgsWithDefault)
+			Convey("should not raise error", func() {
+				So(err, ShouldBeNil)
+				So(len(fakeRepo.inserted), ShouldEqual, 4)
+				So(fakeRepo.inserted[0].IsDefault, ShouldBeTrue)
+				So(fakeRepo.inserted[0].OrgId, ShouldEqual, 1)
+				So(fakeRepo.inserted[2].IsDefault, ShouldBeTrue)
+				So(fakeRepo.inserted[2].OrgId, ShouldEqual, 2)
 			})
 		})
 

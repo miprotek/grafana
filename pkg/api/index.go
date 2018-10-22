@@ -11,8 +11,14 @@ import (
 	"github.com/grafana/grafana/pkg/setting"
 )
 
-func setIndexViewData(c *m.ReqContext) (*dtos.IndexViewData, error) {
-	settings, err := getFrontendSettingsMap(c)
+const (
+	// Themes
+	lightName = "light"
+	darkName  = "dark"
+)
+
+func (hs *HTTPServer) setIndexViewData(c *m.ReqContext) (*dtos.IndexViewData, error) {
+	settings, err := hs.getFrontendSettingsMap(c)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +66,7 @@ func setIndexViewData(c *m.ReqContext) (*dtos.IndexViewData, error) {
 			OrgRole:                    c.OrgRole,
 			GravatarUrl:                dtos.GetGravatarUrl(c.Email),
 			IsGrafanaAdmin:             c.IsGrafanaAdmin,
-			LightTheme:                 prefs.Theme == "light",
+			LightTheme:                 prefs.Theme == lightName,
 			Timezone:                   prefs.Timezone,
 			Locale:                     locale,
 			HelpFlags1:                 c.HelpFlags1,
@@ -76,6 +82,7 @@ func setIndexViewData(c *m.ReqContext) (*dtos.IndexViewData, error) {
 		BuildCommit:             setting.BuildCommit,
 		NewGrafanaVersion:       plugins.GrafanaLatestVersion,
 		NewGrafanaVersionExists: plugins.GrafanaHasUpdate,
+		AppName:                 setting.ApplicationName,
 	}
 
 	if setting.DisableGravatar {
@@ -87,22 +94,31 @@ func setIndexViewData(c *m.ReqContext) (*dtos.IndexViewData, error) {
 	}
 
 	themeURLParam := c.Query("theme")
-	if themeURLParam == "light" {
+	if themeURLParam == lightName {
 		data.User.LightTheme = true
-		data.Theme = "light"
+		data.Theme = lightName
+	} else if themeURLParam == darkName {
+		data.User.LightTheme = false
+		data.Theme = darkName
 	}
 
-	if c.OrgRole == m.ROLE_ADMIN || c.OrgRole == m.ROLE_EDITOR {
+	if hasEditPermissionInFoldersQuery.Result {
+		children := []*dtos.NavLink{
+			{Text: "Dashboard", Icon: "gicon gicon-dashboard-new", Url: setting.AppSubUrl + "/dashboard/new"},
+		}
+
+		if c.OrgRole == m.ROLE_ADMIN || c.OrgRole == m.ROLE_EDITOR {
+			children = append(children, &dtos.NavLink{Text: "Folder", SubTitle: "Create a new folder to organize your dashboards", Id: "folder", Icon: "gicon gicon-folder-new", Url: setting.AppSubUrl + "/dashboards/folder/new"})
+		}
+
+		children = append(children, &dtos.NavLink{Text: "Import", SubTitle: "Import dashboard from file or Grafana.com", Id: "import", Icon: "gicon gicon-dashboard-import", Url: setting.AppSubUrl + "/dashboard/import"})
+
 		data.NavTree = append(data.NavTree, &dtos.NavLink{
 			Text: "Erstellen",
-			Id:   "create",
-			Icon: "fa fa-fw fa-plus",
-			Url:  setting.AppSubUrl + "/dashboard/new",
-			Children: []*dtos.NavLink{
-				{Text: "Dashboard", Icon: "gicon gicon-dashboard-new", Url: setting.AppSubUrl + "/dashboard/new"},
-				{Text: "Ordner", SubTitle: "Einen neuen Ordner erstellen um Ihre Dashboards zu organisieren", Id: "folder", Icon: "gicon gicon-folder-new", Url: setting.AppSubUrl + "/dashboards/folder/new"},
-				{Text: "Importieren", SubTitle: "Dashboard aus einer Datei oder von Grafana.com importieren", Id: "import", Icon: "gicon gicon-dashboard-import", Url: setting.AppSubUrl + "/dashboard/import"},
-			},
+			Id:       "create",
+			Icon:     "fa fa-fw fa-plus",
+			Url:      setting.AppSubUrl + "/dashboard/new",
+			Children: children,
 		})
 	}
 
@@ -123,7 +139,7 @@ func setIndexViewData(c *m.ReqContext) (*dtos.IndexViewData, error) {
 		Children: dashboardChildNavs,
 	})
 
-	if setting.ExploreEnabled {
+	if setting.ExploreEnabled && (c.OrgRole == m.ROLE_ADMIN || c.OrgRole == m.ROLE_EDITOR) {
 		data.NavTree = append(data.NavTree, &dtos.NavLink{
 			Text:     "Erkunden",
 			Id:       "explore",
@@ -228,7 +244,7 @@ func setIndexViewData(c *m.ReqContext) (*dtos.IndexViewData, error) {
 		}
 	}
 
-	if c.OrgRole == m.ROLE_ADMIN {
+	if c.IsGrafanaAdmin || c.OrgRole == m.ROLE_ADMIN {
 		cfgNode := &dtos.NavLink{
 			Id:       "cfg",
 			Text:     "Konfiguration",
@@ -282,10 +298,24 @@ func setIndexViewData(c *m.ReqContext) (*dtos.IndexViewData, error) {
 			},
 		}
 
-		if c.IsGrafanaAdmin {
+		if c.OrgRole != m.ROLE_ADMIN {
+			cfgNode = &dtos.NavLink{
+				Id:       "cfg",
+				Text:     "Configuration",
+				SubTitle: "Organization: " + c.OrgName,
+				Icon:     "gicon gicon-cog",
+				Url:      setting.AppSubUrl + "/admin/users",
+				Children: make([]*dtos.NavLink, 0),
+			}
+		}
+
+		if c.OrgRole == m.ROLE_ADMIN && c.IsGrafanaAdmin {
 			cfgNode.Children = append(cfgNode.Children, &dtos.NavLink{
 				Divider: true, HideFromTabs: true, Id: "admin-divider", Text: "Text",
 			})
+		}
+
+		if c.IsGrafanaAdmin {
 			cfgNode.Children = append(cfgNode.Children, &dtos.NavLink{
 				Text:         "Server Admin",
 				HideFromTabs: true,
@@ -320,11 +350,12 @@ func setIndexViewData(c *m.ReqContext) (*dtos.IndexViewData, error) {
 		},
 	})
 
+	hs.HooksService.RunIndexDataHooks(&data)
 	return &data, nil
 }
 
-func Index(c *m.ReqContext) {
-	data, err := setIndexViewData(c)
+func (hs *HTTPServer) Index(c *m.ReqContext) {
+	data, err := hs.setIndexViewData(c)
 	if err != nil {
 		c.Handle(500, "Failed to get settings", err)
 		return
@@ -332,13 +363,13 @@ func Index(c *m.ReqContext) {
 	c.HTML(200, "index", data)
 }
 
-func NotFoundHandler(c *m.ReqContext) {
+func (hs *HTTPServer) NotFoundHandler(c *m.ReqContext) {
 	if c.IsApiRequest() {
 		c.JsonApiErr(404, "Not found", nil)
 		return
 	}
 
-	data, err := setIndexViewData(c)
+	data, err := hs.setIndexViewData(c)
 	if err != nil {
 		c.Handle(500, "Failed to get settings", err)
 		return

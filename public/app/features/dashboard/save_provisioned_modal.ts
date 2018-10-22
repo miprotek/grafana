@@ -48,11 +48,11 @@ export class SaveProvisionedDashboardModalCtrl {
   constructor(dashboardSrv) {
     this.dash = dashboardSrv.getCurrent().getSaveModelClone();
     delete this.dash.id;
-    this.dashboardJson = JSON.stringify(this.dash, null, 2);
+    this.dashboardJson = angular.toJson(this.dash, true);
   }
 
   save() {
-    var blob = new Blob([angular.toJson(this.dash, true)], {
+    const blob = new Blob([angular.toJson(this.dash, true)], {
       type: 'application/json;charset=utf-8',
     });
     saveAs(blob, this.dash.title + '-' + new Date().getTime() + '.json');
