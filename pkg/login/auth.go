@@ -13,10 +13,9 @@ var (
 	ErrProviderDeniedRequest = errors.New("Login-Anbieter verweigert Login-Anfrage")
 	ErrSignUpNotAllowed      = errors.New("Die Anmeldung ist für diesen Adapter nicht zulässig")
 	ErrTooManyLoginAttempts  = errors.New("Zuviele aufeinanderfolgende falsche Anmeldeversuche für den Benutzer. Login für Benutzer vorübergehend gesperrt")
-	ErrPasswordEmpty         = errors.New("No password provided.")
+	ErrPasswordEmpty         = errors.New("Kein Passwort angegeben.")
+	ErrUsersQuotaReached     = errors.New("Benutzerkontingent erreicht")
 	ErrGettingUserQuota      = errors.New("Fehler beim Abrufen des Benutzerkontingents")
-	ErrUsersQuotaReached     = errors.New("Users quota reached")
-	ErrGettingUserQuota      = errors.New("Error getting user quota")
 )
 
 func Init() {

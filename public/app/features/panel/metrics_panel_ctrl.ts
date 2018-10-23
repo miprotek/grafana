@@ -294,7 +294,7 @@ class MetricsPanelCtrl extends PanelCtrl {
       (this.datasource.meta.explore || this.datasource.meta.id === 'mixed')
     ) {
       items.push({
-        text: 'Explore',
+        text: 'Durchsuchen',
         click: 'ctrl.explore();',
         icon: 'fa fa-fw fa-rocket',
         shortcut: 'x',

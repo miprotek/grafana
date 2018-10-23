@@ -1,20 +1,20 @@
 <div class="gf-form-group">
 	<div class="gf-form">
-		<span class="gf-form-label width-10">Search expression</span>
-		<input type="text" class="gf-form-input" ng-model='ctrl.annotation.expr' placeholder="ALERTS"></input>
+		<span class="gf-form-label width-10">Such Ausdruck</span>
+		<input type="text" class="gf-form-input" ng-model='ctrl.annotation.expr' placeholder="MELDUNGEN"></input>
 	</div>
 	<div class="gf-form">
-		<span class="gf-form-label width-10">step</span>
+		<span class="gf-form-label width-10">schritt</span>
 		<input type="text" class="gf-form-input max-width-6" ng-model='ctrl.annotation.step' placeholder="60s"></input>
 	</div>
 </div>
 
 <div class="gf-form-group">
-	<h5 class="section-heading">Field formats</h5>
+	<h5 class="section-heading">Feld Formate</h5>
 	<div class="gf-form-inline">
 		<div class="gf-form">
-			<span class="gf-form-label width-5">Title</span>
-			<input type="text" class="gf-form-input max-width-9" ng-model='ctrl.annotation.titleFormat' placeholder="alertname"></input>
+			<span class="gf-form-label width-5">Titel</span>
+			<input type="text" class="gf-form-input max-width-9" ng-model='ctrl.annotation.titleFormat' placeholder="Meldungsname"></input>
 		</div>
 		<div class="gf-form">
 			<span class="gf-form-label width-5">Tags</span>
@@ -23,16 +23,16 @@
 		<div class="gf-form-inline">
 			<div class="gf-form">
 				<span class="gf-form-label width-5">Text</span>
-				<input type="text" class="gf-form-input max-width-9" ng-model='ctrl.annotation.textFormat' placeholder="instance"></input>
+				<input type="text" class="gf-form-input max-width-9" ng-model='ctrl.annotation.textFormat' placeholder="Instanz"></input>
 			</div>
 		</div>
 	</div>
 
-	<h5 class="section-heading">Other options</h5>
+	<h5 class="section-heading">Andere Optionen</h5>
 	<div class="gf-form-inline">
 		<div class="gf-form">
-			<gf-form-switch class="gf-form" label="Series value as timestamp" label-class="width-14" checked="ctrl.annotation.useValueForTime"
-			 tooltip="The unit of timestamp is milliseconds. If the unit of the series value is seconds, multiply its range vector by 1000.">
+			<gf-form-switch class="gf-form" label="Serien Wert als Zeitstempel" label-class="width-14" checked="ctrl.annotation.useValueForTime"
+			 tooltip="Die Einheit des Zeitstempels ist Millisekunden. Wenn die Einheit des Reihenwerts Sekunden ist, multiplizieren Sie den Bereichsvektor mit 1000.">
 			</gf-form-switch>
 		</div>
 	</div>

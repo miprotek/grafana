@@ -16,7 +16,7 @@ func GetPendingOrgInvites(c *m.ReqContext) Response {
 	query := m.GetTempUsersQuery{OrgId: c.OrgId, Status: m.TmpUserInvitePending}
 
 	if err := bus.Dispatch(&query); err != nil {
-		return Error(500, "Failed to get invites from db", err)
+		return Error(500, "Empfang der Einladung von db fehlgeschlagen", err)
 	}
 
 	for _, invite := range query.Result {
@@ -77,7 +77,7 @@ func AddOrgInvite(c *m.ReqContext, inviteDto dtos.AddInviteForm) Response {
 			if err == m.ErrSmtpNotEnabled {
 				return Error(412, err.Error(), err)
 			}
-			return Error(500, "Failed to send email invite", err)
+			return Error(500, "Senden der E-Mail Einladung fehlgeschlagen", err)
 		}
 
 		emailSentCmd := m.UpdateTempUserWithEmailSentCommand{Code: cmd.Result.Code}

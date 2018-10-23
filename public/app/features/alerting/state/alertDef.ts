@@ -36,12 +36,12 @@ const evalFunctions = [
 const evalOperators = [{ text: 'OR', value: 'or' }, { text: 'AND', value: 'and' }];
 
 const reducerTypes = [
-  { text: 'avg()', value: 'avg' },
+  { text: 'ø()', value: 'avg' },
   { text: 'min()', value: 'min' },
   { text: 'max()', value: 'max' },
   { text: 'sum()', value: 'sum' },
   { text: 'count()', value: 'count' },
-  { text: 'last()', value: 'last' },
+  { text: 'letzte()', value: 'last' },
   { text: 'median()', value: 'median' },
   { text: 'diff()', value: 'diff' },
   { text: 'percent_diff()', value: 'percent_diff' },
@@ -55,7 +55,7 @@ const noDataModes = [
   { text: 'Ok', value: 'ok' },
 ];
 
-const executionErrorModes = [{ text: 'Alerting', value: 'alerting' }, { text: 'Keep Last State', value: 'keep_state' }];
+const executionErrorModes = [{ text: 'Alarmierung', value: 'alerting' }, { text: 'Letzten Status behalten', value: 'keep_state' }];
 
 function createReducerPart(model) {
   const def = new QueryPartDef({ type: model.type, defaultParams: [] });

@@ -1,7 +1,7 @@
 <page-header model="ctrl.navModel"></page-header>
 
 <div class="page-container page-body">
-  <h3 class="page-sub-heading">Settings</h3>
+  <h3 class="page-sub-heading">Einstellungen</h3>
 
   <form name="ctrl.editForm" ng-if="ctrl.current">
     <div class="gf-form-group">
@@ -24,8 +24,8 @@
     </div>
 
 		<div class="grafana-info-box" ng-if="ctrl.datasourceMeta.state === 'beta'">
-      This plugin is marked as being in a beta development state. This means it is in currently in active development and could be
-      missing important features.
+      Dieses Plugin ist als Beta-Entwicklungsstatus gekennzeichnet. Dies bedeutet, dass es sich derzeit in aktiver Entwicklung befindet und es könnte
+	  sein, dass wichtige Funktionen fehlen.
     </div>
 
     <rebuild-on-change property="ctrl.datasourceMeta.id">
@@ -34,7 +34,7 @@
     </rebuild-on-change>
 
     <div ng-if="ctrl.hasDashboards">
-      <h3 class="section-heading">Bundled Plugin Dashboards</h3>
+      <h3 class="section-heading">Gebündelte Plugin-Dashboards</h3>
       <div class="section">
         <dashboard-import-list plugin="ctrl.datasourceMeta" datasource="ctrl.current"></dashboard-import-list>
       </div>
@@ -54,12 +54,13 @@
     </div>
 
 		<div class="grafana-info-box span8" ng-if="ctrl.current.readOnly">
-			This datasource was added by config and cannot be modified using the UI. Please contact your server admin to update this datasource.
+			Diese Datenquelle wurde von config hinzugefügt und kann nicht über die Benutzeroberfläche geändert werden. Bitte kontaktieren Sie Ihren Serveradministrator,
+			um diese Datenquelle zu aktualisieren.
 		</div>
 
 		<div class="gf-form-button-row">
       <button type="submit" class="btn btn-success" ng-disabled="ctrl.current.readOnly"  ng-click="ctrl.saveChanges()">Sichern &amp; Test</button>
-			<button type="submit" class="btn btn-danger" ng-disabled="ctrl.current.readOnly"  ng-show="!ctrl.isNew" ng-click="ctrl.delete()">Delete</button>
+			<button type="submit" class="btn btn-danger" ng-disabled="ctrl.current.readOnly"  ng-show="!ctrl.isNew" ng-click="ctrl.delete()">Löschen</button>
       <a class="btn btn-inverse" href="datasources">Zurück</a>
 		</div>
 

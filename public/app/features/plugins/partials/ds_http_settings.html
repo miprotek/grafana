@@ -24,7 +24,7 @@
 
 		<div class="gf-form-inline" ng-if="showAccessOption">
 			<div class="gf-form max-width-30">
-				<span class="gf-form-label width-10">Access</span>
+				<span class="gf-form-label width-10">Zugriff</span>
 				<div class="gf-form-select-wrapper max-width-24">
 					<select class="gf-form-input" ng-model="current.access" ng-options="f.key as f.value for f in [{key: 'proxy', value: 'Server (Default)'}, { key: 'direct', value: 'Browser'}]"></select>
 				</div>
@@ -59,10 +59,10 @@
 		<div class="gf-form-inline" ng-if="current.access=='proxy'">
 			<div class="gf-form">
 				<span class="gf-form-label width-10">Whitelisted Cookies</span>
-				<bootstrap-tagsinput ng-model="current.jsonData.keepCookies" width-class="width-20" tagclass="label label-tag" placeholder="Add Name">
+				<bootstrap-tagsinput ng-model="current.jsonData.keepCookies" width-class="width-20" tagclass="label label-tag" placeholder="Name hinzufügen">
 				</bootstrap-tagsinput>
 				<info-popover mode="right-absolute">
-					Grafana Proxy deletes forwarded cookies by default. Specify cookies by name that should be forwarded to the data source.
+					Grafana Proxy löscht standardmäßig weitergeleitete Cookies. Geben Sie Cookies nach Name an, die an die Datenquelle weitergeleitet werden sollen.
 				</info-popover>
 			</div>
 		</div>
@@ -86,11 +86,11 @@
 	<div class="gf-form-group" ng-if="current.basicAuth">
 		<h6>Basic Auth Details</h6>
 		<div class="gf-form" ng-if="current.basicAuth">
-			<span class="gf-form-label width-10">User</span>
+			<span class="gf-form-label width-10">Benutzer</span>
     <input class="gf-form-input max-width-21" type="text"  ng-model='current.basicAuthUser' placeholder="Benutzer" required></input>
 		</div>
 		<div class="gf-form">
-			<span class="gf-form-label width-10">Password</span>
+			<span class="gf-form-label width-10">Passwort</span>
     <input class="gf-form-input max-width-21" type="password" ng-model='current.basicAuthPassword' placeholder="Passwort" required></input>
 		</div>
 	</div>

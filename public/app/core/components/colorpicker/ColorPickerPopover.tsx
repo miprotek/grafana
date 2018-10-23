@@ -97,13 +97,13 @@ export class ColorPickerPopover extends React.Component<Props, any> {
       <div className="gf-color-picker">
         <ul className="nav nav-tabs" id="colorpickernav" ref={this.setPickerNavElem.bind(this)}>
           <li className="gf-tabs-item-colorpicker">
-            <a href="#palette" data-toggle="tab">Farben</a>
-              Colors
+            <a href="#palette" data-toggle="tab">
+              Farben
             </a>
           </li>
           <li className="gf-tabs-item-colorpicker">
-            <a href="#spectrum" data-toggle="tab">Benutzer</a>
-              Custom
+            <a href="#spectrum" data-toggle="tab">
+              Benutzer
             </a>
           </li>
         </ul>

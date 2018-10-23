@@ -12,15 +12,15 @@
   <div ng-if="!ctrl.target.rawQuery">
     <div class="gf-form-inline">
       <div class="gf-form">
-        <label class="gf-form-label query-keyword width-6">FROM</label>
+        <label class="gf-form-label query-keyword width-6">VON</label>
         <metric-segment segment="ctrl.tableSegment" get-options="ctrl.getTableSegments()" on-change="ctrl.tableChanged()"></metric-segment>
 
-        <label class="gf-form-label query-keyword width-7">Time column</label>
+        <label class="gf-form-label query-keyword width-7">Zeitspalte</label>
         <metric-segment segment="ctrl.timeColumnSegment" get-options="ctrl.getTimeColumnSegments()" on-change="ctrl.timeColumnChanged()"></metric-segment>
 
         <label class="gf-form-label query-keyword width-9">
-          Metric column
-          <info-popover mode="right-normal">Column to be used as metric name for the value column.</info-popover>
+          Metrische Spalte
+          <info-popover mode="right-normal">Spalte, die als Metrikname für die Wertspalte verwendet werden soll.</info-popover>
         </label>
         <metric-segment segment="ctrl.metricColumnSegment" get-options="ctrl.getMetricColumnSegments()" on-change="ctrl.metricColumnChanged()"></metric-segment>
       </div>
@@ -34,7 +34,7 @@
     <div class="gf-form-inline" ng-repeat="selectParts in ctrl.selectParts">
       <div class="gf-form">
         <label class="gf-form-label query-keyword width-6">
-          <span ng-show="$index === 0">SELECT</span>&nbsp;
+          <span ng-show="$index === 0">Wählen</span>&nbsp;
         </label>
       </div>
 
@@ -57,7 +57,7 @@
 
     <div class="gf-form-inline">
       <div class="gf-form">
-        <label class="gf-form-label query-keyword width-6">WHERE</label>
+        <label class="gf-form-label query-keyword width-6">WO</label>
       </div>
 
       <div class="gf-form" ng-repeat="part in ctrl.whereParts">
@@ -78,7 +78,7 @@
     <div class="gf-form-inline">
       <div class="gf-form">
         <label class="gf-form-label query-keyword width-6">
-          <span>GROUP BY</span>
+          <span>Gruppieren nach</span>
         </label>
 
         <sql-part-editor  ng-repeat="part in ctrl.groupParts"
@@ -100,27 +100,27 @@
 
   <div class="gf-form-inline">
     <div class="gf-form">
-      <label class="gf-form-label query-keyword">Format as</label>
+      <label class="gf-form-label query-keyword">Formatieren als</label>
       <div class="gf-form-select-wrapper">
         <select class="gf-form-input gf-size-auto" ng-model="ctrl.target.format" ng-options="f.value as f.text for f in ctrl.formats" ng-change="ctrl.refresh()"></select>
       </div>
     </div>
     <div class="gf-form">
       <label class="gf-form-label query-keyword pointer" ng-click="ctrl.toggleEditorMode()" ng-show="ctrl.panelCtrl.panel.type !== 'table'">
-        <span ng-show="ctrl.target.rawQuery">Query Builder</span>
-        <span ng-hide="ctrl.target.rawQuery">Edit SQL</span>
+        <span ng-show="ctrl.target.rawQuery">Abfrage Builder</span>
+        <span ng-hide="ctrl.target.rawQuery">SQL bearbeiten</span>
       </label>
     </div>
     <div class="gf-form">
       <label class="gf-form-label query-keyword pointer" ng-click="ctrl.showHelp = !ctrl.showHelp">
-        Show Help
+        Hilfe anzeigen
         <i class="fa fa-caret-down" ng-show="ctrl.showHelp"></i>
         <i class="fa fa-caret-right" ng-hide="ctrl.showHelp"></i>
       </label>
     </div>
     <div class="gf-form" ng-show="ctrl.lastQueryMeta">
       <label class="gf-form-label query-keyword pointer" ng-click="ctrl.showLastQuerySQL = !ctrl.showLastQuerySQL">
-        Generated SQL
+        Generierte SQL
         <i class="fa fa-caret-down" ng-show="ctrl.showLastQuerySQL"></i>
         <i class="fa fa-caret-right" ng-hide="ctrl.showLastQuerySQL"></i>
       </label>
@@ -135,32 +135,32 @@
   </div>
 
   <div class="gf-form"  ng-show="ctrl.showHelp">
-    <pre class="gf-form-pre alert alert-info">Time series:
-- return column named <i>time</i> (UTC in seconds or timestamp)
-- return column(s) with numeric datatype as values
+    <pre class="gf-form-pre alert alert-info">Zeitserien:
+- Rückgabespalte namens <i>Zeit</i> (UTC in Sekunden oder Zeitstempel)
+- Gibt Spalte(n) mit numerischem Datentyp als Wert zurück
 Optional: 
-  - return column named <i>metric</i> to represent the series name. 
-  - If multiple value columns are returned the metric column is used as prefix. 
-  - If no column named metric is found the column name of the value column is used as series name
+  - Geben Sie die Spalte mit dem Namen <i>Metrisch</i> zurück, um den Seriennamen darzustellen. 
+  - Wenn mehrere Wertespalten zurückgegeben werden, wird die Metrikspalte als Präfix verwendet. 
+  - Wenn keine Spalte namens metric gefunden wird, wird der Spaltenname der value-Spalte als Serienname verwendet
 
-Resultsets of time series queries need to be sorted by time.
+Resultsets von Zeitreihenabfragen müssen nach Zeit sortiert werden.
 
-Table:
-- return any set of columns
+Tabelle:
+- Gibt einen Satz von Spalten zurück.
 
-Macros:
-- $__time(column) -&gt; column as "time"
+Makros:
+- $__time(column) -&gt; Spalte als "time"
 - $__timeEpoch -&gt; extract(epoch from column) as "time"
-- $__timeFilter(column) -&gt; column BETWEEN '2017-04-21T05:01:17Z' AND '2017-04-21T05:01:17Z'
-- $__unixEpochFilter(column) -&gt;  column &gt;= 1492750877 AND column &lt;= 1492750877
+- $__timeFilter(column) -&gt; Spalte ZWISCHEN '2017-04-21T05:01:17Z' UND '2017-04-21T05:01:17Z'
+- $__unixEpochFilter(column) -&gt;  Spalte &gt;= 1492750877 UND Spalte &lt;= 1492750877
 - $__timeGroup(column,'5m'[, fillvalue]) -&gt; (extract(epoch from column)/300)::bigint*300
-     by setting fillvalue grafana will fill in missing values according to the interval
-     fillvalue can be either a literal value, NULL or previous; previous will fill in the previous seen value or NULL if none has been seen yet
+     durch das Stzen von fillvalue, wird Grafana fehlende Werte entsprechend dem Intervall ausfüllen
+     fillvalue kann entweder ein Literalwert sein, NULL oder previous; previous füllt den vorherigen gesehenen Wert oder NULL, wenn noch keiner gesehen wurde
 - $__timeGroupAlias(column,'5m') -&gt; (extract(epoch from column)/300)::bigint*300 AS "time"
 - $__unixEpochGroup(column,'5m') -&gt; floor(column/300)*300
 - $__unixEpochGroupAlias(column,'5m') -&gt; floor(column/300)*300 AS "time"
 
-Example of group by and order by with $__timeGroup:
+Beispiel für Gruppierung nach und Reihenfolge nach mit $__timeGroup:
 SELECT
   $__timeGroup(date_time_col, '1h'),
   sum(value) as value
@@ -168,7 +168,7 @@ FROM yourtable
 GROUP BY time
 ORDER BY time
 
-Or build your own conditionals using these macros which just return the values:
+Oder erstellen Sie Ihre eigenen Bedingungen mit diesen Makros, die nur die Werte zurückgeben:
 - $__timeFrom() -&gt;  '2017-04-21T05:01:17Z'
 - $__timeTo() -&gt;  '2017-04-21T05:01:17Z'
 - $__unixEpochFrom() -&gt;  1492750877

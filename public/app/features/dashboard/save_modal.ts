@@ -17,11 +17,11 @@ const template = `
     <div class="p-t-1">
       <div class="gf-form-group" ng-if="ctrl.timeChange || ctrl.variableValueChange">
 		    <gf-form-switch class="gf-form"
-			    label="Save current time range" ng-if="ctrl.timeChange" label-class="width-12" switch-class="max-width-6"
+			    label="Momentane Zeitspanne speichern" ng-if="ctrl.timeChange" label-class="width-12" switch-class="max-width-6"
 			    checked="ctrl.saveTimerange" on-change="buildUrl()">
 		    </gf-form-switch>
 		    <gf-form-switch class="gf-form"
-			    label="Save current variables" ng-if="ctrl.variableValueChange" label-class="width-12" switch-class="max-width-6"
+			    label="Momentane Variablen speichern" ng-if="ctrl.variableValueChange" label-class="width-12" switch-class="max-width-6"
 			    checked="ctrl.saveVariables" on-change="buildUrl()">
 		    </gf-form-switch>
 	    </div>
@@ -31,7 +31,7 @@ const template = `
             type="text"
             name="message"
             class="gf-form-input"
-            placeholder="Add a note to describe your changes &hellip;"
+            placeholder="Eine Notiz hinzufügen um Ihre Änderungen zu beschreiben &hellip;"
             give-focus="true"
             ng-model="ctrl.message"
             ng-model-options="{allowInvalid: true}"
@@ -56,10 +56,10 @@ const template = `
         ng-class="{'btn-success--processing': ctrl.isSaving}"
         ng-disabled="ctrl.saveForm.$invalid || ctrl.isSaving"
       >
-        <span ng-if="!ctrl.isSaving">Save</span>
-        <span ng-if="ctrl.isSaving === true">Saving...</span>
+        <span ng-if="!ctrl.isSaving">Speichern</span>
+        <span ng-if="ctrl.isSaving === true">Speichere...</span>
       </button>
-      <button class="btn btn-inverse" ng-click="ctrl.dismiss();">Cancel</button>
+      <button class="btn btn-inverse" ng-click="ctrl.dismiss();">Abbrechen</button>
     </div>
   </form>
 </div>
