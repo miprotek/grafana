@@ -5,13 +5,13 @@ import (
 
 	"gopkg.in/macaron.v1"
 
-	"github.com/grafana/grafana/pkg/bus"
-	"github.com/grafana/grafana/pkg/components/apikeygen"
-	"github.com/grafana/grafana/pkg/log"
-	m "github.com/grafana/grafana/pkg/models"
-	"github.com/grafana/grafana/pkg/services/session"
-	"github.com/grafana/grafana/pkg/setting"
-	"github.com/grafana/grafana/pkg/util"
+	"github.com/miprotek/grafana-de/pkg/bus"
+	"github.com/miprotek/grafana-de/pkg/components/apikeygen"
+	"github.com/miprotek/grafana-de/pkg/log"
+	m "github.com/miprotek/grafana-de/pkg/models"
+	"github.com/miprotek/grafana-de/pkg/services/session"
+	"github.com/miprotek/grafana-de/pkg/setting"
+	"github.com/miprotek/grafana-de/pkg/util"
 )
 
 var (

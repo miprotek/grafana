@@ -9,12 +9,12 @@ import (
 	"time"
 
 	"github.com/go-xorm/xorm"
-	"github.com/grafana/grafana/pkg/components/securejsondata"
-	"github.com/grafana/grafana/pkg/components/simplejson"
-	"github.com/grafana/grafana/pkg/models"
-	"github.com/grafana/grafana/pkg/services/sqlstore"
-	"github.com/grafana/grafana/pkg/services/sqlstore/sqlutil"
-	"github.com/grafana/grafana/pkg/tsdb"
+	"github.com/miprotek/grafana-de/pkg/components/securejsondata"
+	"github.com/miprotek/grafana-de/pkg/components/simplejson"
+	"github.com/miprotek/grafana-de/pkg/models"
+	"github.com/miprotek/grafana-de/pkg/services/sqlstore"
+	"github.com/miprotek/grafana-de/pkg/services/sqlstore/sqlutil"
+	"github.com/miprotek/grafana-de/pkg/tsdb"
 	_ "github.com/lib/pq"
 	. "github.com/smartystreets/goconvey/convey"
 )

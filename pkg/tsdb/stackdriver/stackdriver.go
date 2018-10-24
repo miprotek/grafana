@@ -18,14 +18,14 @@ import (
 	"golang.org/x/net/context/ctxhttp"
 	"golang.org/x/oauth2/google"
 
-	"github.com/grafana/grafana/pkg/api/pluginproxy"
-	"github.com/grafana/grafana/pkg/components/null"
-	"github.com/grafana/grafana/pkg/components/simplejson"
-	"github.com/grafana/grafana/pkg/log"
-	"github.com/grafana/grafana/pkg/models"
-	"github.com/grafana/grafana/pkg/plugins"
-	"github.com/grafana/grafana/pkg/setting"
-	"github.com/grafana/grafana/pkg/tsdb"
+	"github.com/miprotek/grafana-de/pkg/api/pluginproxy"
+	"github.com/miprotek/grafana-de/pkg/components/null"
+	"github.com/miprotek/grafana-de/pkg/components/simplejson"
+	"github.com/miprotek/grafana-de/pkg/log"
+	"github.com/miprotek/grafana-de/pkg/models"
+	"github.com/miprotek/grafana-de/pkg/plugins"
+	"github.com/miprotek/grafana-de/pkg/setting"
+	"github.com/miprotek/grafana-de/pkg/tsdb"
 	"github.com/opentracing/opentracing-go"
 )
 

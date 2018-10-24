@@ -3,8 +3,8 @@ package stackdriver
 import (
 	"context"
 
-	"github.com/grafana/grafana/pkg/components/simplejson"
-	"github.com/grafana/grafana/pkg/tsdb"
+	"github.com/miprotek/grafana-de/pkg/components/simplejson"
+	"github.com/miprotek/grafana-de/pkg/tsdb"
 )
 
 func (e *StackdriverExecutor) ensureDefaultProject(ctx context.Context, tsdbQuery *tsdb.TsdbQuery) (*tsdb.Response, error) {

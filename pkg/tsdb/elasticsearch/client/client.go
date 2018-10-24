@@ -12,11 +12,11 @@ import (
 	"strings"
 	"time"
 
-	"github.com/grafana/grafana/pkg/components/simplejson"
-	"github.com/grafana/grafana/pkg/log"
-	"github.com/grafana/grafana/pkg/tsdb"
+	"github.com/miprotek/grafana-de/pkg/components/simplejson"
+	"github.com/miprotek/grafana-de/pkg/log"
+	"github.com/miprotek/grafana-de/pkg/tsdb"
 
-	"github.com/grafana/grafana/pkg/models"
+	"github.com/miprotek/grafana-de/pkg/models"
 	"golang.org/x/net/context/ctxhttp"
 )
 

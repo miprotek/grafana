@@ -10,10 +10,10 @@ import (
 	"time"
 
 	"github.com/grafana/grafana-plugin-model/go/datasource"
-	"github.com/grafana/grafana/pkg/log"
-	"github.com/grafana/grafana/pkg/models"
-	"github.com/grafana/grafana/pkg/plugins/datasource/wrapper"
-	"github.com/grafana/grafana/pkg/tsdb"
+	"github.com/miprotek/grafana-de/pkg/log"
+	"github.com/miprotek/grafana-de/pkg/models"
+	"github.com/miprotek/grafana-de/pkg/plugins/datasource/wrapper"
+	"github.com/miprotek/grafana-de/pkg/tsdb"
 	plugin "github.com/hashicorp/go-plugin"
 )
 

@@ -1,6 +1,6 @@
 package annotations
 
-import "github.com/grafana/grafana/pkg/components/simplejson"
+import "github.com/miprotek/grafana-de/pkg/components/simplejson"
 
 type Repository interface {
 	Save(item *Item) error

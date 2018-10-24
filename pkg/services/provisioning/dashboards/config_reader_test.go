@@ -3,7 +3,7 @@ package dashboards
 import (
 	"testing"
 
-	"github.com/grafana/grafana/pkg/log"
+	"github.com/miprotek/grafana-de/pkg/log"
 	. "github.com/smartystreets/goconvey/convey"
 )
 

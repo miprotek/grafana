@@ -3,12 +3,12 @@ package api
 import (
 	"strings"
 
-	"github.com/grafana/grafana/pkg/api/dtos"
-	"github.com/grafana/grafana/pkg/components/simplejson"
-	m "github.com/grafana/grafana/pkg/models"
-	"github.com/grafana/grafana/pkg/services/annotations"
-	"github.com/grafana/grafana/pkg/services/guardian"
-	"github.com/grafana/grafana/pkg/util"
+	"github.com/miprotek/grafana-de/pkg/api/dtos"
+	"github.com/miprotek/grafana-de/pkg/components/simplejson"
+	m "github.com/miprotek/grafana-de/pkg/models"
+	"github.com/miprotek/grafana-de/pkg/services/annotations"
+	"github.com/miprotek/grafana-de/pkg/services/guardian"
+	"github.com/miprotek/grafana-de/pkg/util"
 )
 
 func GetAnnotations(c *m.ReqContext) Response {
