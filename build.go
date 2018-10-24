@@ -155,9 +155,9 @@ func makeLatestDistCopies() {
 	}
 
 	latestMapping := map[string]string{
-		"_amd64.deb":          "dist/grafana_latest_amd64.deb",
-		".x86_64.rpm":         "dist/grafana-latest-1.x86_64.rpm",
-		".linux-amd64.tar.gz": "dist/grafana-latest.linux-x64.tar.gz",
+		"_amd64.deb":          "dist/grafana_de_latest_amd64.deb",
+		".x86_64.rpm":         "dist/grafana-de-latest-1.x86_64.rpm",
+		".linux-amd64.tar.gz": "dist/grafana-de-latest.linux-x64.tar.gz",
 	}
 
 	for _, file := range files {
@@ -234,18 +234,18 @@ func createDebPackages() {
 	}
 	createPackage(linuxPackageOptions{
 		packageType:            "deb",
-		homeDir:                "/usr/share/grafana",
+		homeDir:                "/usr/share/grafana-de",
 		binPath:                "/usr/sbin",
-		configDir:              "/etc/grafana",
+		configDir:              "/etc/grafana-de",
 		etcDefaultPath:         "/etc/default",
-		etcDefaultFilePath:     "/etc/default/grafana-server",
-		initdScriptFilePath:    "/etc/init.d/grafana-server",
-		systemdServiceFilePath: "/usr/lib/systemd/system/grafana-server.service",
+		etcDefaultFilePath:     "/etc/default/grafana-de-server",
+		initdScriptFilePath:    "/etc/init.d/grafana-de-server",
+		systemdServiceFilePath: "/usr/lib/systemd/system/grafana-de-server.service",
 
 		postinstSrc:    "packaging/deb/control/postinst",
-		initdScriptSrc: "packaging/deb/init.d/grafana-server",
-		defaultFileSrc: "packaging/deb/default/grafana-server",
-		systemdFileSrc: "packaging/deb/systemd/grafana-server.service",
+		initdScriptSrc: "packaging/deb/init.d/grafana-de-server",
+		defaultFileSrc: "packaging/deb/default/grafana-de-server",
+		systemdFileSrc: "packaging/deb/systemd/grafana-de-server.service",
 
 		depends: []string{"adduser", "libfontconfig"},
 	})
@@ -262,18 +262,18 @@ func createRpmPackages() {
 	}
 	createPackage(linuxPackageOptions{
 		packageType:            "rpm",
-		homeDir:                "/usr/share/grafana",
+		homeDir:                "/usr/share/grafana-de",
 		binPath:                "/usr/sbin",
-		configDir:              "/etc/grafana",
+		configDir:              "/etc/grafana-de",
 		etcDefaultPath:         "/etc/sysconfig",
-		etcDefaultFilePath:     "/etc/sysconfig/grafana-server",
-		initdScriptFilePath:    "/etc/init.d/grafana-server",
-		systemdServiceFilePath: "/usr/lib/systemd/system/grafana-server.service",
+		etcDefaultFilePath:     "/etc/sysconfig/grafana-de-server",
+		initdScriptFilePath:    "/etc/init.d/grafana-de-server",
+		systemdServiceFilePath: "/usr/lib/systemd/system/grafana-de-server.service",
 
 		postinstSrc:    "packaging/rpm/control/postinst",
-		initdScriptSrc: "packaging/rpm/init.d/grafana-server",
-		defaultFileSrc: "packaging/rpm/sysconfig/grafana-server",
-		systemdFileSrc: "packaging/rpm/systemd/grafana-server.service",
+		initdScriptSrc: "packaging/rpm/init.d/grafana-de-server",
+		defaultFileSrc: "packaging/rpm/sysconfig/grafana-de-server",
+		systemdFileSrc: "packaging/rpm/systemd/grafana-de-server.service",
 
 		depends: []string{"/sbin/service", "fontconfig", "freetype", "urw-fonts"},
 	})
@@ -286,7 +286,7 @@ func createLinuxPackages() {
 }
 
 func createPackage(options linuxPackageOptions) {
-	packageRoot, _ := ioutil.TempDir("", "grafana-linux-pack")
+	packageRoot, _ := ioutil.TempDir("", "grafana-de-linux-pack")
 
 	// create directories
 	runPrint("mkdir", "-p", filepath.Join(packageRoot, options.homeDir))
@@ -326,10 +326,10 @@ func createPackage(options linuxPackageOptions) {
 		"-p", "./dist",
 	}
 
-	name := "grafana"
+	name := "grafana-de"
 	if enterprise {
 		name += "-enterprise"
-		args = append(args, "--replaces", "grafana")
+		args = append(args, "--replaces", "grafana-de")
 	}
 	args = append(args, "--name", name)
 
@@ -484,7 +484,7 @@ func clean() {
 
 	rmr("dist")
 	rmr("tmp")
-	rmr(filepath.Join(os.Getenv("GOPATH"), fmt.Sprintf("pkg/%s_%s/github.com/grafana", goos, goarch)))
+	rmr(filepath.Join(os.Getenv("GOPATH"), fmt.Sprintf("pkg/%s_%s/github.com/miprotek", goos, goarch)))
 }
 
 func setBuildEnv() {

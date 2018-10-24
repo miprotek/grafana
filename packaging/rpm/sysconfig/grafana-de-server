@@ -1,0 +1,24 @@
+GRAFANA_USER=grafana
+
+GRAFANA_GROUP=grafana
+
+GRAFANA_HOME=/usr/share/grafana-de
+
+LOG_DIR=/var/log/grafana-de
+
+DATA_DIR=/var/lib/grafana-de
+
+MAX_OPEN_FILES=10000
+
+CONF_DIR=/etc/grafana-de
+
+CONF_FILE=/etc/grafana-de/grafana.ini
+
+RESTART_ON_UPGRADE=true
+
+PLUGINS_DIR=/var/lib/grafana-de/plugins
+
+PROVISIONING_CFG_DIR=/etc/grafana-de/provisioning
+
+# Only used on systemd systems
+PID_FILE_DIR=/var/run/grafana-de

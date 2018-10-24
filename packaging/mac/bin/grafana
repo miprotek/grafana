@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
-DAEMON=grafana-server
-EXECUTABLE=/usr/local/bin/grafana-server
-CONFIG=/usr/local/etc/grafana/grafana.ini
-HOMEPATH=/usr/local/share/grafana
-LOGPATH=/usr/local/var/log/grafana
-DATAPATH=/usr/local/var/lib/grafana
-PLUGINPATH=/usr/local/var/lib/grafana/plugins
-DATASOURCECFGPATH=/usr/local/etc/grafana/datasources
-DASHBOARDSCFGPATH=/usr/local/etc/grafana/dashboards
+DAEMON=grafana-de-server
+EXECUTABLE=/usr/local/bin/grafana-de-server
+CONFIG=/usr/local/etc/grafana-de/grafana.ini
+HOMEPATH=/usr/local/share/grafana-de
+LOGPATH=/usr/local/var/log/grafana-de
+DATAPATH=/usr/local/var/lib/grafana-de
+PLUGINPATH=/usr/local/var/lib/grafana-de/plugins
+DATASOURCECFGPATH=/usr/local/etc/grafana-de/datasources
+DASHBOARDSCFGPATH=/usr/local/etc/grafana-de/dashboards
 
 case "$1" in
 start)

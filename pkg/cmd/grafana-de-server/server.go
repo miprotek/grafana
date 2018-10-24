@@ -12,32 +12,32 @@ import (
 	"time"
 
 	"github.com/facebookgo/inject"
-	"github.com/grafana/grafana/pkg/api/routing"
-	"github.com/grafana/grafana/pkg/bus"
-	"github.com/grafana/grafana/pkg/middleware"
-	"github.com/grafana/grafana/pkg/registry"
+	"github.com/miprotek/grafana-de/pkg/api/routing"
+	"github.com/miprotek/grafana-de/pkg/bus"
+	"github.com/miprotek/grafana-de/pkg/middleware"
+	"github.com/miprotek/grafana-de/pkg/registry"
 
 	"golang.org/x/sync/errgroup"
 
-	"github.com/grafana/grafana/pkg/api"
-	"github.com/grafana/grafana/pkg/log"
-	"github.com/grafana/grafana/pkg/login"
-	"github.com/grafana/grafana/pkg/setting"
+	"github.com/miprotek/grafana-de/pkg/api"
+	"github.com/miprotek/grafana-de/pkg/log"
+	"github.com/miprotek/grafana-de/pkg/login"
+	"github.com/miprotek/grafana-de/pkg/setting"
 
-	"github.com/grafana/grafana/pkg/social"
+	"github.com/miprotek/grafana-de/pkg/social"
 
 	// self registering services
-	_ "github.com/grafana/grafana/pkg/extensions"
-	_ "github.com/grafana/grafana/pkg/metrics"
-	_ "github.com/grafana/grafana/pkg/plugins"
-	_ "github.com/grafana/grafana/pkg/services/alerting"
-	_ "github.com/grafana/grafana/pkg/services/cleanup"
-	_ "github.com/grafana/grafana/pkg/services/notifications"
-	_ "github.com/grafana/grafana/pkg/services/provisioning"
-	_ "github.com/grafana/grafana/pkg/services/rendering"
-	_ "github.com/grafana/grafana/pkg/services/search"
-	_ "github.com/grafana/grafana/pkg/services/sqlstore"
-	_ "github.com/grafana/grafana/pkg/tracing"
+	_ "github.com/miprotek/grafana-de/pkg/extensions"
+	_ "github.com/miprotek/grafana-de/pkg/metrics"
+	_ "github.com/miprotek/grafana-de/pkg/plugins"
+	_ "github.com/miprotek/grafana-de/pkg/services/alerting"
+	_ "github.com/miprotek/grafana-de/pkg/services/cleanup"
+	_ "github.com/miprotek/grafana-de/pkg/services/notifications"
+	_ "github.com/miprotek/grafana-de/pkg/services/provisioning"
+	_ "github.com/miprotek/grafana-de/pkg/services/rendering"
+	_ "github.com/miprotek/grafana-de/pkg/services/search"
+	_ "github.com/miprotek/grafana-de/pkg/services/sqlstore"
+	_ "github.com/miprotek/grafana-de/pkg/tracing"
 )
 
 func NewGrafanaServer() *GrafanaServerImpl {
