@@ -1,9 +1,9 @@
 package commands
 
 import (
-	"github.com/grafana/grafana/pkg/cmd/grafana-cli/logger"
-	m "github.com/grafana/grafana/pkg/cmd/grafana-cli/models"
-	s "github.com/grafana/grafana/pkg/cmd/grafana-cli/services"
+	"github.com/miprotek/grafana-de/pkg/cmd/grafana-de-cli/logger"
+	m "github.com/miprotek/grafana-de/pkg/cmd/grafana-de-cli/models"
+	s "github.com/miprotek/grafana-de/pkg/cmd/grafana-de-cli/services"
 	"github.com/hashicorp/go-version"
 )
 

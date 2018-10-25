@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"path"
 
-	"github.com/grafana/grafana/pkg/registry"
-	"github.com/grafana/grafana/pkg/services/provisioning/dashboards"
-	"github.com/grafana/grafana/pkg/services/provisioning/datasources"
-	"github.com/grafana/grafana/pkg/setting"
+	"github.com/miprotek/grafana-de/pkg/registry"
+	"github.com/miprotek/grafana-de/pkg/services/provisioning/dashboards"
+	"github.com/miprotek/grafana-de/pkg/services/provisioning/datasources"
+	"github.com/miprotek/grafana-de/pkg/setting"
 )
 
 func init() {

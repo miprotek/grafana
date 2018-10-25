@@ -4,14 +4,14 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/grafana/grafana/pkg/bus"
-	"github.com/grafana/grafana/pkg/components/imguploader"
-	"github.com/grafana/grafana/pkg/log"
-	"github.com/grafana/grafana/pkg/metrics"
-	"github.com/grafana/grafana/pkg/services/rendering"
-	"github.com/grafana/grafana/pkg/setting"
+	"github.com/miprotek/grafana-de/pkg/bus"
+	"github.com/miprotek/grafana-de/pkg/components/imguploader"
+	"github.com/miprotek/grafana-de/pkg/log"
+	"github.com/miprotek/grafana-de/pkg/metrics"
+	"github.com/miprotek/grafana-de/pkg/services/rendering"
+	"github.com/miprotek/grafana-de/pkg/setting"
 
-	m "github.com/grafana/grafana/pkg/models"
+	m "github.com/miprotek/grafana-de/pkg/models"
 )
 
 type NotifierPlugin struct {

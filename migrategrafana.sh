@@ -15,12 +15,12 @@ foldersearch() {
 	echo migrate folder ${1}
 	for file in ${1}/*; do
 		if [ -d ${file} ]; then
-			foldersearch ${file}
+			foldersearch ${file} ${2}
 		else
 			case "${2}" in
 				github) filereplace_github ${file} ;;
 				cli)    filereplace_cli ${file} ;;
-				*) echo "type not supportet
+				*) echo "type not supportet"
 				   exit 1
 				   ;;
 			esac

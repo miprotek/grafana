@@ -2,8 +2,8 @@ package commands
 
 import (
 	"errors"
-	"github.com/grafana/grafana/pkg/cmd/grafana-cli/commands/commandstest"
-	s "github.com/grafana/grafana/pkg/cmd/grafana-cli/services"
+	"github.com/miprotek/grafana-de/pkg/cmd/grafana-de-cli/commands/commandstest"
+	s "github.com/miprotek/grafana-de/pkg/cmd/grafana-de-cli/services"
 	. "github.com/smartystreets/goconvey/convey"
 	"testing"
 )
@@ -36,7 +36,7 @@ func TestMissingPath(t *testing.T) {
 				CliArgs: []string{"ls"},
 				GlobalFlags: &commandstest.FakeFlagger{
 					Data: map[string]interface{}{
-						"path": "/var/lib/grafana/plugins",
+						"path": "/var/lib/grafana-de/plugins",
 					},
 				},
 			}
@@ -56,7 +56,7 @@ func TestMissingPath(t *testing.T) {
 				CliArgs: []string{"ls"},
 				GlobalFlags: &commandstest.FakeFlagger{
 					Data: map[string]interface{}{
-						"path": "/var/lib/grafana/plugins",
+						"path": "/var/lib/grafana-de/plugins",
 					},
 				},
 			}
@@ -76,7 +76,7 @@ func TestMissingPath(t *testing.T) {
 				CliArgs: []string{"ls"},
 				GlobalFlags: &commandstest.FakeFlagger{
 					Data: map[string]interface{}{
-						"path": "/var/lib/grafana/plugins",
+						"path": "/var/lib/grafana-de/plugins",
 					},
 				},
 			}

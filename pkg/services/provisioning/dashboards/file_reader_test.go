@@ -7,11 +7,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/grafana/grafana/pkg/bus"
-	"github.com/grafana/grafana/pkg/models"
-	"github.com/grafana/grafana/pkg/services/dashboards"
+	"github.com/miprotek/grafana-de/pkg/bus"
+	"github.com/miprotek/grafana-de/pkg/models"
+	"github.com/miprotek/grafana-de/pkg/services/dashboards"
 
-	"github.com/grafana/grafana/pkg/log"
+	"github.com/miprotek/grafana-de/pkg/log"
 	. "github.com/smartystreets/goconvey/convey"
 )
 
@@ -49,9 +49,9 @@ func TestCreatingNewDashboardFileReader(t *testing.T) {
 		})
 
 		Convey("using full path", func() {
-			fullPath := "/var/lib/grafana/dashboards"
+			fullPath := "/var/lib/grafana-de/dashboards"
 			if runtime.GOOS == "windows" {
-				fullPath = `c:\var\lib\grafana`
+				fullPath = `c:\var\lib\grafana-de`
 			}
 
 			cfg.Options["folder"] = fullPath

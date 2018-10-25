@@ -8,7 +8,7 @@ import (
 	"time"
 
 	pluginModel "github.com/grafana/grafana-plugin-model/go/renderer"
-	"github.com/grafana/grafana/pkg/plugins"
+	"github.com/miprotek/grafana-de/pkg/plugins"
 	plugin "github.com/hashicorp/go-plugin"
 )
 

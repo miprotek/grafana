@@ -4,8 +4,8 @@ import (
 	"sync"
 	"time"
 
-	m "github.com/grafana/grafana/pkg/models"
-	"github.com/grafana/grafana/pkg/util"
+	m "github.com/miprotek/grafana-de/pkg/models"
+	"github.com/miprotek/grafana-de/pkg/util"
 )
 
 var renderKeysLock sync.Mutex

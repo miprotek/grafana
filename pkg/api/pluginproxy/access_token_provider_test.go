@@ -5,8 +5,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/grafana/grafana/pkg/models"
-	"github.com/grafana/grafana/pkg/plugins"
+	"github.com/miprotek/grafana-de/pkg/models"
+	"github.com/miprotek/grafana-de/pkg/plugins"
 	. "github.com/smartystreets/goconvey/convey"
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/jwt"
