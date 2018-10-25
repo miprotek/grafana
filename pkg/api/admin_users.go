@@ -19,18 +19,18 @@ func AdminCreateUser(c *m.ReqContext, form dtos.AdminCreateUserForm) {
 	if len(cmd.Login) == 0 {
 		cmd.Login = cmd.Email
 		if len(cmd.Login) == 0 {
-			c.JsonApiErr(400, "Validation error, need specify either username or email", nil)
+			c.JsonApiErr(400, "Validierungsfehler, Sie müssen entweder Benutzername oder E-Mail angeben", nil)
 			return
 		}
 	}
 
 	if len(cmd.Password) < 4 {
-		c.JsonApiErr(400, "Password is missing or too short", nil)
+		c.JsonApiErr(400, "Passwort fehlt oder ist zu kurz", nil)
 		return
 	}
 
 	if err := bus.Dispatch(&cmd); err != nil {
-		c.JsonApiErr(500, "failed to create user", err)
+		c.JsonApiErr(500, "Benutzererstellung ist fehlgeschlagen", err)
 		return
 	}
 
@@ -39,7 +39,7 @@ func AdminCreateUser(c *m.ReqContext, form dtos.AdminCreateUserForm) {
 	user := cmd.Result
 
 	result := m.UserIdDTO{
-		Message: "User created",
+		Message: "Benutzer erstellt",
 		Id:      user.Id,
 	}
 
@@ -50,14 +50,14 @@ func AdminUpdateUserPassword(c *m.ReqContext, form dtos.AdminUpdateUserPasswordF
 	userID := c.ParamsInt64(":id")
 
 	if len(form.Password) < 4 {
-		c.JsonApiErr(400, "New password too short", nil)
+		c.JsonApiErr(400, "Neues Passwort zu kurz", nil)
 		return
 	}
 
 	userQuery := m.GetUserByIdQuery{Id: userID}
 
 	if err := bus.Dispatch(&userQuery); err != nil {
-		c.JsonApiErr(500, "Could not read user from database", err)
+		c.JsonApiErr(500, "Benutzer konnte nicht aus der Datenbank gelesen werden", err)
 		return
 	}
 
@@ -69,11 +69,11 @@ func AdminUpdateUserPassword(c *m.ReqContext, form dtos.AdminUpdateUserPasswordF
 	}
 
 	if err := bus.Dispatch(&cmd); err != nil {
-		c.JsonApiErr(500, "Failed to update user password", err)
+		c.JsonApiErr(500, "Das Benutzerpasswort konnte nicht aktualisiert werden", err)
 		return
 	}
 
-	c.JsonOK("User password updated")
+	c.JsonOK("Benutzerpasswort wurde aktualisiert")
 }
 
 func AdminUpdateUserPermissions(c *m.ReqContext, form dtos.AdminUpdateUserPermissionsForm) {
@@ -85,11 +85,11 @@ func AdminUpdateUserPermissions(c *m.ReqContext, form dtos.AdminUpdateUserPermis
 	}
 
 	if err := bus.Dispatch(&cmd); err != nil {
-		c.JsonApiErr(500, "Failed to update user permissions", err)
+		c.JsonApiErr(500, "Fehler beim Aktualisieren der Benutzerberechtigung", err)
 		return
 	}
 
-	c.JsonOK("User permissions updated")
+	c.JsonOK("Benutzerberechtigungen wurden geupdatet")
 }
 
 func AdminDeleteUser(c *m.ReqContext) {
@@ -98,9 +98,9 @@ func AdminDeleteUser(c *m.ReqContext) {
 	cmd := m.DeleteUserCommand{UserId: userID}
 
 	if err := bus.Dispatch(&cmd); err != nil {
-		c.JsonApiErr(500, "Failed to delete user", err)
+		c.JsonApiErr(500, "Löschen des Benutzers ist fehlgeschlagen", err)
 		return
 	}
 
-	c.JsonOK("User deleted")
+	c.JsonOK("Benutzer erfolgreich gelöscht")
 }

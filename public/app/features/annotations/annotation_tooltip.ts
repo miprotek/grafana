@@ -44,7 +44,7 @@ export function annotationTooltipDirective($sanitize, dashboardSrv, contextSrv, 
 
       let header = `<div class="graph-annotation__header">`;
       if (event.login) {
-        header += `<div class="graph-annotation__user" bs-tooltip="'Created by ${event.login}'"><img src="${
+        header += `<div class="graph-annotation__user" bs-tooltip="'Erstellt von ${event.login}'"><img src="${
           event.avatarUrl
         }" /></div>`;
       }

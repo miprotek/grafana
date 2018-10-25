@@ -29,12 +29,12 @@ export class SeriesColorPicker extends React.Component<Props, any> {
 
     return (
       <div className="p-b-1">
-        <label className="small p-r-1">Y Axis:</label>
+        <label className="small p-r-1">Y Axe:</label>
         <button onClick={this.onToggleAxis} className={'btn btn-small ' + leftButtonClass}>
-          Left
+          Links
         </button>
         <button onClick={this.onToggleAxis} className={'btn btn-small ' + rightButtonClass}>
-          Right
+          Rechts
         </button>
       </div>
     );

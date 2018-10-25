@@ -4,9 +4,9 @@
   "id": "singlestat",
 
   "info": {
-    "description": "Singlestat Panel for Grafana",
+    "description": "Singlestat Panel für Grafana",
     "author": {
-      "name": "Grafana Project",
+      "name": "Grafana Projekt",
       "url": "https://grafana.com"
 },
     "logos": {

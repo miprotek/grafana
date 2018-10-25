@@ -139,15 +139,15 @@ class GraphCtrl extends MetricsPanelCtrl {
     this.addEditorTab('Legend', 'public/app/plugins/panel/graph/tab_legend.html', 3);
 
     if (config.alertingEnabled) {
-      this.addEditorTab('Alert', alertTab, 5);
+      this.addEditorTab('Alarm', alertTab, 5);
     }
 
     this.subTabIndex = 0;
   }
 
   onInitPanelActions(actions) {
-    actions.push({ text: 'Export CSV', click: 'ctrl.exportCsv()' });
-    actions.push({ text: 'Toggle legend', click: 'ctrl.toggleLegend()', shortcut: 'p l' });
+    actions.push({ text: 'Exportieren zu CSV', click: 'ctrl.exportCsv()' });
+    actions.push({ text: 'Legende umschalten', click: 'ctrl.toggleLegend()', shortcut: 'p l' });
   }
 
   issueQueries(datasource) {
@@ -201,15 +201,15 @@ class GraphCtrl extends MetricsPanelCtrl {
 
     if (datapointsCount === 0) {
       this.dataWarning = {
-        title: 'No data points',
-        tip: 'No datapoints returned from data query',
+        title: 'Keine Datenpunkte',
+        tip: 'Keine Datenpunkte von der Datenabfrage zurückgegeben',
       };
     } else {
       for (const series of this.seriesList) {
         if (series.isOutsideRange) {
           this.dataWarning = {
-            title: 'Data points outside time range',
-            tip: 'Can be caused by timezone mismatch or missing time filter in query',
+            title: 'Datenpunkte ausserhalb des Zeitbereichs',
+            tip: 'Kann durch Zeitzonen unterschied oder den fehlenden Zeitfilter in der Abfrage verursacht werden',
           };
           break;
         }

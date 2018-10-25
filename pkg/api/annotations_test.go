@@ -15,14 +15,14 @@ func TestAnnotationsApiEndpoint(t *testing.T) {
 	Convey("Given an annotation without a dashboard id", t, func() {
 		cmd := dtos.PostAnnotationsCmd{
 			Time:     1000,
-			Text:     "annotation text",
+			Text:     "Meldungstext",
 			Tags:     []string{"tag1", "tag2"},
 			IsRegion: false,
 		}
 
 		updateCmd := dtos.UpdateAnnotationsCmd{
 			Time:     1000,
-			Text:     "annotation text",
+			Text:     "Meldungstext",
 			Tags:     []string{"tag1", "tag2"},
 			IsRegion: false,
 		}
@@ -85,7 +85,7 @@ func TestAnnotationsApiEndpoint(t *testing.T) {
 	Convey("Given an annotation with a dashboard id and the dashboard does not have an acl", t, func() {
 		cmd := dtos.PostAnnotationsCmd{
 			Time:        1000,
-			Text:        "annotation text",
+			Text:        "Meldungstext",
 			Tags:        []string{"tag1", "tag2"},
 			IsRegion:    false,
 			DashboardId: 1,
@@ -94,7 +94,7 @@ func TestAnnotationsApiEndpoint(t *testing.T) {
 
 		updateCmd := dtos.UpdateAnnotationsCmd{
 			Time:     1000,
-			Text:     "annotation text",
+			Text:     "Meldungstext",
 			Tags:     []string{"tag1", "tag2"},
 			IsRegion: false,
 			Id:       1,

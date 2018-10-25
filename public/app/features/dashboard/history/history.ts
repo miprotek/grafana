@@ -172,11 +172,11 @@ export class HistoryListCtrl {
 
   restore(version: number) {
     this.$rootScope.appEvent('confirm-modal', {
-      title: 'Restore version',
+      title: 'Version wiederherstellen',
       text: '',
-      text2: `Are you sure you want to restore the dashboard to version ${version}? All unsaved changes will be lost.`,
+      text2: `Möchten Sie das Dashboard wirklich auf Version ${version} wiederherstellen? Alle ungespeicherten Änderungen gehen verloren.`,
       icon: 'fa-history',
-      yesText: `Yes, restore to version ${version}`,
+      yesText: `Ja, Version ${version} wiederherstellen`,
       onConfirm: this.restoreConfirm.bind(this, version),
     });
   }
@@ -188,7 +188,7 @@ export class HistoryListCtrl {
       .then(response => {
         this.$location.url(locationUtil.stripBaseFromUrl(response.url)).replace();
         this.$route.reload();
-        this.$rootScope.appEvent('alert-success', ['Dashboard restored', 'Restored from version ' + version]);
+        this.$rootScope.appEvent('alert-success', ['Dashboard Wiederhergestellt', 'Wiederhergestellt von Version ' + version]);
       })
       .catch(() => {
         this.mode = 'list';

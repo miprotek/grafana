@@ -50,9 +50,9 @@ export class DashboardRow extends React.Component<DashboardRowProps, any> {
 
   delete() {
     appEvents.emit('confirm-modal', {
-      title: 'Delete Row',
-      text: 'Are you sure you want to remove this row and all its panels?',
-      altActionText: 'Delete row only',
+      title: 'Zeile löschen',
+      text: 'Möchten Sie diese Zeile und alle ihre Bereiche wirklich entfernen?',
+      altActionText: 'Nur Zeile löschen',
       icon: 'fa-trash',
       onConfirm: () => {
         this.props.dashboard.removeRow(this.props.panel, true);

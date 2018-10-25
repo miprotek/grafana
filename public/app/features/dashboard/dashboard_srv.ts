@@ -28,10 +28,10 @@ export class DashboardSrv {
       err.isHandled = true;
 
       this.$rootScope.appEvent('confirm-modal', {
-        title: 'Conflict',
-        text: 'Someone else has updated this dashboard.',
-        text2: 'Would you still like to save this dashboard?',
-        yesText: 'Save & Overwrite',
+        title: 'Konflikt',
+        text: 'Jemand anderes hat dieses Dashboard aktualisiert.',
+        text2: 'Möchten Sie dieses Dashboard trotzdem speichern?',
+        yesText: 'Speichern & Überschreiben',
         icon: 'fa-warning',
         onConfirm: () => {
           this.save(clone, options);
@@ -43,10 +43,10 @@ export class DashboardSrv {
       err.isHandled = true;
 
       this.$rootScope.appEvent('confirm-modal', {
-        title: 'Conflict',
-        text: 'A dashboard with the same name in selected folder already exists.',
-        text2: 'Would you still like to save this dashboard?',
-        yesText: 'Save & Overwrite',
+        title: 'Konflikt',
+        text: 'Ein Dashboard mit demselben Namen im ausgewählten Ordner existiert bereits.',
+        text2: 'Wollen Sie das Dashboard trotzdem speichern?',
+        yesText: 'Speichern & Überschreiben',
         icon: 'fa-warning',
         onConfirm: () => {
           this.save(clone, options);
@@ -60,10 +60,10 @@ export class DashboardSrv {
       this.$rootScope.appEvent('confirm-modal', {
         title: 'Plugin Dashboard',
         text: err.data.message,
-        text2: 'Your changes will be lost when you update the plugin. Use Save As to create custom version.',
-        yesText: 'Overwrite',
+        text2: 'Die Änderungen gehen verloren, wenn das Plugin aktualisiert wird. Benutzen Sie Speichern unter, zum erstellen einer eigenen Vers.',
+        yesText: 'Überschreiben',
         icon: 'fa-warning',
-        altActionText: 'Save As',
+        altActionText: 'Speichern als',
         onAltAction: () => {
           this.showSaveAsModal();
         },

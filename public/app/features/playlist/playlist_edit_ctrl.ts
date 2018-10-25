@@ -87,11 +87,11 @@ export class PlaylistEditCtrl {
 
     savePromise.then(
       () => {
-        this.$scope.appEvent('alert-success', ['Playlist saved', '']);
+        this.$scope.appEvent('alert-success', ['Playlist gespeichert', '']);
         this.$location.path('/playlists');
       },
       () => {
-        this.$scope.appEvent('alert-error', ['Unable to save playlist', '']);
+        this.$scope.appEvent('alert-error', ['Playlist kann nicht gespeichert werden', '']);
       }
     );
   }

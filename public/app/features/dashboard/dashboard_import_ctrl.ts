@@ -84,9 +84,9 @@ export class DashboardImportCtrl {
     });
 
     if (sources.length === 0) {
-      inputModel.info = 'No data sources of type ' + input.pluginName + ' found';
+      inputModel.info = 'Keine Datenquelle vom Typ ' + input.pluginName + ' gefunden';
     } else if (!inputModel.info) {
-      inputModel.info = 'Select a ' + input.pluginName + ' data source';
+      inputModel.info = 'Wählen Sie eine ' + input.pluginName + ' Datenquelle aus';
     }
 
     inputModel.options = sources.map(val => {
@@ -208,7 +208,7 @@ export class DashboardImportCtrl {
     } else if (match && match[2]) {
       dashboardId = match[2];
     } else {
-      this.gnetError = 'Could not find dashboard';
+      this.gnetError = 'Konnte Dashboard nicht finden';
     }
 
     return this.backendSrv

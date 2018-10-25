@@ -33,14 +33,14 @@ func GenStateString() string {
 
 func OAuthLogin(ctx *m.ReqContext) {
 	if setting.OAuthService == nil {
-		ctx.Handle(404, "OAuth not enabled", nil)
+		ctx.Handle(404, "OAuth ist nicht aktiviert", nil)
 		return
 	}
 
 	name := ctx.Params(":name")
 	connect, ok := social.SocialMap[name]
 	if !ok {
-		ctx.Handle(404, fmt.Sprintf("No OAuth with name %s configured", name), nil)
+		ctx.Handle(404, fmt.Sprintf("Kein OAuth mit Name %s konfiguriert", name), nil)
 		return
 	}
 

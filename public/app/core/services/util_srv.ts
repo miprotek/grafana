@@ -70,8 +70,8 @@ export class UtilSrv {
     scope.onAltAction = payload.onAltAction;
     scope.altActionText = payload.altActionText;
     scope.icon = payload.icon || 'fa-check';
-    scope.yesText = payload.yesText || 'Yes';
-    scope.noText = payload.noText || 'Cancel';
+    scope.yesText = payload.yesText || 'Ja';
+    scope.noText = payload.noText || 'Abbrechen';
     scope.confirmTextValid = scope.confirmText ? false : true;
 
     appEvents.emit('show-modal', {

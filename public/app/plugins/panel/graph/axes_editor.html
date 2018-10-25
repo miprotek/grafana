@@ -1,20 +1,20 @@
 <div class="editor-row">
 	<div class="section gf-form-group" ng-repeat="yaxis in ctrl.panel.yaxes">
 
-		<h5 class="section-heading" ng-show="$index === 0">Left Y</h5>
-		<h5 class="section-heading" ng-show="$index === 1">Right Y</h5>
+		<h5 class="section-heading" ng-show="$index === 0">Linke Y</h5>
+		<h5 class="section-heading" ng-show="$index === 1">Rechte Y</h5>
 
-		<gf-form-switch class="gf-form" label="Show" label-class="width-6" checked="yaxis.show" on-change="ctrl.render()"></gf-form-switch>
+		<gf-form-switch class="gf-form" label="Anzeigen" label-class="width-6" checked="yaxis.show" on-change="ctrl.render()"></gf-form-switch>
 
 		<div ng-if="yaxis.show">
 			<div class="gf-form">
-				<label class="gf-form-label width-6">Unit</label>
+				<label class="gf-form-label width-6">Einheit</label>
 				<div class="gf-form-dropdown-typeahead max-width-20" ng-model="yaxis.format" dropdown-typeahead2="ctrl.unitFormats" dropdown-typeahead-on-select="ctrl.setUnitFormat(yaxis, $subItem)"></div>
 			</div>
 		</div>
 
 			<div class="gf-form">
-				<label class="gf-form-label width-6">Scale</label>
+				<label class="gf-form-label width-6">Skalierung</label>
 				<div class="gf-form-select-wrapper max-width-20">
 					<select class="gf-form-input" ng-model="yaxis.logBase" ng-options="v as k for (k, v) in ctrl.logScales" ng-change="ctrl.render()"></select>
 				</div>
@@ -33,7 +33,7 @@
 
 		<div ng-if="yaxis.show">
 			<div class="gf-form">
-				<label class="gf-form-label width-6">Decimals</label>
+				<label class="gf-form-label width-6">Dezimale</label>
 				<input type="number" class="gf-form-input max-width-20" placeholder="auto" empty-to-null bs-tooltip="'Override automatic decimal precision for y-axis'" data-placement="right" ng-model="yaxis.decimals" ng-change="ctrl.render()" ng-model-onblur>
 			</div>
 
@@ -45,11 +45,11 @@
 	</div>
 
 	<div class="section gf-form-group">
-		<h5 class="section-heading">X-Axis</h5>
-		<gf-form-switch class="gf-form" label="Show" label-class="width-6" checked="ctrl.panel.xaxis.show" on-change="ctrl.render()"></gf-form-switch>
+		<h5 class="section-heading">X-Axen</h5>
+		<gf-form-switch class="gf-form" label="Anzeigen" label-class="width-6" checked="ctrl.panel.xaxis.show" on-change="ctrl.render()"></gf-form-switch>
 
 		<div class="gf-form">
-			<label class="gf-form-label width-6">Mode</label>
+			<label class="gf-form-label width-6">Modus</label>
 			<div class="gf-form-select-wrapper max-width-15">
 				<select class="gf-form-input" ng-model="ctrl.panel.xaxis.mode" ng-options="v as k for (k, v) in ctrl.xAxisModes" ng-change="ctrl.xAxisModeChanged()"> </select>
 			</div>
@@ -57,7 +57,7 @@
 
 		<!-- Series mode -->
 		<div class="gf-form" ng-if="ctrl.panel.xaxis.mode === 'series'">
-			<label class="gf-form-label width-6">Value</label>
+			<label class="gf-form-label width-6">Wert</label>
       <metric-segment-model property="ctrl.panel.xaxis.values[0]" options="ctrl.xAxisStatOptions" on-change="ctrl.xAxisValueChanged()" custom="false" css-class="width-10" select-mode="true"></metric-segment-model>
 		</div>
 
@@ -69,13 +69,13 @@
 
 		<div>
 			<br/>
-			<h5 class="section-heading">Y-Axes</h5>
-			<gf-form-switch class="gf-form" label="Align" tooltip="Align left and right Y-axes" label-class="width-6" switch-class="width-5" checked="ctrl.panel.yaxis.align" on-change="ctrl.render()"></gf-form-switch>
+			<h5 class="section-heading">Y-Axen</h5>
+			<gf-form-switch class="gf-form" label="Ausrichten" tooltip="Linke und Rechte Y-Axen ausrichten" label-class="width-6" switch-class="width-5" checked="ctrl.panel.yaxis.align" on-change="ctrl.render()"></gf-form-switch>
 			<div class="gf-form" ng-show="ctrl.panel.yaxis.align">
 				<label class="gf-form-label width-6">
 					Level
 				</label>
-				<input type="number" class="gf-form-input width-5" placeholder="0" ng-model="ctrl.panel.yaxis.alignLevel" ng-change="ctrl.render()" ng-model-onblur bs-tooltip="'Alignment of Y-axes are based on this value, starting from Y=0'" data-placement="right">
+				<input type="number" class="gf-form-input width-5" placeholder="0" ng-model="ctrl.panel.yaxis.alignLevel" ng-change="ctrl.render()" ng-model-onblur bs-tooltip="'Die Ausrichtung der Y-Achsen basiert auf diesem Wert, beginnend mit Y=0'" data-placement="right">
 			</div>
 		</div>
 

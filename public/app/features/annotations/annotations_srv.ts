@@ -54,7 +54,7 @@ export class AnnotationsSrv {
           err.message = err.data.message;
         }
         console.log('AnnotationSrv.query error', err);
-        this.$rootScope.appEvent('alert-error', ['Annotation Query Failed', err.message || err]);
+        this.$rootScope.appEvent('alert-error', ['Annotations Abfrage fehlgeschlagen', err.message || err]);
         return [];
       });
   }

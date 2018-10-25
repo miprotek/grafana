@@ -22,10 +22,10 @@ export class PlaylistsCtrl {
 
     this.backendSrv.delete('/api/playlists/' + playlist.id).then(
       () => {
-        this.$scope.appEvent('alert-success', ['Playlist deleted', '']);
+        this.$scope.appEvent('alert-success', ['Playlist gelöscht', '']);
       },
       () => {
-        this.$scope.appEvent('alert-error', ['Unable to delete playlist', '']);
+        this.$scope.appEvent('alert-error', ['Playlist konnte nicht gelöscht werden', '']);
         this.playlists.push(playlist);
       }
     );
@@ -33,9 +33,9 @@ export class PlaylistsCtrl {
 
   removePlaylist(playlist) {
     this.$scope.appEvent('confirm-modal', {
-      title: 'Delete',
-      text: 'Are you sure you want to delete playlist ' + playlist.name + '?',
-      yesText: 'Delete',
+      title: 'Löschen',
+      text: 'Sind Sie sicher, dass Sie die Playlist ' + playlist.name + ' löschen wollen?',
+      yesText: 'Löschen',
       icon: 'fa-trash',
       onConfirm: () => {
         this.removePlaylistConfirmed(playlist);

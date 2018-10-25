@@ -17,8 +17,8 @@ export function ShareModalCtrl($scope, $rootScope, $location, $timeout, timeSrv,
     $scope.tabs = [{ title: 'Link', src: 'shareLink.html' }];
 
     if ($scope.modeSharePanel) {
-      $scope.modalTitle = 'Share Panel';
-      $scope.tabs.push({ title: 'Embed', src: 'shareEmbed.html' });
+        $scope.modalTitle = 'Teilen Panel';
+        $scope.tabs.push({ title: 'Einbetten', src: 'shareEmbed.html' });
     } else {
       $scope.modalTitle = 'Share';
     }
@@ -28,7 +28,7 @@ export function ShareModalCtrl($scope, $rootScope, $location, $timeout, timeSrv,
     }
 
     if (!$scope.dashboard.meta.isSnapshot && !$scope.modeSharePanel) {
-      $scope.tabs.push({ title: 'Export', src: 'shareExport.html' });
+        $scope.tabs.push({ title: 'Exportieren', src: 'shareExport.html' });
     }
 
     $scope.buildUrl();

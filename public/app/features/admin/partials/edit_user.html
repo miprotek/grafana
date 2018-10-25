@@ -3,7 +3,7 @@
 <div class="page-container page-body">
 
 	<div class="page-sub-heading">
-		<h2>Edit User</h2>
+		<h2>Benutzer bearbeiten</h2>
 	</div>
 
 	<form name="userForm" class="gf-form-group">
@@ -21,24 +21,24 @@
 			</div>
 
 			<div class="gf-form-button-row">
-				<button type="submit" class="btn btn-success" ng-click="update()" ng-show="!createMode">Update</button>
+				<button type="submit" class="btn btn-success" ng-click="update()" ng-show="!createMode">Aktualisieren</button>
 			</div>
 	</form>
 
-	<h3 class="page-heading">Change password</h3>
+	<h3 class="page-heading">Passwort ändern</h3>
 
 	<form name="passwordForm" class="gf-form-group">
 		<div class="gf-form">
-				<span class="gf-form-label width-10">New password</span>
+				<span class="gf-form-label width-10">Neues Passwort</span>
 				<input type="password" required ng-minlength="4" ng-model="password" class="gf-form-input max-width-25">
 		</div>
 
 		<div class="gf-form-button-row">
-			<button type="submit" class="btn btn-success" ng-click="setPassword()">Update</button>
+			<button type="submit" class="btn btn-success" ng-click="setPassword()">Aktualisieren</button>
 		</div>
 	</form>
 
-	<h3 class="page-heading">Permissions</h3>
+	<h3 class="page-heading">Berechtigungen</h3>
 
 	<form name="passwordForm" class="gf-form-group">
 		<div class="gf-form" >
@@ -46,26 +46,26 @@
 		</div>
 
 		<div class="gf-form-button-row">
-			<button type="submit" class="btn btn-success" ng-click="updatePermissions()">Update</button>
+			<button type="submit" class="btn btn-success" ng-click="updatePermissions()">Aktualisieren</button>
 		</div>
 	</form>
 
-	<h3 class="page-heading">Organizations</h3>
+	<h3 class="page-heading">Organisationen</h3>
 
 	<form name="addOrgForm" class="gf-form-group">
 		<div class="gf-form-inline">
 			<div class="gf-form">
-				<span class="gf-form-label">Add</span>
-				<input type="text" ng-model="newOrg.name" bs-typeahead="searchOrgs"	required class="gf-form-input max-width-20" placeholder="organization name">
+				<span class="gf-form-label">Hinzufügen</span>
+				<input type="text" ng-model="newOrg.name" bs-typeahead="searchOrgs"	required class="gf-form-input max-width-20" placeholder="Organisations Name">
 			</div>
 			<div class="gf-form">
-        	<span class="gf-form-label">Role</span>
+        	<span class="gf-form-label">Rolle</span>
         	<span class="gf-form-select-wrapper">
             	<select type="text" ng-model="newOrg.role" class="gf-form-input width-10" ng-options="f for f in ['Viewer', 'Editor', 'Admin']"></select>
         	</span>
 			</div>
 			<div class="gf-form">
-				<button class="btn btn-success gf-form-btn" ng-click="addOrgUser()">Add</button>
+				<button class="btn btn-success gf-form-btn" ng-click="addOrgUser()">Hinzufügen</button>
 			</div>
 		</div>
 	</form>
@@ -74,13 +74,13 @@
 		<thead>
 			<tr>
 				<th>Name</th>
-				<th>Role</th>
+				<th>Rolle</th>
 				<th></th>
 			</tr>
 		</thead>
 		<tr ng-repeat="org in orgs">
 			<td>
-				{{org.name}} <span class="label label-info" ng-show="org.orgId === user.orgId">Current</span>
+				{{org.name}} <span class="label label-info" ng-show="org.orgId === user.orgId">Momentan</span>
 			</td>
 			<td>
         <div class="gf-form">

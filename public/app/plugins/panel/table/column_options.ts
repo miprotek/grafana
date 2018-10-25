@@ -24,16 +24,16 @@ export class ColumnOptionsCtrl {
     this.panel = this.panelCtrl.panel;
     this.unitFormats = kbn.getUnitFormats();
     this.colorModes = [
-      { text: 'Disabled', value: null },
-      { text: 'Cell', value: 'cell' },
-      { text: 'Value', value: 'value' },
-      { text: 'Row', value: 'row' },
+      { text: 'Deaktiviert', value: null },
+      { text: 'Zelle', value: 'cell' },
+      { text: 'Wert', value: 'value' },
+      { text: 'Reihe', value: 'row' },
     ];
     this.columnTypes = [
-      { text: 'Number', value: 'number' },
+      { text: 'Nummer', value: 'number' },
       { text: 'String', value: 'string' },
-      { text: 'Date', value: 'date' },
-      { text: 'Hidden', value: 'hidden' },
+      { text: 'Datum', value: 'date' },
+      { text: 'Versteckt', value: 'hidden' },
     ];
     this.fontSizes = ['80%', '90%', '100%', '110%', '120%', '130%', '150%', '160%', '180%', '200%', '220%', '250%'];
     this.dateFormats = [
@@ -42,7 +42,7 @@ export class ColumnOptionsCtrl {
       { text: 'MM/DD/YY h:mm:ss a', value: 'MM/DD/YY h:mm:ss a' },
       { text: 'MMMM D, YYYY LT', value: 'MMMM D, YYYY LT' },
     ];
-    this.mappingTypes = [{ text: 'Value to text', value: 1 }, { text: 'Range to text', value: 2 }];
+    this.mappingTypes = [{ text: 'Wert zu Text', value: 1 }, { text: 'Bereich zu Text', value: 2 }];
 
     this.getColumnNames = () => {
       if (!this.panelCtrl.table) {

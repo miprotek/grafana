@@ -57,7 +57,7 @@ class MetricsPanelCtrl extends PanelCtrl {
 
   private onInitMetricsPanelEditMode() {
     this.addEditorTab('Metrics', metricsTabDirective, 1, 'fa fa-database');
-    this.addEditorTab('Time range', 'public/app/features/panel/partials/panelTime.html');
+    this.addEditorTab('Zeitspanne', 'public/app/features/panel/partials/panelTime.html');
   }
 
   private onMetricsPanelRefresh() {
@@ -294,7 +294,7 @@ class MetricsPanelCtrl extends PanelCtrl {
       (this.datasource.meta.explore || this.datasource.meta.id === 'mixed')
     ) {
       items.push({
-        text: 'Explore',
+        text: 'Durchsuchen',
         click: 'ctrl.explore();',
         icon: 'fa fa-fw fa-rocket',
         shortcut: 'x',

@@ -14,7 +14,6 @@ export default class ResponseParser {
     const normalizedQuery = query.toLowerCase();
     const isValueFirst =
       normalizedQuery.indexOf('show field keys') >= 0 || normalizedQuery.indexOf('show retention policies') >= 0;
-
     const res = {};
     _.each(influxResults.series, serie => {
       _.each(serie.values, value => {

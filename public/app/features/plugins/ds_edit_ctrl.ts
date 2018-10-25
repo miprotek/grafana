@@ -184,9 +184,9 @@ export class DataSourceEditCtrl {
 
   delete(s) {
     appEvents.emit('confirm-modal', {
-      title: 'Delete',
-      text: 'Are you sure you want to delete this datasource?',
-      yesText: 'Delete',
+      title: 'Löschen',
+      text: 'Sind Sie sicher, dass sie diese Datenquelle löschen wollen?',
+      yesText: 'Löschen',
       icon: 'fa-trash',
       onConfirm: () => {
         this.confirmDelete();

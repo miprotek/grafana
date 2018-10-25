@@ -16,8 +16,8 @@ export class ResetPasswordCtrl {
     $scope.navModel = {
       main: {
         icon: 'gicon gicon-branding',
-        text: 'Reset Password',
-        subTitle: 'Reset your Grafana password',
+        text: 'Passwort zurücksetzen',
+        subTitle: 'Setzen Sie ihr Grafana Passwort zurück',
         breadcrumbs: [{ title: 'Login', url: 'login' }],
       },
     };
@@ -37,7 +37,7 @@ export class ResetPasswordCtrl {
       }
 
       if ($scope.formModel.newPassword !== $scope.formModel.confirmPassword) {
-        $scope.appEvent('alert-warning', ['New passwords do not match', '']);
+        $scope.appEvent('alert-warning', ['Neue Passwörter stimmen nicht überein', '']);
         return;
       }
 

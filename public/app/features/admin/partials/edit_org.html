@@ -1,7 +1,7 @@
 <page-header model="navModel"></page-header>
 
 <div class="page-container page-body">
-	<h2 class="page-sub-heading">Edit Organization</h2>
+	<h2 class="page-sub-heading">Organisation Bearbeiten</h2>
 
 	<form name="orgDetailsForm" class="gf-form-group">
 		<div class="gf-form">
@@ -10,17 +10,17 @@
 		</div>
 
 		<div class="gf-form-button-row">
-			<button type="submit" class="btn btn-success" ng-click="update()" ng-show="!createMode">Update</button>
+			<button type="submit" class="btn btn-success" ng-click="update()" ng-show="!createMode">Aktualisieren</button>
 		</div>
 	</form>
 
-	<h3 class="page-heading">Organization Users</h3>
+	<h3 class="page-heading">Organisations Mitglieder</h3>
 
 	<table class="filter-table">
 		<tr>
-			<th>Username</th>
+			<th>Benutzername</th>
 			<th>Email</th>
-			<th>Role</th>
+			<th>Rolle</th>
 			<th></th>
 		</tr>
 		<tr ng-repeat="orgUser in orgUsers">

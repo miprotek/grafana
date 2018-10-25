@@ -100,6 +100,15 @@ function graphLegendDirective(popoverSrv, $timeout) {
           return '';
         }
         let html = '<th class="pointer" data-stat="' + statName + '">' + statName;
+        if (statName === 'current') {
+          html = '<th class="pointer" data-stat="' + statName + '">ist';
+        }
+        if (statName === 'total') {
+          html = '<th class="pointer" data-stat="' + statName + '">gesamt';
+        }
+        if (statName === 'avg') {
+          html = '<th class="pointer" data-stat="' + statName + '">Ø';
+        }
 
         if (panel.legend.sort === statName) {
           const cssClass = panel.legend.sortDesc ? 'fa fa-caret-down' : 'fa fa-caret-up';

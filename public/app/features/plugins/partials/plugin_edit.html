@@ -13,9 +13,9 @@
           <plugin-component type="app-config-ctrl"></plugin-component>
 
           <div class="gf-form-button-row">
-            <button type="submit" class="btn btn-success" ng-click="ctrl.enable()" ng-show="!ctrl.model.enabled">Enable</button>
-            <button type="submit" class="btn btn-success" ng-click="ctrl.update()" ng-show="ctrl.model.enabled">Update</button>
-            <button type="submit" class="btn btn-danger" ng-click="ctrl.disable()" ng-show="ctrl.model.enabled">Disable</button>
+            <button type="submit" class="btn btn-success" ng-click="ctrl.enable()" ng-show="!ctrl.model.enabled">Aktivieren</button>
+            <button type="submit" class="btn btn-success" ng-click="ctrl.update()" ng-show="ctrl.model.enabled">Aktualisieren</button>
+            <button type="submit" class="btn btn-danger" ng-click="ctrl.disable()" ng-show="ctrl.model.enabled">Deaktivieren</button>
           </div>
         </div>
       </div>
@@ -29,11 +29,11 @@
           <h4>Version</h4>
           <span>{{ctrl.model.info.version}}</span>
           <div ng-show="ctrl.model.hasUpdate">
-            <a ng-click="ctrl.updateAvailable()" bs-tooltip="ctrl.model.latestVersion">Update Available!</a>
+            <a ng-click="ctrl.updateAvailable()" bs-tooltip="ctrl.model.latestVersion">Update verfügbar!</a>
           </div>
         </section>
         <section class="page-sidebar-section" ng-show="ctrl.model.type === 'app'">
-          <h5>Includes</h4>
+          <h5>Beinhaltet</h4>
           <ul class="ui-list plugin-info-list">
             <li ng-repeat="plug in ctrl.includes" class="plugin-info-list-item">
               <i class="{{plug.icon}}"></i>
@@ -42,7 +42,7 @@
           </ul>
         </section>
         <section class="page-sidebar-section">
-          <h5>Dependencies</h4>
+          <h5>Abhängigkeiten</h4>
           <ul class="ui-list plugin-info-list">
             <li class="plugin-info-list-item">
               <img src="public/img/grafana_icon.svg"></img>

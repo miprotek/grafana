@@ -7,15 +7,15 @@ import (
 )
 
 var (
-	ErrEmailNotAllowed       = errors.New("Required email domain not fulfilled")
-	ErrInvalidCredentials    = errors.New("Invalid Username or Password")
-	ErrNoEmail               = errors.New("Login provider didn't return an email address")
-	ErrProviderDeniedRequest = errors.New("Login provider denied login request")
-	ErrSignUpNotAllowed      = errors.New("Signup is not allowed for this adapter")
-	ErrTooManyLoginAttempts  = errors.New("Too many consecutive incorrect login attempts for user. Login for user temporarily blocked")
-	ErrPasswordEmpty         = errors.New("No password provided.")
-	ErrUsersQuotaReached     = errors.New("Users quota reached")
-	ErrGettingUserQuota      = errors.New("Error getting user quota")
+	ErrEmailNotAllowed       = errors.New("Erforderliche E-Mail Domäne wurde nicht erfüllt")
+	ErrInvalidCredentials    = errors.New("Ungültiger Benutzername oder Passwort")
+	ErrNoEmail               = errors.New("Der Login-Anbieter hat keine E-Mail Adresse angegeben")
+	ErrProviderDeniedRequest = errors.New("Login-Anbieter verweigert Login-Anfrage")
+	ErrSignUpNotAllowed      = errors.New("Die Anmeldung ist für diesen Adapter nicht zulässig")
+	ErrTooManyLoginAttempts  = errors.New("Zuviele aufeinanderfolgende falsche Anmeldeversuche für den Benutzer. Login für Benutzer vorübergehend gesperrt")
+	ErrPasswordEmpty         = errors.New("Kein Passwort angegeben.")
+	ErrUsersQuotaReached     = errors.New("Benutzerkontingent erreicht")
+	ErrGettingUserQuota      = errors.New("Fehler beim Abrufen des Benutzerkontingents")
 )
 
 func Init() {

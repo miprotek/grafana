@@ -85,7 +85,7 @@ func DeleteFolder(c *m.ReqContext) Response {
 
 	return JSON(200, util.DynMap{
 		"title":   f.Title,
-		"message": fmt.Sprintf("Folder %s deleted", f.Title),
+		"message": fmt.Sprintf("Ordner %s gelöscht", f.Title),
 	})
 }
 
@@ -131,7 +131,7 @@ func toFolderError(err error) Response {
 	}
 
 	if err == m.ErrFolderAccessDenied {
-		return Error(403, "Access denied", err)
+		return Error(403, "Zugang verweigert", err)
 	}
 
 	if err == m.ErrFolderNotFound {

@@ -1,10 +1,10 @@
 <page-header model="navModel"></page-header>
 
 <div class="page-container page-body">
-	<h3 class="page-sub-heading">Hello {{greeting}}.</h3>
+	<h3 class="page-sub-heading">Hallo {{greeting}}.</h3>
 
 	<div class="modal-tagline p-b-2">
-		<em>{{invitedBy}}</em> has invited you to join Grafana and the organization <span class="highlight-word">{{contextSrv.user.orgName}}</span></br>Please complete the following to accept your invitation and continue:
+		<em>{{invitedBy}}</em> hat Sie eingeladen Grafana und der Organisation beizutreten <span class="highlight-word">{{contextSrv.user.orgName}}</span></br>Bitte fuellen Sie die folgenden Felder aus, um Ihre Einladung anzunehmen und fortzufahren:
 	</div>
 
 	<form name="inviteForm" class="login-form gf-form-group">
@@ -17,12 +17,12 @@
 			<input type="text" name="name" class="gf-form-input max-width-21" ng-model='formModel.name' placeholder="Name (optional)">
 		</div>
 		<div class="gf-form">
-			<span class="gf-form-label width-7">Username</span>
-			<input type="text" name="username" class="gf-form-input max-width-21" required ng-model='formModel.username' placeholder="Username">
+			<span class="gf-form-label width-7">Benutzername</span>
+			<input type="text" name="username" class="gf-form-input max-width-21" required ng-model='formModel.username' placeholder="Benutzername">
 		</div>
 		<div class="gf-form">
-			<span class="gf-form-label width-7">Password</span>
-			<input type="password" name="password" class="gf-form-input max-width-21" required ng-model="formModel.password" id="inputPassword" placeholder="password">
+			<span class="gf-form-label width-7">Passwort</span>
+			<input type="password" name="password" class="gf-form-input max-width-21" required ng-model="formModel.password" id="inputPassword" placeholder="Passwort">
 		</div>
 
 		<div style="margin-left: 7.5rem; width: 254px;">
@@ -31,7 +31,7 @@
 
 		<div class="gf-form-button-row">
 			<button type="submit" class="btn btn-success" ng-click="submit();" ng-disable="!inviteForm.$valid">
-				Sign Up
+				Registrieren
 			</button>
 		</div>
 	</form>

@@ -34,9 +34,9 @@ class DashListCtrl extends PanelCtrl {
     this.events.on('init-edit-mode', this.onInitEditMode.bind(this));
 
     this.groups = [
-      { list: [], show: false, header: 'Starred dashboards' },
-      { list: [], show: false, header: 'Recently viewed dashboards' },
-      { list: [], show: false, header: 'Search' },
+      { list: [], show: false, header: 'Markierte Dashboards' },
+      { list: [], show: false, header: 'Kürzlich angesehene Dashboards' },
+      { list: [], show: false, header: 'Suchen' },
     ];
 
     // update capability
@@ -62,7 +62,7 @@ class DashListCtrl extends PanelCtrl {
   onInitEditMode() {
     this.editorTabIndex = 1;
     this.modes = ['starred', 'search', 'recently viewed'];
-    this.addEditorTab('Options', 'public/app/plugins/panel/dashlist/editor.html');
+    this.addEditorTab('Optionen', 'public/app/plugins/panel/dashlist/editor.html');
   }
 
   onRefresh() {

@@ -7,20 +7,20 @@ import (
 
 func StarDashboard(c *m.ReqContext) Response {
 	if !c.IsSignedIn {
-		return Error(412, "You need to sign in to star dashboards", nil)
+		return Error(412, "Sie müssen sich anmelden um Dashboards zu markieren", nil)
 	}
 
 	cmd := m.StarDashboardCommand{UserId: c.UserId, DashboardId: c.ParamsInt64(":id")}
 
 	if cmd.DashboardId <= 0 {
-		return Error(400, "Missing dashboard id", nil)
+		return Error(400, "Dashboard id fehlt", nil)
 	}
 
 	if err := bus.Dispatch(&cmd); err != nil {
-		return Error(500, "Failed to star dashboard", err)
+		return Error(500, "Fehler beim anzeigen des Dashboards", err)
 	}
 
-	return Success("Dashboard starred!")
+	return Success("Dashboard markiert!")
 }
 
 func UnstarDashboard(c *m.ReqContext) Response {
@@ -28,12 +28,12 @@ func UnstarDashboard(c *m.ReqContext) Response {
 	cmd := m.UnstarDashboardCommand{UserId: c.UserId, DashboardId: c.ParamsInt64(":id")}
 
 	if cmd.DashboardId <= 0 {
-		return Error(400, "Missing dashboard id", nil)
+		return Error(400, "Dashboard id fehlt", nil)
 	}
 
 	if err := bus.Dispatch(&cmd); err != nil {
-		return Error(500, "Failed to unstar dashboard", err)
+		return Error(500, "Kann Dashboard nicht unmarkieren", err)
 	}
 
-	return Success("Dashboard unstarred")
+	return Success("Dashboard unmarkiert")
 }

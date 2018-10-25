@@ -2,7 +2,7 @@
 	<div class="modal-header">
 		<h2 class="modal-header-title">
 			<i class="fa fa-cloud-download"></i>
-			<span class="p-l-1">Update Plugin</span>
+			<span class="p-l-1">Plugin aktualisieren</span>
 		</h2>
 
 		<a class="modal-header-close" ng-click="dismiss();">
@@ -12,10 +12,10 @@
 
 	<div class="modal-content">
 		<div class="gf-form-group">
-			<p>Type the following on the command line to update {{plugin.name}}.</p>
+			<p>Tippen Sie folgendes in die Command line, um zu aktualisieren {{plugin.name}}.</p>
 			<pre><code>grafana-cli plugins update {{plugin.id}}</code></pre>
-			<span class="small">Check out {{plugin.name}} on <a href="https://grafana.com/plugins/{{plugin.id}}">Grafana.com</a> for README and changelog. If you do not have access to the command line, ask your Grafana administator.</span>
+			<span class="small">Erfahren Sie mehr über {{plugin.name}} auf <a href="https://grafana.com/plugins/{{plugin.id}}">Grafana.com</a> durch die README und das Changelog. Wenn Sie keinen Zugriff auf die Command Line haben, fragen Sie ihren Grafana Administator.</span>
 		</div>
-		<p class="pluginlist-none-installed"><img class="pluginlist-inline-logo" src="public/img/grafana_icon.svg"><strong>Pro tip</strong>: To update all plugins at once, type <code class="code--small">grafana-cli plugins update-all</code> on the command line.</div>
+		<p class="pluginlist-none-installed"><img class="pluginlist-inline-logo" src="public/img/grafana_icon.svg"><strong>Pro Tipp</strong>: Um alle Plugins aufeinmal zu aktualisieren, tippen Sie <code class="code--small">grafana-cli plugins update-all</code> in der Command Line.</div>
 	</div>
 </div>

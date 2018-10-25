@@ -60,11 +60,11 @@ export class ThresholdFormCtrl {
 
 const template = `
 <div class="gf-form-group">
-  <h5>Thresholds</h5>
+  <h5>Schwellenwerte</h5>
   <p class="muted" ng-show="ctrl.disabled">
-    Visual thresholds options <strong>disabled.</strong>
-    Visit the Alert tab update your thresholds. <br>
-    To re-enable thresholds, the alert rule must be deleted from this panel.
+    Visuelle Schwellenwerte Optionen <strong>deaktiviert.</strong>
+    Auf der Registerkarte "Meldungen" können Sie Ihre Schwellenwerte aktualisieren. <br>
+    Um Schwellenwerte erneut zu aktivieren, muss die Warnungsregel aus diesem Panel gelöscht werden.
   </p>
   <div ng-class="{'thresholds-form-disabled': ctrl.disabled}">
     <div class="gf-form-inline" ng-repeat="threshold in ctrl.panel.thresholds">
@@ -78,11 +78,11 @@ const template = `
                   ng-options="f for f in ['gt', 'lt']" ng-change="ctrl.render()" ng-disabled="ctrl.disabled"></select>
         </div>
         <input type="number" ng-model="threshold.value" class="gf-form-input width-8"
-               ng-change="ctrl.render()" placeholder="value" ng-disabled="ctrl.disabled">
+               ng-change="ctrl.render()" placeholder="Wert" ng-disabled="ctrl.disabled">
       </div>
 
       <div class="gf-form">
-        <label class="gf-form-label">Color</label>
+        <label class="gf-form-label">Farbe</label>
         <div class="gf-form-select-wrapper">
           <select class="gf-form-input" ng-model="threshold.colorMode"
                   ng-options="f for f in ['custom', 'critical', 'warning', 'ok']" ng-change="ctrl.render()" ng-disabled="ctrl.disabled">
@@ -90,7 +90,7 @@ const template = `
         </div>
       </div>
 
-      <gf-form-switch class="gf-form" label="Fill" checked="threshold.fill"
+      <gf-form-switch class="gf-form" label="Füllen" checked="threshold.fill"
                       on-change="ctrl.render()" ng-disabled="ctrl.disabled"></gf-form-switch>
 
       <div class="gf-form" ng-if="threshold.fill && threshold.colorMode === 'custom'">
@@ -100,7 +100,7 @@ const template = `
         </span>
       </div>
 
-      <gf-form-switch class="gf-form" label="Line" checked="threshold.line"
+      <gf-form-switch class="gf-form" label="Linie" checked="threshold.line"
                       on-change="ctrl.render()" ng-disabled="ctrl.disabled"></gf-form-switch>
 
       <div class="gf-form" ng-if="threshold.line && threshold.colorMode === 'custom'">
@@ -111,7 +111,7 @@ const template = `
       </div>
 
       <div class="gf-form">
-        <label class="gf-form-label">Y-Axis</label>
+        <label class="gf-form-label">Y-Axen</label>
         <div class="gf-form-select-wrapper">
           <select class="gf-form-input" ng-model="threshold.yaxis"
                   ng-init="threshold.yaxis = threshold.yaxis === 'left' || threshold.yaxis === 'right' ? threshold.yaxis : 'left'"
@@ -131,7 +131,7 @@ const template = `
 
     <div class="gf-form-button-row">
       <button class="btn btn-inverse" ng-click="ctrl.addThreshold()" ng-disabled="ctrl.disabled">
-        <i class="fa fa-plus"></i>&nbsp;Add Threshold
+        <i class="fa fa-plus"></i>&nbsp;Schwellenwert hinzufügen
       </button>
     </div>
   </div>

@@ -1,12 +1,12 @@
 {
   "type": "panel",
-  "name": "Dashboard list",
+  "name": "Dashboard Liste",
   "id": "dashlist",
 
   "info": {
-    "description": "List of dynamic links to other dashboards",
+    "description": "Liste von dynamischen Links zu Dashboards",
     "author": {
-      "name": "Grafana Project",
+      "name": "Grafana Projekt",
       "url": "https://grafana.com"
 },
     "logos": {

@@ -7,7 +7,7 @@
   <div ng-hide="ctrl.target.textEditor">
     <div class="gf-form-inline">
       <div class="gf-form">
-        <label class="gf-form-label width-6 query-keyword">Series</label>
+        <label class="gf-form-label width-6 query-keyword">Serien</label>
       </div>
 
       <div ng-if="ctrl.queryModel.seriesByTagUsed" ng-repeat="tag in ctrl.queryModel.tags" class="gf-form">
@@ -16,7 +16,7 @@
           allow-custom="true"
           label-mode="true"
           debounce="true"
-          placeholder="Tag key"
+          placeholder="Tag Schlüssel"
           css-class="query-segment-key"
           get-options="ctrl.getTags($index, $query)"
           on-change="ctrl.tagChanged(tag, $index)"
@@ -35,11 +35,11 @@
           label-mode="true"
           debounce="true"
           css-class="query-segment-value"
-          placeholder="Tag value"
+          placeholder="Tag Wert"
           get-options="ctrl.getTagValues(tag, $index, $query)"
           on-change="ctrl.tagChanged(tag, $index)"
         />
-        <label class="gf-form-label query-keyword" ng-if="ctrl.showDelimiter($index)">AND</label>
+        <label class="gf-form-label query-keyword" ng-if="ctrl.showDelimiter($index)">UND</label>
       </div>
 
       <div ng-if="ctrl.queryModel.seriesByTagUsed" ng-repeat="segment in ctrl.addTagSegments" role="menuitem" class="gf-form">
@@ -61,7 +61,7 @@
 
     <div class="gf-form-inline">
       <div class="gf-form">
-        <label class="gf-form-label width-6 query-keyword">Functions</label>
+        <label class="gf-form-label width-6 query-keyword">Funktionen</label>
       </div>
 
       <div ng-repeat="func in ctrl.queryModel.functions" class="gf-form">

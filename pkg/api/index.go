@@ -114,7 +114,7 @@ func (hs *HTTPServer) setIndexViewData(c *m.ReqContext) (*dtos.IndexViewData, er
 		children = append(children, &dtos.NavLink{Text: "Import", SubTitle: "Import dashboard from file or Grafana.com", Id: "import", Icon: "gicon gicon-dashboard-import", Url: setting.AppSubUrl + "/dashboard/import"})
 
 		data.NavTree = append(data.NavTree, &dtos.NavLink{
-			Text:     "Create",
+			Text: "Erstellen",
 			Id:       "create",
 			Icon:     "fa fa-fw fa-plus",
 			Url:      setting.AppSubUrl + "/dashboard/new",
@@ -124,8 +124,8 @@ func (hs *HTTPServer) setIndexViewData(c *m.ReqContext) (*dtos.IndexViewData, er
 
 	dashboardChildNavs := []*dtos.NavLink{
 		{Text: "Home", Id: "home", Url: setting.AppSubUrl + "/", Icon: "gicon gicon-home", HideFromTabs: true},
-		{Text: "Divider", Divider: true, Id: "divider", HideFromTabs: true},
-		{Text: "Manage", Id: "manage-dashboards", Url: setting.AppSubUrl + "/dashboards", Icon: "gicon gicon-manage"},
+		{Text: "Teiler", Divider: true, Id: "divider", HideFromTabs: true},
+		{Text: "Verwalten", Id: "manage-dashboards", Url: setting.AppSubUrl + "/dashboards", Icon: "gicon gicon-manage"},
 		{Text: "Playlists", Id: "playlists", Url: setting.AppSubUrl + "/playlists", Icon: "gicon gicon-playlists"},
 		{Text: "Snapshots", Id: "snapshots", Url: setting.AppSubUrl + "/dashboard/snapshots", Icon: "gicon gicon-snapshots"},
 	}
@@ -133,7 +133,7 @@ func (hs *HTTPServer) setIndexViewData(c *m.ReqContext) (*dtos.IndexViewData, er
 	data.NavTree = append(data.NavTree, &dtos.NavLink{
 		Text:     "Dashboards",
 		Id:       "dashboards",
-		SubTitle: "Manage dashboards & folders",
+		SubTitle: "Dashboards & Ordner verwalten",
 		Icon:     "gicon gicon-dashboard",
 		Url:      setting.AppSubUrl + "/",
 		Children: dashboardChildNavs,
@@ -141,13 +141,13 @@ func (hs *HTTPServer) setIndexViewData(c *m.ReqContext) (*dtos.IndexViewData, er
 
 	if setting.ExploreEnabled && (c.OrgRole == m.ROLE_ADMIN || c.OrgRole == m.ROLE_EDITOR) {
 		data.NavTree = append(data.NavTree, &dtos.NavLink{
-			Text:     "Explore",
+			Text:     "Erkunden",
 			Id:       "explore",
-			SubTitle: "Explore your data",
+			SubTitle: "Erkunden Sie Ihre Daten",
 			Icon:     "fa fa-rocket",
 			Url:      setting.AppSubUrl + "/explore",
 			Children: []*dtos.NavLink{
-				{Text: "New tab", Icon: "gicon gicon-dashboard-new", Url: setting.AppSubUrl + "/explore"},
+				{Text: "Neuer Tab", Icon: "gicon gicon-dashboard-new", Url: setting.AppSubUrl + "/explore"},
 			},
 		})
 	}
@@ -166,15 +166,15 @@ func (hs *HTTPServer) setIndexViewData(c *m.ReqContext) (*dtos.IndexViewData, er
 			Url:          setting.AppSubUrl + "/profile",
 			HideFromMenu: true,
 			Children: []*dtos.NavLink{
-				{Text: "Preferences", Id: "profile-settings", Url: setting.AppSubUrl + "/profile", Icon: "gicon gicon-preferences"},
-				{Text: "Change Password", Id: "change-password", Url: setting.AppSubUrl + "/profile/password", Icon: "fa fa-fw fa-lock", HideFromMenu: true},
+				{Text: "Eigenschaften", Id: "profile-settings", Url: setting.AppSubUrl + "/profile", Icon: "gicon gicon-preferences"},
+				{Text: "Passwort ändern", Id: "change-password", Url: setting.AppSubUrl + "/profile/password", Icon: "fa fa-fw fa-lock", HideFromMenu: true},
 			},
 		}
 
 		if !setting.DisableSignoutMenu {
 			// add sign out first
 			profileNode.Children = append(profileNode.Children, &dtos.NavLink{
-				Text: "Sign out", Id: "sign-out", Url: setting.AppSubUrl + "/logout", Icon: "fa fa-fw fa-sign-out", Target: "_self",
+				Text: "Abmelden", Id: "sign-out", Url: setting.AppSubUrl + "/logout", Icon: "fa fa-fw fa-sign-out", Target: "_self",
 			})
 		}
 
@@ -183,13 +183,13 @@ func (hs *HTTPServer) setIndexViewData(c *m.ReqContext) (*dtos.IndexViewData, er
 
 	if setting.AlertingEnabled && (c.OrgRole == m.ROLE_ADMIN || c.OrgRole == m.ROLE_EDITOR) {
 		alertChildNavs := []*dtos.NavLink{
-			{Text: "Alert Rules", Id: "alert-list", Url: setting.AppSubUrl + "/alerting/list", Icon: "gicon gicon-alert-rules"},
-			{Text: "Notification channels", Id: "channels", Url: setting.AppSubUrl + "/alerting/notifications", Icon: "gicon gicon-alert-notification-channel"},
+			{Text: "Warnungsregeln", Id: "alert-list", Url: setting.AppSubUrl + "/alerting/list", Icon: "gicon gicon-alert-rules"},
+			{Text: "Benachrichtigungskanäle", Id: "channels", Url: setting.AppSubUrl + "/alerting/notifications", Icon: "gicon gicon-alert-notification-channel"},
 		}
 
 		data.NavTree = append(data.NavTree, &dtos.NavLink{
-			Text:     "Alerting",
-			SubTitle: "Alert rules & notifications",
+			Text:     "Meldung",
+			SubTitle: "Warnungsregeln & Notifikationen",
 			Id:       "alerting",
 			Icon:     "gicon gicon-alert",
 			Url:      setting.AppSubUrl + "/alerting/list",
@@ -247,51 +247,51 @@ func (hs *HTTPServer) setIndexViewData(c *m.ReqContext) (*dtos.IndexViewData, er
 	if c.IsGrafanaAdmin || c.OrgRole == m.ROLE_ADMIN {
 		cfgNode := &dtos.NavLink{
 			Id:       "cfg",
-			Text:     "Configuration",
-			SubTitle: "Organization: " + c.OrgName,
+			Text:     "Konfiguration",
+			SubTitle: "Organisation: " + c.OrgName,
 			Icon:     "gicon gicon-cog",
 			Url:      setting.AppSubUrl + "/datasources",
 			Children: []*dtos.NavLink{
 				{
-					Text:        "Data Sources",
+					Text:        "Datenquelle",
 					Icon:        "gicon gicon-datasources",
-					Description: "Add and configure data sources",
+					Description: "Hinzufügen und konfigurieren der Datenquellen",
 					Id:          "datasources",
 					Url:         setting.AppSubUrl + "/datasources",
 				},
 				{
-					Text:        "Users",
+					Text:        "Benutzer",
 					Id:          "users",
-					Description: "Manage org members",
+					Description: "Organisationsmitglieder",
 					Icon:        "gicon gicon-user",
 					Url:         setting.AppSubUrl + "/org/users",
 				},
 				{
 					Text:        "Teams",
 					Id:          "teams",
-					Description: "Manage org groups",
+					Description: "Organisationsgruppen verwalten",
 					Icon:        "gicon gicon-team",
 					Url:         setting.AppSubUrl + "/org/teams",
 				},
 				{
 					Text:        "Plugins",
 					Id:          "plugins",
-					Description: "View and configure plugins",
+					Description: "Plugins anzeigen und verwalten",
 					Icon:        "gicon gicon-plugins",
 					Url:         setting.AppSubUrl + "/plugins",
 				},
 				{
-					Text:        "Preferences",
+					Text:        "Eigenschaften",
 					Id:          "org-settings",
-					Description: "Organization preferences",
+					Description: "Organisations Eigenschaften",
 					Icon:        "gicon gicon-preferences",
 					Url:         setting.AppSubUrl + "/org",
 				},
 
 				{
-					Text:        "API Keys",
+					Text:        "API Schlüssel",
 					Id:          "apikeys",
-					Description: "Create & manage API keys",
+					Description: "API Schlüssel erstellen und verwalten",
 					Icon:        "gicon gicon-apikeys",
 					Url:         setting.AppSubUrl + "/org/apikeys",
 				},
@@ -319,15 +319,15 @@ func (hs *HTTPServer) setIndexViewData(c *m.ReqContext) (*dtos.IndexViewData, er
 			cfgNode.Children = append(cfgNode.Children, &dtos.NavLink{
 				Text:         "Server Admin",
 				HideFromTabs: true,
-				SubTitle:     "Manage all users & orgs",
+				SubTitle:     "Alle Benutzer und Organisationen verwalten",
 				Id:           "admin",
 				Icon:         "gicon gicon-shield",
 				Url:          setting.AppSubUrl + "/admin/users",
 				Children: []*dtos.NavLink{
-					{Text: "Users", Id: "global-users", Url: setting.AppSubUrl + "/admin/users", Icon: "gicon gicon-user"},
-					{Text: "Orgs", Id: "global-orgs", Url: setting.AppSubUrl + "/admin/orgs", Icon: "gicon gicon-org"},
-					{Text: "Settings", Id: "server-settings", Url: setting.AppSubUrl + "/admin/settings", Icon: "gicon gicon-preferences"},
-					{Text: "Stats", Id: "server-stats", Url: setting.AppSubUrl + "/admin/stats", Icon: "fa fa-fw fa-bar-chart"},
+					{Text: "Benutzer", Id: "global-users", Url: setting.AppSubUrl + "/admin/users", Icon: "gicon gicon-user"},
+					{Text: "Organisationen", Id: "global-orgs", Url: setting.AppSubUrl + "/admin/orgs", Icon: "gicon gicon-org"},
+					{Text: "Einstellungen", Id: "server-settings", Url: setting.AppSubUrl + "/admin/settings", Icon: "gicon gicon-preferences"},
+					{Text: "Statistiken", Id: "server-stats", Url: setting.AppSubUrl + "/admin/stats", Icon: "fa fa-fw fa-bar-chart"},
 					{Text: "Style Guide", Id: "styleguide", Url: setting.AppSubUrl + "/styleguide", Icon: "fa fa-fw fa-eyedropper"},
 				},
 			})
@@ -337,16 +337,16 @@ func (hs *HTTPServer) setIndexViewData(c *m.ReqContext) (*dtos.IndexViewData, er
 	}
 
 	data.NavTree = append(data.NavTree, &dtos.NavLink{
-		Text:         "Help",
+		Text:         "Hilfe",
 		SubTitle:     fmt.Sprintf(`%s v%s (%s)`, setting.ApplicationName, setting.BuildVersion, setting.BuildCommit),
 		Id:           "help",
 		Url:          "#",
 		Icon:         "gicon gicon-question",
 		HideFromMenu: true,
 		Children: []*dtos.NavLink{
-			{Text: "Keyboard shortcuts", Url: "/shortcuts", Icon: "fa fa-fw fa-keyboard-o", Target: "_self"},
-			{Text: "Community site", Url: "http://community.grafana.com", Icon: "fa fa-fw fa-comment", Target: "_blank"},
-			{Text: "Documentation", Url: "http://docs.grafana.org", Icon: "fa fa-fw fa-file", Target: "_blank"},
+			{Text: "Tastaturkürzel", Url: "/shortcuts", Icon: "fa fa-fw fa-keyboard-o", Target: "_self"},
+			{Text: "Community Seite", Url: "http://community.grafana.com", Icon: "fa fa-fw fa-comment", Target: "_blank"},
+			{Text: "Dokumentation", Url: "http://docs.grafana.org", Icon: "fa fa-fw fa-file", Target: "_blank"},
 		},
 	})
 

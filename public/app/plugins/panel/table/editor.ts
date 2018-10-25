@@ -36,7 +36,7 @@ export class TablePanelEditorCtrl {
         break;
       }
       case 'table': {
-        this.columnsHelpMessage = 'Columns and their order are determined by the data query';
+        this.columnsHelpMessage = 'Spalten und ihre Reihenfolge werden durch die Datenabfrage festgelegt';
       }
     }
   }

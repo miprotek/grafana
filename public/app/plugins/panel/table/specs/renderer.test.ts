@@ -6,13 +6,13 @@ describe('when rendering table', () => {
   describe('given 13 columns', () => {
     const table = new TableModel();
     table.columns = [
-      { text: 'Time' },
-      { text: 'Value' },
-      { text: 'Colored' },
-      { text: 'Undefined' },
+      { text: 'Zeit' },
+      { text: 'Wert' },
+      { text: 'Gefärbt' },
+      { text: 'Undefiniert' },
       { text: 'String' },
-      { text: 'United', unit: 'bps' },
-      { text: 'Sanitized' },
+      { text: 'Vereinigt', unit: 'bps' },
+      { text: 'Sanitisiert' },
       { text: 'Link' },
       { text: 'Array' },
       { text: 'Mapping' },
@@ -97,7 +97,7 @@ describe('when rendering table', () => {
             },
             {
               value: 'HELLO WORLD',
-              text: 'HELLO GRAFANA',
+              text: 'HALLO GRAFANA',
             },
             {
               value: 'value1, value2',
@@ -293,7 +293,7 @@ describe('when rendering table', () => {
 
     it('string value should be mapped to text', () => {
       const html = renderer.renderCell(9, 0, 'HELLO WORLD');
-      expect(html).toBe('<td>HELLO GRAFANA</td>');
+      expect(html).toBe('<td>HALLO GRAFANA</td>');
     });
 
     it('array column value should be mapped to text', () => {

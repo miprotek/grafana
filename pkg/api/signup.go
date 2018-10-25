@@ -21,12 +21,12 @@ func GetSignUpOptions(c *m.ReqContext) Response {
 // POST /api/user/signup
 func SignUp(c *m.ReqContext, form dtos.SignUpForm) Response {
 	if !setting.AllowUserSignUp {
-		return Error(401, "User signup is disabled", nil)
+		return Error(401, "Benutzerregistrierungs ist deaktiviert", nil)
 	}
 
 	existing := m.GetUserByLoginQuery{LoginOrEmail: form.Email}
 	if err := bus.Dispatch(&existing); err == nil {
-		return Error(422, "User with same email address already exists", nil)
+		return Error(422, "Ein Benutzer mit der gleichen E-Mailadresse existiert bereits", nil)
 	}
 
 	cmd := m.CreateTempUserCommand{}
@@ -38,7 +38,7 @@ func SignUp(c *m.ReqContext, form dtos.SignUpForm) Response {
 	cmd.RemoteAddr = c.Req.RemoteAddr
 
 	if err := bus.Dispatch(&cmd); err != nil {
-		return Error(500, "Failed to create signup", err)
+		return Error(500, "Fehler beim erstellen der Registrierung", err)
 	}
 
 	bus.Publish(&events.SignUpStarted{
@@ -53,7 +53,7 @@ func SignUp(c *m.ReqContext, form dtos.SignUpForm) Response {
 
 func SignUpStep2(c *m.ReqContext, form dtos.SignUpStep2Form) Response {
 	if !setting.AllowUserSignUp {
-		return Error(401, "User signup is disabled", nil)
+		return Error(401, "Benutzerregistrierung ist deaktivert", nil)
 	}
 
 	createUserCmd := m.CreateUserCommand{
@@ -75,12 +75,12 @@ func SignUpStep2(c *m.ReqContext, form dtos.SignUpStep2Form) Response {
 	// check if user exists
 	existing := m.GetUserByLoginQuery{LoginOrEmail: form.Email}
 	if err := bus.Dispatch(&existing); err == nil {
-		return Error(401, "User with same email address already exists", nil)
+		return Error(401, "Ein Benutzer mit der gleichen E-Mailadresse existiert bereits", nil)
 	}
 
 	// dispatch create command
 	if err := bus.Dispatch(&createUserCmd); err != nil {
-		return Error(500, "Failed to create user", err)
+		return Error(500, "Fehler beim erstellen des Benutzers", err)
 	}
 
 	// publish signup event
@@ -101,7 +101,7 @@ func SignUpStep2(c *m.ReqContext, form dtos.SignUpStep2Form) Response {
 		return Error(500, "Failed to query database for invites", err)
 	}
 
-	apiResponse := util.DynMap{"message": "User sign up completed successfully", "code": "redirect-to-landing-page"}
+	apiResponse := util.DynMap{"message": "Benutzerregistrierung war erfolgreich", "code": "redirect-to-landing-page"}
 	for _, invite := range invitesQuery.Result {
 		if ok, rsp := applyUserInvite(user, invite, false); !ok {
 			return rsp
@@ -120,14 +120,14 @@ func verifyUserSignUpEmail(email string, code string) (bool, Response) {
 
 	if err := bus.Dispatch(&query); err != nil {
 		if err == m.ErrTempUserNotFound {
-			return false, Error(404, "Invalid email verification code", nil)
+			return false, Error(404, "Ungültiger E-Mailbestätigungscode", nil)
 		}
-		return false, Error(500, "Failed to read temp user", err)
+		return false, Error(500, "Der temporäre Benutzer konnte nicht gelesen werden", err)
 	}
 
 	tempUser := query.Result
 	if tempUser.Email != email {
-		return false, Error(404, "Email verification code does not match email", nil)
+		return false, Error(404, "E-Mailbestätigungscode stimmt nicht mit der E-Mail überein", nil)
 	}
 
 	return true, nil

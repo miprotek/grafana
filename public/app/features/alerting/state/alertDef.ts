@@ -26,22 +26,22 @@ const alertStateSortScore = {
 };
 
 const evalFunctions = [
-  { text: 'IS ABOVE', value: 'gt' },
-  { text: 'IS BELOW', value: 'lt' },
-  { text: 'IS OUTSIDE RANGE', value: 'outside_range' },
-  { text: 'IS WITHIN RANGE', value: 'within_range' },
-  { text: 'HAS NO VALUE', value: 'no_value' },
+  { text: 'IST ÜBER', value: 'gt' },
+  { text: 'IST UNTER', value: 'lt' },
+  { text: 'IST AUSSERHALB DER REICHWEITE', value: 'outside_range' },
+  { text: 'IST INNERHALB DER REICHWEITE', value: 'within_range' },
+  { text: 'HAT KEINEN WERT', value: 'no_value' },
 ];
 
 const evalOperators = [{ text: 'OR', value: 'or' }, { text: 'AND', value: 'and' }];
 
 const reducerTypes = [
-  { text: 'avg()', value: 'avg' },
+  { text: 'ø()', value: 'avg' },
   { text: 'min()', value: 'min' },
   { text: 'max()', value: 'max' },
   { text: 'sum()', value: 'sum' },
   { text: 'count()', value: 'count' },
-  { text: 'last()', value: 'last' },
+  { text: 'letzte()', value: 'last' },
   { text: 'median()', value: 'median' },
   { text: 'diff()', value: 'diff' },
   { text: 'percent_diff()', value: 'percent_diff' },
@@ -49,13 +49,13 @@ const reducerTypes = [
 ];
 
 const noDataModes = [
-  { text: 'Alerting', value: 'alerting' },
-  { text: 'No Data', value: 'no_data' },
-  { text: 'Keep Last State', value: 'keep_state' },
+  { text: 'Alarmierung', value: 'alerting' },
+  { text: 'Keine Daten', value: 'no_data' },
+  { text: 'Letzten Status behalten', value: 'keep_state' },
   { text: 'Ok', value: 'ok' },
 ];
 
-const executionErrorModes = [{ text: 'Alerting', value: 'alerting' }, { text: 'Keep Last State', value: 'keep_state' }];
+const executionErrorModes = [{ text: 'Alarmierung', value: 'alerting' }, { text: 'Letzten Status behalten', value: 'keep_state' }];
 
 function createReducerPart(model) {
   const def = new QueryPartDef({ type: model.type, defaultParams: [] });
@@ -73,35 +73,35 @@ function getStateDisplayModel(state) {
     }
     case 'alerting': {
       return {
-        text: 'ALERTING',
+        text: 'ALARMIERUNG',
         iconClass: 'icon-gf icon-gf-critical',
         stateClass: 'alert-state-critical',
       };
     }
     case 'no_data': {
       return {
-        text: 'NO DATA',
+        text: 'KEINE DATEN',
         iconClass: 'fa fa-question',
         stateClass: 'alert-state-warning',
       };
     }
     case 'paused': {
       return {
-        text: 'PAUSED',
+        text: 'PAUSIERT',
         iconClass: 'fa fa-pause',
         stateClass: 'alert-state-paused',
       };
     }
     case 'pending': {
       return {
-        text: 'PENDING',
+        text: 'STEHT AUS',
         iconClass: 'fa fa-exclamation',
         stateClass: 'alert-state-warning',
       };
     }
   }
 
-  throw { message: 'Unknown alert state' };
+  throw { message: 'Unbekannter Alarmstatus' };
 }
 
 function joinEvalMatches(matches, separator: string) {
@@ -135,7 +135,7 @@ function getAlertAnnotationInfo(ah) {
   }
 
   if (ah.data.error) {
-    return 'Error: ' + ah.data.error;
+    return 'Fehler: ' + ah.data.error;
   }
 
   return '';

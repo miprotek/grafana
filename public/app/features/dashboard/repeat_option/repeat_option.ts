@@ -24,12 +24,12 @@ function dashRepeatOptionDirective(variableSrv) {
 
       if (scope.variables.length === 0) {
         scope.variables.unshift({
-          text: 'No template variables found',
+          text: 'Keine Template Variablen gefunden',
           value: null,
         });
       }
 
-      scope.variables.unshift({ text: 'Disabled', value: null });
+      scope.variables.unshift({ text: 'Deaktiviert', value: null });
 
       // if repeat is set and no direction set to horizontal
       if (scope.panel.repeat && !scope.panel.repeatDirection) {

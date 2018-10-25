@@ -9,12 +9,12 @@ class AlertListPanel extends PanelCtrl {
   static templateUrl = 'module.html';
   static scrollable = true;
 
-  showOptions = [{ text: 'Current state', value: 'current' }, { text: 'Recent state changes', value: 'changes' }];
+  showOptions = [{ text: 'Momentaner Status', value: 'current' }, { text: 'Kürzliche Statusänderungen', value: 'changes' }];
 
   sortOrderOptions = [
-    { text: 'Alphabetical (asc)', value: 1 },
-    { text: 'Alphabetical (desc)', value: 2 },
-    { text: 'Importance', value: 3 },
+    { text: 'Alphabetisch (asc)', value: 1 },
+    { text: 'Alphabetisch (desc)', value: 2 },
+    { text: 'Wichtigkeit', value: 3 },
   ];
 
   stateFilter: any = {};
@@ -119,8 +119,7 @@ class AlertListPanel extends PanelCtrl {
         al.info = alertDef.getAlertAnnotationInfo(al);
         return al;
       });
-
-      this.noAlertsMessage = this.alertHistory.length === 0 ? 'No alerts in current time range' : '';
+      this.noAlertsMessage = this.alertHistory.length === 0 ? 'Keine Meldungen im aktuellen Zeitbereich' : '';
 
       return this.alertHistory;
     });
@@ -164,14 +163,13 @@ class AlertListPanel extends PanelCtrl {
       if (this.currentAlerts.length > this.panel.limit) {
         this.currentAlerts = this.currentAlerts.slice(0, this.panel.limit);
       }
-      this.noAlertsMessage = this.currentAlerts.length === 0 ? 'No alerts' : '';
 
       return this.currentAlerts;
     });
   }
 
   onInitEditMode() {
-    this.addEditorTab('Options', 'public/app/plugins/panel/alertlist/editor.html');
+    this.addEditorTab('Optionen', 'public/app/plugins/panel/alertlist/editor.html');
   }
 }
 

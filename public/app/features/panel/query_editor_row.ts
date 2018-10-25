@@ -57,7 +57,7 @@ export class QueryRowCtrl {
       this.collapsedText = this.queryCtrl.getCollapsedText();
     } catch (e) {
       const err = e.message || e.toString();
-      this.collapsedText = 'Error: ' + err;
+      this.collapsedText = 'Fehler: ' + err;
     }
   }
 

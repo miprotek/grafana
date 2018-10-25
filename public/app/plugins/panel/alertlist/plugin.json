@@ -1,12 +1,12 @@
 {
   "type": "panel",
-  "name": "Alert List",
+  "name": "Alarm Liste",
   "id": "alertlist",
 
   "info": {
-    "description": "Shows list of alerts and their current status",
+    "description": "Zeigt die Alarmliste und deren momentaner Status",
     "author": {
-      "name": "Grafana Project",
+      "name": "Grafana Projekt",
       "url": "https://grafana.com"
     },
     "logos": {

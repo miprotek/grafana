@@ -252,16 +252,16 @@ export class AlertTabCtrl {
           condition.query.params[0] = firstTarget.refId;
           foundTarget = firstTarget;
         } else {
-          this.error = 'Could not find any metric queries';
+          this.error = 'Konnte keine metrischen Abfragen finden';
         }
       }
 
       const datasourceName = foundTarget.datasource || this.panel.datasource;
       this.datasourceSrv.get(datasourceName).then(ds => {
         if (!ds.meta.alerting) {
-          this.error = 'The datasource does not support alerting queries';
+          this.error = 'Die Datenquelle unterstützt keine alarmierungs Abfragen';
         } else if (ds.targetContainsTemplate(foundTarget)) {
-          this.error = 'Template variables are not supported in alert queries';
+          this.error = 'Vorlagenvariablen werden in Warnabfragen nicht unterstützt';
         } else {
           this.error = '';
         }
@@ -335,11 +335,11 @@ export class AlertTabCtrl {
 
   delete() {
     appEvents.emit('confirm-modal', {
-      title: 'Delete Alert',
-      text: 'Are you sure you want to delete this alert rule?',
-      text2: 'You need to save dashboard for the delete to take effect',
+      title: 'Warnung löschen',
+      text: 'Wollen Sie diese Warnungsregel wirklich löschen?',
+      text2: 'Sie müssen das Dashboard speichern, damit das Löschen wirksam wird',
       icon: 'fa-trash',
-      yesText: 'Delete',
+      yesText: 'Löschen',
       onConfirm: () => {
         delete this.panel.alert;
         this.alert = null;
@@ -384,10 +384,10 @@ export class AlertTabCtrl {
 
   clearHistory() {
     appEvents.emit('confirm-modal', {
-      title: 'Delete Alert History',
-      text: 'Are you sure you want to remove all history & annotations for this alert?',
+      title: 'Alarmverlauf löschen',
+      text: 'Möchten Sie wirklich alle Verlaufsdaten & Anmerkungen für diese Warnung entfernen?',
       icon: 'fa-trash',
-      yesText: 'Yes',
+      yesText: 'Ja',
       onConfirm: () => {
         this.backendSrv
           .post('/api/annotations/mass-delete', {

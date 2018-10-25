@@ -14,9 +14,9 @@ export class DashNavCtrl {
 
     if (this.dashboard.meta.isSnapshot) {
       const meta = this.dashboard.meta;
-      this.titleTooltip = 'Created: &nbsp;' + moment(meta.created).calendar();
+      this.titleTooltip = 'Erstellt: &nbsp;' + moment(meta.created).calendar();
       if (meta.expires) {
-        this.titleTooltip += '<br>Expires: &nbsp;' + moment(meta.expires).fromNow() + '<br>';
+        this.titleTooltip += '<br>Läuft aus: &nbsp;' + moment(meta.expires).fromNow() + '<br>';
       }
     }
   }
@@ -87,7 +87,7 @@ export class DashNavCtrl {
     this.dashboard.addPanel({
       type: 'add-panel',
       gridPos: { x: 0, y: 0, w: 12, h: 9 },
-      title: 'Panel Title',
+      title: 'Panel Titel',
     });
   }
 

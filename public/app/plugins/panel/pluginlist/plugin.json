@@ -1,12 +1,12 @@
 {
   "type": "panel",
-  "name": "Plugin list",
+  "name": "Plugin Liste",
   "id": "pluginlist",
 
   "info": {
-    "description": "Plugin List for Grafana",
+    "description": "Plugin Liste für Grafana",
     "author": {
-      "name": "Grafana Project",
+      "name": "Grafana Projekt",
       "url": "https://grafana.com"
     },
     "logos": {
