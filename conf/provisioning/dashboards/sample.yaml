@@ -7,4 +7,4 @@ apiVersion: 1
 #   folder: ''
 #   type: file
 #   options:
-#     path: /var/lib/grafana/dashboards
+#     path: /var/lib/grafana-de/dashboards

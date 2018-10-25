@@ -43,7 +43,7 @@ var (
 	workingDir            string
 	includeBuildNumber    bool     = true
 	buildNumber           int      = 0
-	binaries              []string = []string{"grafana-server", "grafana-cli"}
+	binaries              []string = []string{"grafana-de-server", "grafana-de-cli"}
 	isDev                 bool     = false
 	enterprise            bool     = false
 )
@@ -89,15 +89,15 @@ func main() {
 
 		case "build-srv":
 			clean()
-			build("grafana-server", "./pkg/cmd/grafana-server", []string{})
+			build("grafana-de-server", "./pkg/cmd/grafana-de-server", []string{})
 
 		case "build-cli":
 			clean()
-			build("grafana-cli", "./pkg/cmd/grafana-cli", []string{})
+			build("grafana-de-cli", "./pkg/cmd/grafana-de-cli", []string{})
 
 		case "build-server":
 			clean()
-			build("grafana-server", "./pkg/cmd/grafana-server", []string{})
+			build("grafana-de-server", "./pkg/cmd/grafana-de-server", []string{})
 
 		case "build":
 			//clean()
@@ -410,7 +410,7 @@ func gruntBuildArg(task string) []string {
 
 func setup() {
 	runPrint("go", "get", "-v", "github.com/golang/dep")
-	runPrint("go", "install", "-v", "./pkg/cmd/grafana-server")
+	runPrint("go", "install", "-v", "./pkg/cmd/grafana-de-server")
 }
 
 func test(pkg string) {

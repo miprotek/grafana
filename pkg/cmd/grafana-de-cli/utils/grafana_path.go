@@ -39,12 +39,12 @@ func returnOsDefault(currentOs string) string {
 	case "windows":
 		return "../data/plugins"
 	case "darwin":
-		return "/usr/local/var/lib/grafana/plugins"
+		return "/usr/local/var/lib/grafana-de/plugins"
 	case "freebsd":
-		return "/var/db/grafana/plugins"
+		return "/var/db/grafana-de/plugins"
 	case "openbsd":
-		return "/var/grafana/plugins"
+		return "/var/grafana-de/plugins"
 	default: //"linux"
-		return "/var/lib/grafana/plugins"
+		return "/var/lib/grafana-de/plugins"
 	}
 }

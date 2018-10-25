@@ -49,9 +49,9 @@ func TestCreatingNewDashboardFileReader(t *testing.T) {
 		})
 
 		Convey("using full path", func() {
-			fullPath := "/var/lib/grafana/dashboards"
+			fullPath := "/var/lib/grafana-de/dashboards"
 			if runtime.GOOS == "windows" {
-				fullPath = `c:\var\lib\grafana`
+				fullPath = `c:\var\lib\grafana-de`
 			}
 
 			cfg.Options["folder"] = fullPath
